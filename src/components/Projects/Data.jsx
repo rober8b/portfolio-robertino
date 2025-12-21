@@ -1,7 +1,7 @@
 import Image1 from '../../assets/PizzaBlock.png'
 import Image2 from '../../assets/xplora.jpg'
 import Image3 from '../../assets/CoffeU.png'
-import Image4 from '../../assets/labujialoca.png'
+import Image4 from '../../assets/LaBujiaLoca.png'
 
 export const Data = [
     {
