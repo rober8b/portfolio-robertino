@@ -1,26 +1,26 @@
-import Image1 from '../../assets/loneranorte.netlify.app.png'
-import Image2 from '../../assets/mygym-project.netlify.app.png'
+import Image1 from '../../assets/PizzaBlock.png'
+import Image2 from '../../assets/Xplora.jpg'
 import Image3 from '../../assets/CoffeU.png'
-import Image4 from '../../assets/pizzeria-rober.netlify.app.png'
+import Image4 from '../../assets/laBujiaLoca.png'
 
 export const Data = [
     {
       id: 1,
       image: Image1,
-      title: 'Awnings',
+      title: 'Pizza Block',
       description:
-      'My firs profesional web site for a family bussines, its a simple landing page.',
-      code: 'https://github.com/rober8b/Lonera_Norte',
-      demo: 'https://loneranorte.netlify.app',
+      'Pizza Block is a complex pizzeria web application where users can create and manage their orders, complete the purchase flow, and automatically send their order details via WhatsApp Web, combining a modern frontend, business logic, and real-world integration for order handling.',
+      code: 'https://github.com/rober8b/Pizza-Block',
+      demo: 'https://pizza-block.vercel.app/',
     },
     {
       id: 2,
       image: Image2,
-      title: "My Gym",
+      title: "Xplora",
       description:
-        "This ecommerce was a project for a javascript training course. It tries to simulate the functionalities of a real ecommerce in the FRONT-END.",
-      code: 'https://github.com/rober8b/My-gym',
-      demo: 'https://mygym-project.netlify.app',
+        "Xplora is the university entrepreneurship club that organizes events and workshops on topics such as AI, Marketing, Programming, and Business, while also offering a job board and event registration platform to connect students with opportunities and the startup ecosystem.",
+      code: 'https://github.com/rober8b/xplora',
+      demo: 'https://github.com/rober8b/xplora',
     },
     {
       id: 3,
@@ -34,10 +34,10 @@ export const Data = [
     {
       id: 4,
       image: Image4,
-      title: "Pizzeria",
+      title: "La Bujia Loca",
       description:
-          "This is one of my recently created templates which simulates a landing page that includes products and a newsletter.",
-      code: 'https://github.com/rober8b/Pizzeria-template',
-      demo: 'https://pizzeria-rober.netlify.app',
+          "La Bujía Loca is a landing page for an automotive accessories and spare parts business, designed to showcase products, brand identity, and contact information through a clean, modern, and responsive web interface.",
+      code: 'https://github.com/rober8b/labujialoca-page',
+      demo: 'https://labujialoca.vercel.app/',
     }
   ];

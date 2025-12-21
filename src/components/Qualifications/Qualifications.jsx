@@ -66,58 +66,11 @@ const Qualifications = () => {
                   : "qualification__content"}>
 
                 <div className="qualification__data">
-                  <div>
-                    <h3 className="qualification__title">Programming Technicature</h3>
-                    <span className="qualification__subtitle">UTN - University</span>
-                    <div className="qualification__calender">
-                      <i className="uil uil-calendar-alt">2021 - Present</i>
-                    </div>
-                  </div>
-
-                  <div>
-                    <span className="qualification__rounder"></span>
-                    <span className="qualification__line"></span>
-                  </div>
-                </div>
-
-                <div className="qualification__data">
-                  <div></div>
-
-                  <div>
-                    <span className="qualification__rounder"></span>
-                    <span className="qualification__line"></span>
-                  </div>
-
-                  <div>
-                    <h3 className="qualification__title">Javascript</h3>
-                    <span className="qualification__subtitle">CoderHouse - Course</span>
-                    <div className="qualification__calender">
-                      <i className="uil uil-calendar-alt">2022</i>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="qualification__data">
-                  <div>
-                    <h3 className="qualification__title">React.js</h3>
-                    <span className="qualification__subtitle">CoderHouse - Course</span>
-                    <div className="qualification__calender">
-                      <i className="uil uil-calendar-alt">2022</i>
-                    </div>
-                  </div>
-
-                  <div>
-                    <span className="qualification__rounder"></span>
-                    <span className="qualification__line"></span>
-                  </div>
-
-                </div>
-
-                <div className="qualification__data">
                   <div></div>
                   
                   <div>
                     <span className="qualification__rounder"></span>
+                    <span className="qualification__line"></span>
                   </div>
 
                   <div>
@@ -128,6 +81,54 @@ const Qualifications = () => {
                     </div>
                   </div>
                 </div>
+
+                <div className="qualification__data">
+                  <div>
+                    <h3 className="qualification__title">Programming Technicature</h3>
+                    <span className="qualification__subtitle">UTN - University</span>
+                    <div className="qualification__calender">
+                      <i className="uil uil-calendar-alt">2022 - 2023</i>
+                    </div>
+                  </div>
+
+                  <div>
+                    <span className="qualification__rounder"></span>
+                    <span className="qualification__line"></span>
+                  </div>
+                </div>
+
+                <div className="qualification__data">
+                  <div></div>
+
+                  <div>
+                    <span className="qualification__rounder"></span>
+                    <span className="qualification__line"></span>
+                  </div>
+
+                  <div>
+                    <h3 className="qualification__title">React.js</h3>
+                    <span className="qualification__subtitle">CoderHouse - Course</span>
+                    <div className="qualification__calender">
+                      <i className="uil uil-calendar-alt">2022</i>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="qualification__data">
+                  <div>
+                    <h3 className="qualification__title">Javascript</h3>
+                    <span className="qualification__subtitle">CoderHouse - Course</span>
+                    <div className="qualification__calender">
+                      <i className="uil uil-calendar-alt">2022</i>
+                    </div>
+                  </div>
+
+                  <div>
+                    <span className="qualification__rounder"></span>
+                  </div>
+
+                </div>
+
               </div>
 
               <div className={
@@ -140,7 +141,7 @@ const Qualifications = () => {
                     <h3 className="qualification__title">Front End Developer</h3>
                     <span className="qualification__subtitle">Freelance</span>
                     <div className="qualification__calender">
-                      <i className="uil uil-calendar-alt">2022 - Present</i>
+                      <i className="uil uil-calendar-alt">2023 - Present</i>
                     </div>
                   </div>
 

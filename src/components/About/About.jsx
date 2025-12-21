@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import "./About.css";
-import Resume from "../../assets/resume-Robertino-Barbuto.pdf";
+import Resume from "../../assets/CV Robertino Barbuto.pdf";
 import AboutImg from "../../assets/perfil.png";
 import Info from "./info"
 import { motion, useAnimation } from 'framer-motion';
@@ -40,11 +40,14 @@ const About = () => {
         <div className="about__data">
           <Info />
 
-          <p className="about__description">I am a <b> Front End developer </b> and computer science student. 
-          <br />
-          I'm passionate about exploring new technologies and using them to <b>solve quotidian problems.</b>
-          <br />
-          My goal as a developer is to be able to create functional and <b>attractive web apps </b>that stand out from the crowd.</p>
+          <p className="about__description">
+            I am a <b>Front End Developer</b> currently studying <b>Digital Business</b>.
+            <br />
+            I enjoy combining <b>technology and business</b> to create digital products that solve real-world problems.
+            <br />
+            My goal is to develop <b>functional, attractive, and user-centered web applications</b> with a strong business perspective.
+          </p>
+
 
           <a href={Resume} className="button button--flex" target="_blank">Open Resume
               <svg

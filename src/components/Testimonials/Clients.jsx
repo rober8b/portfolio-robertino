@@ -6,14 +6,14 @@ export const Data = [
     {
       id: 1,
       image: Image1,
-      title: "Thomas G.",
+      title: "Pedro C.",
       description:
         "Great job, created a very good ecommerce for me and he understood perfectly what I was looking for.",
     },
     {
       id: 2,
       image: Image2,
-      title: "Harry C.",
+      title: "Lucas N.",
       description:
         "A really good job, all aspects of the project were followed step by step and with good results.",
     },
