@@ -1,25 +1,61 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import "./Contact.css";
 
 const Contact = () => {
     const form = useRef();
+    const [notification, setNotification] = useState({ show: false, message: '', type: '' });
+    const [isSubmitting, setIsSubmitting] = useState(false);
       
     const sendEmail = (e) => {
      e.preventDefault();
+     setIsSubmitting(true);
       
-     emailjs.
-     sendForm(
-            'service_a2c9ra5',
+     emailjs
+     .sendForm(
+            'service_yf9z80c',
             'template_nca2vr9',
             form.current,
             'eOQcGSvZ83Apgiro2'
-            )
-     e.target.reset()
+     )
+     .then((result) => {
+         console.log('Email enviado exitosamente:', result.text);
+         setNotification({
+             show: true,
+             message: '¡Message sent successfully! I will contact you soon.',
+             type: 'success'
+         });
+         e.target.reset();
+         setIsSubmitting(false);
+         
+         setTimeout(() => {
+             setNotification({ show: false, message: '', type: '' });
+         }, 5000);
+     })
+     .catch((error) => {
+         console.error('Error al enviar email:', error.text);
+         setNotification({
+             show: true,
+             message: 'Oops! Something went wrong. Please try again.',
+             type: 'error'
+         });
+         setIsSubmitting(false);
+         
+         setTimeout(() => {
+             setNotification({ show: false, message: '', type: '' });
+         }, 5000);
+     });
     };
 
   return (
     <section className="contact section" id="contact">
+       {notification.show && (
+           <div className={`notification ${notification.type}`}>
+               <i className={`bx ${notification.type === 'success' ? 'bx-check-circle' : 'bx-error-circle'}`}></i>
+               <span>{notification.message}</span>
+           </div>
+       )}
+       
        <h2 className="section__title">Contact</h2>
        <span className="section__subtitle">Drop me a line</span>
 
@@ -53,6 +89,7 @@ const Contact = () => {
                     href="https://wa.me/541125128321" 
                     className='contact__button'
                     target="_blank"
+                    rel="noreferrer"
                     >
                       Write me
                       <i className="bx bx-right-arrow-alt contact__button-icon"></i>
@@ -69,6 +106,7 @@ const Contact = () => {
                     href="https://ig.me/m/roberr_bd" 
                     className='contact__button'
                     target="_blank"
+                    rel="noreferrer"
                     >
                       Write me 
                       <i className="bx bx-right-arrow-alt contact__button-icon"></i>
@@ -88,6 +126,7 @@ const Contact = () => {
                      name='name'
                      className='contact__form-input'
                      placeholder='Your name'
+                     required
                      />
                 </div>
 
@@ -98,6 +137,7 @@ const Contact = () => {
                      name="email"
                      className='contact__form-input'
                      placeholder='example@gmail.com'
+                     required
                      />
                 </div>
 
@@ -109,12 +149,13 @@ const Contact = () => {
                      rows="10"  
                      className='contact__form-input' 
                      placeholder='Write me a message...'
+                     required
                      >
                      </textarea>
                 </div>
  
-                <button className="button button--flex">
-                   Send Message
+                <button className="button button--flex" disabled={isSubmitting}>
+                   {isSubmitting ? 'Sending...' : 'Send Message'}
                     <svg
                   className="button__icon"
                   xmlns="http://www.w3.org/2000/svg"
