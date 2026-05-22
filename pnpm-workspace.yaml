@@ -1,0 +1,9 @@
+onlyBuiltDependencies:
+  - sharp
+  - "@tailwindcss/oxide"
+  - unrs-resolver
+  - esbuild
+  - onnxruntime-node
+ignoredBuiltDependencies:
+  - msw
+  - protobufjs

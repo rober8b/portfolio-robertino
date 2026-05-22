@@ -1,0 +1,273 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-surface: var(--surface);
+  --color-surface-elev: var(--surface-elev);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-border-glass: var(--border-glass);
+  --color-specular: var(--specular);
+  --color-drench-bg: var(--drench-bg);
+  --color-drench-text: var(--drench-text);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: calc(var(--radius) * 0.75);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 2);
+  --radius-3xl: calc(var(--radius) * 3);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --animate-reveal-up: reveal-up 0.7s var(--ease-out-expo) both;
+  --animate-specular-drift: specular-drift 6s var(--ease-out-quart) infinite alternate;
+}
+
+:root {
+  /* CREAM BASE — used in projects, github, contact sections */
+  --ink: oklch(0.22 0.025 30);
+  --ink-soft: oklch(0.46 0.02 30);
+  --surface: oklch(0.97 0.014 60);
+  --surface-elev: oklch(0.94 0.018 60);
+  --surface-glass: oklch(0.99 0.008 55 / 0.55);
+  --accent: oklch(0.66 0.22 33);
+  --accent-soft: oklch(0.86 0.1 35);
+  --accent-deep: oklch(0.58 0.23 32);
+
+  --specular: oklch(1 0 0 / 0.55);
+  --highlight-warm: oklch(0.94 0.06 50 / 0.4);
+  --highlight-cool: oklch(0.9 0.04 220 / 0.18);
+
+  --border-glass: oklch(1 0 0 / 0.18);
+  --border-glass-dark: oklch(0.3 0.025 30 / 0.3);
+
+  --background: var(--surface);
+  --foreground: var(--ink);
+
+  --radius: 1.25rem;
+
+  /* DRENCH PALETTE — for hero, footer, manifesto zones */
+  --drench-bg: oklch(0.66 0.22 33);
+  --drench-bg-deeper: oklch(0.58 0.23 32);
+  --drench-text: oklch(0.99 0.008 55);
+  --drench-text-soft: oklch(0.94 0.04 55 / 0.78);
+  --drench-glass-bg: oklch(1 0.005 60 / 0.18);
+  --drench-border: oklch(1 0.008 55 / 0.35);
+
+  /* GITHUB HEATMAP — canonical colors */
+  --gh-0: #ebedf0;
+  --gh-1: #9be9a8;
+  --gh-2: #40c463;
+  --gh-3: #30a14e;
+  --gh-4: #216e39;
+  --gh-border: oklch(0.85 0.005 240 / 0.5);
+}
+
+.dark,
+:root[data-theme="dark"] {
+  --ink: oklch(0.96 0.008 50);
+  --ink-soft: oklch(0.75 0.012 40);
+  --surface: oklch(0.14 0.015 35);
+  --surface-elev: oklch(0.18 0.018 35);
+  --surface-glass: oklch(0.22 0.018 35 / 0.55);
+  --accent: oklch(0.72 0.22 33);
+  --accent-soft: oklch(0.4 0.14 32);
+  --accent-deep: oklch(0.62 0.23 32);
+
+  --specular: oklch(1 0 0 / 0.18);
+  --highlight-warm: oklch(0.6 0.1 45 / 0.28);
+  --highlight-cool: oklch(0.62 0.05 220 / 0.18);
+
+  --border-glass: oklch(1 0 0 / 0.1);
+  --border-glass-dark: oklch(0.1 0.02 35 / 0.5);
+
+  /* drench stays the same orange in dark mode — YC color is the brand color */
+
+  /* GitHub heatmap dark variant */
+  --gh-0: #161b22;
+  --gh-1: #0e4429;
+  --gh-2: #006d32;
+  --gh-3: #26a641;
+  --gh-4: #39d353;
+  --gh-border: oklch(0.3 0.012 240 / 0.6);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: oklch(0.96 0.008 50);
+    --ink-soft: oklch(0.75 0.012 40);
+    --surface: oklch(0.14 0.015 35);
+    --surface-elev: oklch(0.18 0.018 35);
+    --surface-glass: oklch(0.22 0.018 35 / 0.55);
+    --accent: oklch(0.72 0.22 33);
+    --accent-soft: oklch(0.4 0.14 32);
+    --accent-deep: oklch(0.62 0.23 32);
+    --specular: oklch(1 0 0 / 0.18);
+    --highlight-warm: oklch(0.6 0.1 45 / 0.28);
+    --highlight-cool: oklch(0.62 0.05 220 / 0.18);
+    --border-glass: oklch(1 0 0 / 0.1);
+    --border-glass-dark: oklch(0.1 0.02 35 / 0.5);
+    --gh-0: #161b22;
+    --gh-1: #0e4429;
+    --gh-2: #006d32;
+    --gh-3: #26a641;
+    --gh-4: #39d353;
+    --gh-border: oklch(0.3 0.012 240 / 0.6);
+  }
+}
+
+/* DRENCH ZONE — opt-in per section, overrides tokens locally */
+.zone-drench {
+  background-color: var(--drench-bg);
+  color: var(--drench-text);
+
+  --ink: var(--drench-text);
+  --ink-soft: var(--drench-text-soft);
+  --surface-glass: var(--drench-glass-bg);
+  --border-glass: var(--drench-border);
+  --border-glass-dark: oklch(1 0.005 55 / 0.2);
+  --specular: oklch(1 0 0 / 0.35);
+  --highlight-warm: oklch(1 0.06 55 / 0.45);
+
+  /* primary CTA pill becomes light-on-orange */
+  --surface: oklch(0.62 0.23 33);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border-glass);
+  }
+  html {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    min-height: 100dvh;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+  h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+  }
+  h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+  h3 {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+  }
+  p {
+    line-height: 1.65;
+    text-wrap: pretty;
+  }
+  ::selection {
+    background-color: var(--accent);
+    color: oklch(0.99 0.008 55);
+  }
+}
+
+@layer utilities {
+  .glass {
+    background-color: var(--surface-glass);
+    backdrop-filter: blur(20px) saturate(180%) brightness(1.05);
+    -webkit-backdrop-filter: blur(20px) saturate(180%) brightness(1.05);
+    border: 1px solid var(--border-glass);
+    box-shadow:
+      inset 0 1px 0 var(--specular),
+      inset 0 0 0 1px var(--highlight-warm),
+      0 10px 40px -20px oklch(0.22 0.025 30 / 0.25);
+  }
+
+  .glass-strong {
+    background-color: var(--surface-glass);
+    backdrop-filter: blur(32px) saturate(200%) brightness(1.08);
+    -webkit-backdrop-filter: blur(32px) saturate(200%) brightness(1.08);
+    border: 1px solid var(--border-glass);
+    box-shadow:
+      inset 0 1px 0 var(--specular),
+      inset 0 0 0 1px var(--highlight-warm),
+      0 20px 60px -24px oklch(0.22 0.025 30 / 0.35);
+  }
+
+  .glass-refract {
+    filter: url(#liquid-refract);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .max-w-prose-tight {
+    max-width: 68ch;
+  }
+
+  .grid-fluid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes specular-drift {
+  from {
+    transform: translate3d(-8%, -4%, 0);
+  }
+  to {
+    transform: translate3d(8%, 4%, 0);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
