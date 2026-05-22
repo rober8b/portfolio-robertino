@@ -3,7 +3,10 @@ onlyBuiltDependencies:
   - "@tailwindcss/oxide"
   - unrs-resolver
   - esbuild
-  - onnxruntime-node
 ignoredBuiltDependencies:
   - msw
   - protobufjs
+  # onnxruntime-node only needed for local `pnpm build:faq` (Node-side embeddings).
+  # Vercel deploy skips it because the runtime uses the browser path of @huggingface/transformers.
+  # If you need to regen FAQ embeddings on a fresh machine, run: pnpm rebuild onnxruntime-node
+  - onnxruntime-node
