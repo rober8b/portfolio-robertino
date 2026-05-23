@@ -136,7 +136,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
         )}
       </div>
 
-      <div className="relative mt-auto flex items-center justify-between gap-3 pt-6 z-10">
+      <div className="relative z-10 mt-auto flex items-center justify-between gap-3 pt-6">
         <span className="font-mono text-[0.6rem] tracking-[0.08em] text-[var(--ink-soft)] uppercase opacity-60">
           {project.industry.split(" · ").slice(0, 2).join(" · ")}
         </span>
@@ -145,16 +145,23 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
             href={primaryLink}
             target={primaryLink.startsWith("http") ? "_blank" : undefined}
             rel="noreferrer"
-            className="inline-flex items-center gap-1 text-xs font-medium text-[var(--ink)] transition-colors hover:text-[var(--accent)]"
+            data-cursor="reticle"
+            className="group/visit inline-flex items-center gap-1.5 rounded-full border border-[var(--border-glass-dark)] bg-[var(--surface-elev)] px-4 py-2 text-xs font-semibold text-[var(--ink)] shadow-[0_2px_8px_-4px_oklch(0.22_0.025_30/0.2)] transition-all duration-300 hover:-translate-y-0.5 hover:border-transparent hover:bg-[var(--accent)] hover:text-white hover:shadow-[0_10px_24px_-8px_var(--accent-glow)]"
             aria-label={`Abrir ${project.name}`}
           >
             {project.links.repo === primaryLink ? (
               <>
-                <GithubIcon className="h-3 w-3" /> repo
+                <GithubIcon className="h-3.5 w-3.5" />
+                <span>Ver repo</span>
               </>
             ) : (
               <>
-                visitar <ArrowUpRight size={12} strokeWidth={1.75} />
+                <span>Visitar sitio</span>
+                <ArrowUpRight
+                  size={13}
+                  strokeWidth={2}
+                  className="transition-transform duration-300 group-hover/visit:-translate-y-0.5 group-hover/visit:translate-x-0.5"
+                />
               </>
             )}
           </a>

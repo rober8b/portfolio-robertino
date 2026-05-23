@@ -471,13 +471,16 @@
     opacity: 0;
   }
 
-  /* DEFAULT — solid pixel block */
+  /* DEFAULT — solid pixel block. var(--accent) is orange in both themes,
+     visible on cream + dark + orange surfaces. No mix-blend-mode because
+     difference + white is invisible on cream backgrounds. */
   .cursor-block {
     width: 10px;
     height: 10px;
     border-radius: 1px;
-    mix-blend-mode: difference;
-    background: #fff;
+    mix-blend-mode: normal;
+    background: var(--accent);
+    box-shadow: 0 0 0 1px oklch(0 0 0 / 0.4), 0 0 8px var(--accent-glow);
   }
   .cursor-root[data-state="default"] .cursor-block {
     opacity: 1;

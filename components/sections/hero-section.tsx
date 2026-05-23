@@ -53,11 +53,11 @@ export function HeroSection() {
   const copy = COPY[mode];
 
   return (
-    <section className="zone-drench relative flex min-h-[100svh] items-center overflow-hidden px-4 pt-24 pb-20 sm:px-6 sm:pt-28 sm:pb-24 lg:min-h-dvh lg:px-8 lg:pt-32 lg:pb-28">
+    <section className="zone-drench relative flex items-center overflow-hidden px-4 pt-20 pb-10 sm:px-6 sm:pt-24 sm:pb-14 lg:px-8 lg:pt-24 lg:pb-16">
       <DrenchAmbient />
       <BottomGradient />
 
-      <div className="relative z-10 mx-auto grid w-full max-w-6xl gap-8 sm:gap-10 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
+      <div className="relative z-10 mx-auto grid w-full max-w-6xl gap-8 sm:gap-10 lg:grid-cols-[1.2fr_1fr] lg:gap-14">
         <motion.div
           key={`hero-text-${mode}`}
           initial="hidden"
@@ -162,7 +162,7 @@ function HeroGlassCard({ floating }: { floating: boolean }) {
       transition={{ duration: 0.7, delay: 0.3, ease: EASE_OUT_EXPO }}
       className={floating ? "animate-float" : undefined}
     >
-      <div className="glass-strong relative flex aspect-[4/5] flex-col justify-between overflow-hidden rounded-3xl p-8">
+      <div className="glass-strong relative flex aspect-[5/6] flex-col justify-between overflow-hidden rounded-3xl p-7 lg:p-8">
         <SpecularDrift />
         <div className="relative">
           <span className="font-mono text-[0.65rem] tracking-[0.12em] text-[var(--drench-text-soft)] uppercase">

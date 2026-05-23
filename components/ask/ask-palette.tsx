@@ -152,9 +152,9 @@ export function AskPalette() {
           >
             <div
               aria-hidden
-              className="pixel-frame pointer-events-none absolute inset-0 z-10 rounded-2xl text-[var(--accent)] opacity-50 sm:rounded-3xl"
+              className="pixel-frame pointer-events-none absolute inset-0 z-10 rounded-2xl text-[var(--accent)] opacity-35 sm:rounded-3xl"
             />
-            <header className="flex items-center gap-2.5 border-b border-[var(--border-glass-dark)] px-4 py-3.5 sm:gap-3 sm:px-5 sm:py-4">
+            <header className="flex items-center gap-2.5 border-b border-[var(--border-glass-dark)] px-6 py-4 sm:gap-3 sm:px-7 sm:py-5">
               <Sparkles
                 size={16}
                 strokeWidth={1.75}
@@ -225,7 +225,7 @@ export function AskPalette() {
               )}
             </div>
 
-            <footer className="flex items-center justify-between gap-3 border-t border-[var(--border-glass-dark)] bg-[var(--surface-glass)]/40 px-4 py-2 font-mono text-[0.6rem] tracking-[0.08em] text-[var(--ink-soft)] uppercase opacity-80 sm:px-5">
+            <footer className="flex items-center justify-between gap-3 border-t border-[var(--border-glass-dark)] bg-[var(--surface-glass)]/40 px-5 py-2.5 font-mono text-[0.6rem] tracking-[0.08em] text-[var(--ink-soft)] uppercase opacity-80 sm:px-6">
               <span className="flex shrink-0 items-center gap-1.5">
                 <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--accent)]" />
                 <span>ASK.exe</span>
@@ -249,7 +249,7 @@ export function AskPalette() {
 function ModelDownloadBanner({ status }: { status: ModelLoadStatus }) {
   const progress = status.phase === "downloading" ? status.progress : 0;
   return (
-    <div className="border-b border-[var(--border-glass-dark)] bg-[var(--accent)]/5 px-4 py-2.5 sm:px-5">
+    <div className="border-b border-[var(--border-glass-dark)] bg-[var(--accent)]/5 px-6 py-3 sm:px-7">
       <div className="flex items-center justify-between gap-3">
         <p className="text-xs text-[var(--ink-soft)]">
           Cargando modelo de búsqueda · primera vez{" "}
@@ -271,7 +271,7 @@ function ModelDownloadBanner({ status }: { status: ModelLoadStatus }) {
 
 function ErrorState({ message }: { message: string | null }) {
   return (
-    <div className="px-5 py-8 text-sm sm:px-6 sm:py-10">
+    <div className="px-6 py-8 text-sm sm:px-8 sm:py-10">
       <div className="flex items-start gap-3">
         <AlertCircle
           size={18}
@@ -299,7 +299,7 @@ function ErrorState({ message }: { message: string | null }) {
 
 function EmptyIndexState() {
   return (
-    <div className="px-5 py-8 text-sm text-[var(--ink-soft)] sm:px-6 sm:py-10">
+    <div className="px-6 py-8 text-sm text-[var(--ink-soft)] sm:px-8 sm:py-10">
       <p className="font-mono text-xs tracking-[0.08em] uppercase opacity-60">FAQ index vacío</p>
       <p className="mt-3 leading-relaxed">
         Todavía no se generaron las embeddings. Llená{" "}
@@ -326,17 +326,17 @@ function IdleState({
   onCommand: (cmd: CommandEntry) => void;
 }) {
   return (
-    <div className="space-y-2 px-3 py-4 sm:px-4 sm:py-5">
+    <div className="space-y-3 px-4 py-5 sm:px-5 sm:py-6">
       <p className="px-2 font-mono text-[0.65rem] tracking-[0.12em] text-[var(--ink-soft)] uppercase opacity-60">
         {mode === "dev" ? "Probá preguntar" : "Sugerencias"}
       </p>
-      <ul className="space-y-0.5">
+      <ul className="space-y-1">
         {suggestions.map((s) => (
           <li key={s}>
             <button
               type="button"
               onClick={() => onPick(s)}
-              className="group flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-left text-sm text-[var(--ink-soft)] transition-colors hover:bg-[var(--surface-glass)] hover:text-[var(--ink)]"
+              className="group flex w-full items-center justify-between gap-3 rounded-xl px-4 py-3 text-left text-sm text-[var(--ink-soft)] transition-colors hover:bg-[var(--surface-glass)] hover:text-[var(--ink)]"
             >
               <span className="flex items-center gap-3">
                 <Search
@@ -391,7 +391,7 @@ function CommandsList({
   const order: Array<CommandEntry["group"]> = ["navegar", "modo", "tema", "contacto", "secreto"];
 
   return (
-    <div className={cn("space-y-3", compact ? "" : "px-3 py-4 sm:px-4 sm:py-5")}>
+    <div className={cn("space-y-3", compact ? "" : "px-4 py-5 sm:px-5 sm:py-6")}>
       {order
         .filter((g) => grouped[g]?.length)
         .map((group) => (
@@ -401,13 +401,13 @@ function CommandsList({
                 {group}
               </p>
             )}
-            <ul className="space-y-0.5">
+            <ul className="space-y-1">
               {grouped[group].map((cmd) => (
                 <li key={cmd.id}>
                   <button
                     type="button"
                     onClick={() => onPick(cmd)}
-                    className="group flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2 text-left text-sm text-[var(--ink-soft)] transition-colors hover:bg-[var(--surface-glass)] hover:text-[var(--ink)]"
+                    className="group flex w-full items-center justify-between gap-3 rounded-xl px-4 py-2.5 text-left text-sm text-[var(--ink-soft)] transition-colors hover:bg-[var(--surface-glass)] hover:text-[var(--ink)]"
                   >
                     <span className="flex items-center gap-3">
                       <cmd.Icon
@@ -454,7 +454,7 @@ function ResultsList({
               type="button"
               onClick={() => onSelect(m.entry.id)}
               className={cn(
-                "flex w-full flex-col gap-1 px-4 py-2.5 text-left text-sm transition-colors",
+                "flex w-full flex-col gap-1 px-5 py-3 text-left text-sm transition-colors",
                 m.entry.id === selectedId
                   ? "bg-[var(--surface-glass)] text-[var(--ink)]"
                   : "text-[var(--ink-soft)] hover:bg-[var(--surface-glass)] hover:text-[var(--ink)]",
@@ -469,7 +469,7 @@ function ResultsList({
         ))}
       </ul>
 
-      <div className="space-y-4 px-5 py-4">
+      <div className="space-y-4 px-6 py-5 sm:px-7">
         <p className="text-sm leading-relaxed whitespace-pre-line text-[var(--ink)]">{answer}</p>
         <p className="font-mono text-[0.6rem] tracking-[0.08em] text-[var(--ink-soft)] uppercase opacity-50">
           Modo {mode === "dev" ? "Dev" : "Cliente"}
@@ -481,7 +481,7 @@ function ResultsList({
 
 function NoMatchState({ mode }: { mode: "dev" | "client" }) {
   return (
-    <div className="px-6 py-8">
+    <div className="px-6 py-8 sm:px-8 sm:py-10">
       <p className="text-sm leading-relaxed text-[var(--ink)]">
         {mode === "dev"
           ? "No tengo nada armado para esa pregunta. Si es algo técnico específico, mandame mensaje."
