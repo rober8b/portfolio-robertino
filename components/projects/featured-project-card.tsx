@@ -5,7 +5,8 @@ import { ArrowUpRight, ExternalLink } from "lucide-react";
 import { useMode } from "@/components/mode/mode-provider";
 import { GithubIcon } from "@/components/icons/brand-icons";
 import { StatusBadge } from "@/components/projects/status-badge";
-import { ProjectMetaBoard } from "@/components/projects/project-meta-board";
+import { StackChip } from "@/components/projects/stack-chip";
+import { ProjectMockup } from "@/components/projects/project-mockup";
 import { cn } from "@/lib/utils";
 import type { Project } from "@/lib/site-data";
 
@@ -21,19 +22,31 @@ export function FeaturedProjectCard({
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: true, amount: 0.15 }}
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.05 * index }}
       className={cn(
-        "grid items-stretch gap-6 lg:gap-10",
-        "lg:grid-cols-[5fr_3fr]",
-        inverted && "lg:grid-cols-[3fr_5fr]",
+        "grid items-center gap-8 lg:gap-12",
+        "lg:grid-cols-[1.15fr_1fr]",
+        inverted && "lg:grid-cols-[1fr_1.15fr]",
       )}
     >
-      <div className={cn("flex flex-col justify-between", inverted && "lg:order-2")}>
+      {/* IMAGE / MOCKUP COLUMN */}
+      <div className={cn("relative group/mockup overflow-hidden rounded-3xl", inverted ? "lg:order-2" : "lg:order-1")}>
+        <ProjectMockup project={project} />
+      </div>
+
+      {/* INFO COLUMN */}
+      <div className={cn("flex flex-col justify-between gap-6", inverted ? "lg:order-1" : "lg:order-2")}>
         <div>
           <div className="flex items-center gap-3">
+            <span
+              aria-hidden
+              className="nums-tabular font-mono text-[0.65rem] tracking-[0.12em] text-[var(--accent)] uppercase"
+            >
+              {String(index + 1).padStart(2, "0")} ·
+            </span>
             <StatusBadge status={project.status} mode={mode} />
             <span className="font-mono text-[0.65rem] tracking-[0.08em] text-[var(--ink-soft)] uppercase opacity-60">
               {project.year} · {project.industry.split(" · ")[0]}
@@ -65,13 +78,61 @@ export function FeaturedProjectCard({
               ))}
             </ul>
           )}
+
+          {/* Compact Metadata Board */}
+          <div className="mt-6 border-t border-[var(--border-glass-dark)] pt-6">
+            <ProjectMetaBoardCompact project={project} mode={mode} />
+          </div>
+
+          {/* Staggered Tech Tags */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={{
+              visible: { transition: { staggerChildren: 0.04, delayChildren: 0.1 } },
+            }}
+            className="mt-6 flex flex-wrap gap-1.5"
+          >
+            {project.stack.slice(0, 8).map((tech) => (
+              <motion.div
+                key={tech}
+                variants={{
+                  hidden: { opacity: 0, x: -10 },
+                  visible: { opacity: 1, x: 0, transition: { duration: 0.4 } },
+                }}
+              >
+                <StackChip size="sm">{tech.toLowerCase()}</StackChip>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
 
         <FeaturedCardActions project={project} mode={mode} />
       </div>
-
-      <ProjectMetaBoard project={project} mode={mode} />
     </motion.article>
+  );
+}
+
+function ProjectMetaBoardCompact({ project, mode }: { project: Project; mode: "dev" | "client" }) {
+  const items = [
+    { label: "Status", value: project.statusLabel[mode] },
+    { label: "Year", value: project.year },
+    { label: "Industry", value: project.industry.split(" · ").slice(0, 2).join(" · ") },
+  ];
+  if (project.client) {
+    items.push({ label: "Client", value: project.client });
+  }
+
+  return (
+    <div className="flex flex-wrap gap-x-8 gap-y-4 font-mono text-[0.65rem] tracking-[0.06em] uppercase">
+      {items.map((item) => (
+        <div key={item.label} className="flex flex-col gap-1">
+          <span className="text-[var(--ink-soft)] opacity-60">{item.label}</span>
+          <span className="font-semibold text-[var(--ink)]">{item.value}</span>
+        </div>
+      ))}
+    </div>
   );
 }
 

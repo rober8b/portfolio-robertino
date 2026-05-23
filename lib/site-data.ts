@@ -96,6 +96,7 @@ export const PROJECTS: Project[] = [
     links: {
       manifesto: "/marketplace",
     },
+    image: "/projects/marketplace.png",
     featured: true,
   },
   {
@@ -122,6 +123,7 @@ export const PROJECTS: Project[] = [
       "JSON-LD structured data para SEO",
     ],
     links: {},
+    image: "/projects/aredes-asociados.jpg",
     featured: true,
   },
   {
@@ -148,33 +150,90 @@ export const PROJECTS: Project[] = [
       "Mobile-first — 80% del tráfico desde IG en celular",
     ],
     links: {},
+    image: "/projects/leiza-page.jpg",
     featured: true,
   },
   {
-    slug: "ruedalista",
-    name: "Ruedalista",
+    slug: "nebula",
+    name: "Nebula",
     tagline: {
-      dev: "Ecommerce de neumáticos con MercadoPago HMAC webhook y state machine de pedidos",
-      client: "Tienda online de neumáticos. Catálogo, carrito y pagos con MercadoPago.",
+      dev: "Sitio editorial para canal audiovisual de cultura cannábica LATAM",
+      client: "El sitio de Nebula, canal audiovisual sobre cultura cannábica en Latinoamérica",
     },
     description: {
-      dev: "Primer ecommerce propio en producción. Next.js 14 + Prisma + Supabase + MercadoPago SDK v2. Webhook firmado HMAC, stock decrement transaccional, Resend para emails. Tabla Admin como source of truth de permisos.",
-      client: "Mi propia tienda online de neumáticos. Venta por encargo, con pagos integrados y notificación por email automática.",
+      dev: "Sitio brand + editorial para Nebula (Buenos Aires). Hub de contenidos del programa flagship 'HDP: Hablemos de Porro', cápsulas educativas y formatos de marca. Next.js + integración con YouTube, Instagram, TikTok y Twitch. Posicionamiento premium — periodismo responsable, no entretenimiento sensacionalista.",
+      client: "Le hice la web a Nebula, un canal audiovisual de cultura cannábica con base en Buenos Aires. El sitio centraliza sus programas, redes y videos en YouTube, con un diseño editorial serio.",
     },
-    status: "qa",
-    statusLabel: { dev: "QA — catálogo en carga", client: "En carga de catálogo" },
+    status: "live",
+    statusLabel: { dev: "Producción", client: "En vivo" },
     year: "2026",
-    industry: "Ecommerce propio · Neumáticos",
-    stack: ["Next.js 14", "Prisma", "Supabase", "MercadoPago", "Resend", "Tailwind", "shadcn"],
+    client: "Nebula",
+    industry: "Media · Brand · Cannabis culture",
+    stack: ["Next.js", "React", "TypeScript", "Tailwind", "Vercel", "YouTube API"],
     highlights: [
-      "Webhook MercadoPago con verificación HMAC",
-      "Máquina de estados documentada para pedidos",
-      "Upstash Redis para rate limiting (opcional)",
-      "React Email para emails transaccionales",
+      "Hub editorial multi-plataforma (YouTube + IG + TikTok + Twitch)",
+      "Diseño premium para reposicionar marca como referente cultural",
+      "Tipografía y paleta committed con identidad 'cultura verde con criterio'",
     ],
     links: {
-      repo: "https://github.com/rober8b/neumaticos-ecom",
+      demo: "https://www.somosnebula.ar/",
     },
+    image: "/projects/nebula.jpg",
+    featured: true,
+  },
+  {
+    slug: "equitas-abogados",
+    name: "Equitas Abogados",
+    tagline: {
+      dev: "Sitio institucional Next.js 14 para estudio jurídico con 9 áreas de práctica",
+      client: "Sitio de Equitas Abogados, estudio jurídico con 20+ años de trayectoria",
+    },
+    description: {
+      dev: "Sitio institucional para estudio jurídico argentino. Next.js 14 + Tailwind + TypeScript. Arquitectura por áreas de práctica (9 verticales), testimonios, CTAs múltiples para captación. SEO técnico para queries legales de alta intención.",
+      client: "Le hice la web a Equitas Abogados, un estudio jurídico con 20+ años de trayectoria. Sitio profesional que ordena las 9 áreas de práctica, testimonios de clientes y un mensaje claro: asesoramiento con respuesta en 48 horas.",
+    },
+    status: "live",
+    statusLabel: { dev: "Producción", client: "En vivo" },
+    year: "2026",
+    client: "Equitas Abogados",
+    industry: "Servicios legales · Estudio jurídico",
+    stack: ["Next.js 14", "React 18", "TypeScript", "Tailwind v3"],
+    highlights: [
+      "Arquitectura por áreas de práctica (9 verticales)",
+      "CTAs múltiples optimizadas para captación de casos",
+      "SEO técnico para queries legales de alta intención",
+    ],
+    links: {
+      demo: "https://equitas-abogados.vercel.app/",
+    },
+    image: "/projects/equitas-abogados.jpg",
+  },
+  {
+    slug: "nomos",
+    name: "Nomos",
+    tagline: {
+      dev: "Marketplace de squads agénticos con routing por costo entre Claude Haiku/Sonnet/Opus",
+      client: "Plataforma para contratar equipos de IA y pagar solo por lo que cuesta resolver tu tarea",
+    },
+    description: {
+      dev: "Construido en 8h en el Hackathon de Anthropic LATAM (Kaszek × Anthropic × Digital House) con Sylvestre Corti, Martín Pulitano y Leonardo Cagliero. Compute-routed marketplace que descompone tareas y rutea cada subtarea al modelo más barato que pueda resolverla (Haiku → Sonnet → Opus). 61% de ahorro promedio.",
+      client: "Prototipo construido en 8 horas durante el Hackathon de Anthropic en LATAM. Una plataforma donde alquilás equipos de inteligencia artificial pre-armados, y la plataforma elige cuál usar para ahorrarte plata.",
+    },
+    status: "prototype",
+    statusLabel: { dev: "Hackathon prototype · live demo", client: "Prototipo del hackathon" },
+    year: "2026",
+    industry: "Agentic AI · Hackathon prototype",
+    stack: ["Next.js", "Claude API", "Anthropic SDK", "Web3", "Vercel"],
+    highlights: [
+      "Routing por costo entre Haiku, Sonnet y Opus",
+      "Squads curados por dominio (research, legal, soporte, content)",
+      "13.504 tareas procesadas, 61% de ahorro promedio en demos",
+      "Pricing en ETH + USDC (testnet)",
+    ],
+    links: {
+      demo: "https://nomos-tau.vercel.app/",
+    },
+    image: "/projects/nomos.jpg",
   },
   {
     slug: "dental-app",
@@ -200,6 +259,7 @@ export const PROJECTS: Project[] = [
       "Soft-delete en turnos cancelados",
     ],
     links: {},
+    image: "/projects/dental-app.jpg",
   },
   {
     slug: "pizza-block",
@@ -226,6 +286,7 @@ export const PROJECTS: Project[] = [
       demo: "https://pizza-block.vercel.app/",
       repo: "https://github.com/rober8b/Pizza-Block",
     },
+    image: "/projects/pizza-block.jpg",
   },
   {
     slug: "xplora",
@@ -251,6 +312,7 @@ export const PROJECTS: Project[] = [
     links: {
       repo: "https://github.com/rober8b/xplora",
     },
+    image: "/projects/xplora.jpg",
   },
 ];
 

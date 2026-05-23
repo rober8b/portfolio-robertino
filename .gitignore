@@ -55,3 +55,8 @@ next-env.d.ts
 # OS
 Thumbs.db
 .DS_Store
+
+.vercel
+
+# Local visual verification outputs
+/verify/

@@ -2,9 +2,9 @@
 
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { ArrowRight, Loader2, MessageCircle, Search, Sparkles } from "lucide-react";
+import { AlertCircle, ArrowRight, Loader2, MessageCircle, Search, Sparkles } from "lucide-react";
 import faqIndex from "@/lib/ask/faq-index.json";
-import { embedQuery } from "@/lib/ask/embedder";
+import { embedQuery, subscribeModelStatus, type ModelLoadStatus } from "@/lib/ask/embedder";
 import { rankFaq } from "@/lib/ask/search";
 import {
   COMMANDS,
@@ -36,7 +36,7 @@ const SUGGESTIONS = {
   ],
 } as const;
 
-type Stage = "idle" | "loading" | "ready" | "empty";
+type Stage = "idle" | "loading" | "ready" | "empty" | "error";
 
 export function AskPalette() {
   const { open, setOpen } = useAskPalette();
@@ -45,12 +45,17 @@ export function AskPalette() {
   const [matches, setMatches] = useState<AskMatch[]>([]);
   const [commands, setCommands] = useState<CommandEntry[]>(COMMANDS);
   const [stage, setStage] = useState<Stage>("idle");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [modelStatus, setModelStatus] = useState<ModelLoadStatus>({ phase: "idle" });
   const [selectedFaqId, setSelectedFaqId] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const seq = useRef(0);
 
   const indexEmpty = INDEX.entries.length === 0;
   const isCommandMode = isCommandQuery(query);
+  const isModelDownloading = modelStatus.phase === "downloading";
+
+  useEffect(() => subscribeModelStatus(setModelStatus), []);
 
   useEffect(() => {
     if (open) {
@@ -84,6 +89,7 @@ export function AskPalette() {
 
     const ticket = ++seq.current;
     setStage("loading");
+    setErrorMessage(null);
     const handle = setTimeout(async () => {
       try {
         const vector = await embedQuery(trimmed);
@@ -95,8 +101,14 @@ export function AskPalette() {
         setSelectedFaqId(filtered[0]?.entry.id ?? null);
       } catch (err) {
         console.error("ask palette embed error", err);
-        setStage("empty");
+        if (ticket !== seq.current) return;
+        setStage("error");
         setMatches([]);
+        setErrorMessage(
+          err instanceof Error
+            ? err.message
+            : "No pude cargar el modelo de búsqueda. Probá recargar.",
+        );
       }
     }, 240);
 
@@ -122,11 +134,11 @@ export function AskPalette() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.18 }}
-          className="fixed inset-0 z-[100] flex items-start justify-center px-4 pt-24 sm:pt-32"
+          className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto px-3 pt-16 pb-8 sm:px-4 sm:pt-24 sm:pb-12"
           style={{
-            background:
-              "radial-gradient(60% 80% at 50% 0%, oklch(0.22 0.022 40 / 0.35), oklch(0.22 0.022 40 / 0.55))",
-            backdropFilter: "blur(8px)",
+            backgroundColor: "oklch(0.18 0.025 30 / 0.82)",
+            backdropFilter: "blur(20px) saturate(120%)",
+            WebkitBackdropFilter: "blur(20px) saturate(120%)",
           }}
           onClick={() => setOpen(false)}
         >
@@ -136,10 +148,18 @@ export function AskPalette() {
             exit={{ opacity: 0, y: -8, scale: 0.98 }}
             transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
             onClick={(e) => e.stopPropagation()}
-            className="glass-strong relative w-full max-w-2xl overflow-hidden rounded-3xl"
+            className="glass-strong relative flex w-full max-w-lg flex-col overflow-hidden rounded-2xl sm:rounded-3xl"
           >
-            <header className="flex items-center gap-3 border-b border-[var(--border-glass-dark)] px-5 py-4">
-              <Sparkles size={16} strokeWidth={1.75} className="text-[var(--accent)]" />
+            <div
+              aria-hidden
+              className="pixel-frame pointer-events-none absolute inset-0 z-10 rounded-2xl text-[var(--accent)] opacity-50 sm:rounded-3xl"
+            />
+            <header className="flex items-center gap-2.5 border-b border-[var(--border-glass-dark)] px-4 py-3.5 sm:gap-3 sm:px-5 sm:py-4">
+              <Sparkles
+                size={16}
+                strokeWidth={1.75}
+                className="shrink-0 text-[var(--accent)]"
+              />
               <input
                 ref={inputRef}
                 type="text"
@@ -152,27 +172,38 @@ export function AskPalette() {
                       ? "Preguntá o tipeá > para comandos"
                       : "Preguntame lo que quieras o tipeá > para comandos"
                 }
-                className="flex-1 bg-transparent text-base text-[var(--ink)] outline-none placeholder:text-[var(--ink-soft)] placeholder:opacity-60"
+                className="min-w-0 flex-1 bg-transparent text-base text-[var(--ink)] outline-none placeholder:text-[var(--ink-soft)] placeholder:opacity-60"
                 autoComplete="off"
                 spellCheck={false}
               />
-              {stage === "loading" && (
-                <Loader2
-                  size={16}
-                  strokeWidth={1.75}
-                  className="animate-spin text-[var(--ink-soft)]"
-                />
+              {(stage === "loading" || isModelDownloading) && (
+                <div className="flex shrink-0 items-center gap-1.5 rounded-full bg-[var(--accent)]/10 px-2 py-1">
+                  <Loader2
+                    size={14}
+                    strokeWidth={2}
+                    className="animate-spin text-[var(--accent)]"
+                  />
+                  <span className="font-mono text-[0.6rem] tracking-[0.05em] text-[var(--accent)] uppercase">
+                    {isModelDownloading
+                      ? `${modelStatus.phase === "downloading" ? modelStatus.progress : 0}%`
+                      : "buscando"}
+                  </span>
+                </div>
               )}
-              <kbd className="hidden rounded border border-[var(--border-glass-dark)] bg-[var(--surface-glass)] px-1.5 py-0.5 font-mono text-[0.65rem] text-[var(--ink-soft)] sm:inline">
+              <kbd className="hidden shrink-0 rounded border border-[var(--border-glass-dark)] bg-[var(--surface-glass)] px-1.5 py-0.5 font-mono text-[0.65rem] text-[var(--ink-soft)] sm:inline">
                 Esc
               </kbd>
             </header>
 
-            <div className="max-h-[60vh] overflow-y-auto">
+            {isModelDownloading && <ModelDownloadBanner status={modelStatus} />}
+
+            <div className="max-h-[min(60vh,32rem)] overflow-y-auto overscroll-contain">
               {isCommandMode ? (
                 <CommandsList commands={commands} onPick={executeCommand} />
               ) : indexEmpty ? (
                 <EmptyIndexState />
+              ) : stage === "error" ? (
+                <ErrorState message={errorMessage} />
               ) : stage === "idle" ? (
                 <IdleState
                   suggestions={activeSuggestions}
@@ -194,12 +225,18 @@ export function AskPalette() {
               )}
             </div>
 
-            <footer className="flex items-center justify-between border-t border-[var(--border-glass-dark)] px-5 py-2.5 font-mono text-[0.6rem] tracking-[0.08em] text-[var(--ink-soft)] uppercase opacity-70">
-              <span>
-                {isCommandMode ? "modo comando" : "respuesta sin generación · escrita por rober"}
+            <footer className="flex items-center justify-between gap-3 border-t border-[var(--border-glass-dark)] bg-[var(--surface-glass)]/40 px-4 py-2 font-mono text-[0.6rem] tracking-[0.08em] text-[var(--ink-soft)] uppercase opacity-80 sm:px-5">
+              <span className="flex shrink-0 items-center gap-1.5">
+                <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--accent)]" />
+                <span>ASK.exe</span>
+                <span className="opacity-50">v1.0</span>
               </span>
-              <span>
-                tipeá <span className="rounded border border-[var(--border-glass-dark)] px-1">{">"}</span> para comandos
+              <span className="truncate text-center opacity-70">
+                {isCommandMode ? "[ MODO COMANDO ]" : "[ RESPUESTA · ESCRITA POR ROBER ]"}
+              </span>
+              <span className="hidden shrink-0 sm:inline">
+                <span className="rounded border border-[var(--border-glass-dark)] px-1">{">"}</span>
+                <span className="ml-1.5 opacity-50">CMD</span>
               </span>
             </footer>
           </motion.div>
@@ -209,9 +246,60 @@ export function AskPalette() {
   );
 }
 
+function ModelDownloadBanner({ status }: { status: ModelLoadStatus }) {
+  const progress = status.phase === "downloading" ? status.progress : 0;
+  return (
+    <div className="border-b border-[var(--border-glass-dark)] bg-[var(--accent)]/5 px-4 py-2.5 sm:px-5">
+      <div className="flex items-center justify-between gap-3">
+        <p className="text-xs text-[var(--ink-soft)]">
+          Cargando modelo de búsqueda · primera vez{" "}
+          <span className="text-[var(--ink)]">({progress}%)</span>
+        </p>
+        <span className="font-mono text-[0.55rem] tracking-[0.1em] text-[var(--ink-soft)] uppercase opacity-60">
+          ~25MB · una sola vez
+        </span>
+      </div>
+      <div className="mt-2 h-0.5 w-full overflow-hidden rounded-full bg-[var(--border-glass-dark)]">
+        <div
+          className="h-full bg-[var(--accent)] transition-[width] duration-300"
+          style={{ width: `${progress}%` }}
+        />
+      </div>
+    </div>
+  );
+}
+
+function ErrorState({ message }: { message: string | null }) {
+  return (
+    <div className="px-5 py-8 text-sm sm:px-6 sm:py-10">
+      <div className="flex items-start gap-3">
+        <AlertCircle
+          size={18}
+          strokeWidth={1.75}
+          className="mt-0.5 shrink-0 text-[var(--accent)]"
+        />
+        <div className="space-y-2">
+          <p className="font-medium text-[var(--ink)]">No pude buscar tu pregunta</p>
+          <p className="text-xs text-[var(--ink-soft)] leading-relaxed">
+            {message ??
+              "Algo falló al cargar el modelo de búsqueda local. Probá recargar la página o escribime directo."}
+          </p>
+          <a
+            href="mailto:robertinobarbuto@gmail.com"
+            className="mt-1 inline-flex items-center gap-1.5 text-xs font-medium text-[var(--accent)] underline-offset-4 hover:underline"
+          >
+            <MessageCircle size={13} strokeWidth={1.75} />
+            Mandame mail directo
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function EmptyIndexState() {
   return (
-    <div className="px-6 py-10 text-sm text-[var(--ink-soft)]">
+    <div className="px-5 py-8 text-sm text-[var(--ink-soft)] sm:px-6 sm:py-10">
       <p className="font-mono text-xs tracking-[0.08em] uppercase opacity-60">FAQ index vacío</p>
       <p className="mt-3 leading-relaxed">
         Todavía no se generaron las embeddings. Llená{" "}
@@ -238,8 +326,8 @@ function IdleState({
   onCommand: (cmd: CommandEntry) => void;
 }) {
   return (
-    <div className="space-y-1 px-5 py-4">
-      <p className="font-mono text-[0.65rem] tracking-[0.12em] text-[var(--ink-soft)] uppercase opacity-60">
+    <div className="space-y-2 px-3 py-4 sm:px-4 sm:py-5">
+      <p className="px-2 font-mono text-[0.65rem] tracking-[0.12em] text-[var(--ink-soft)] uppercase opacity-60">
         {mode === "dev" ? "Probá preguntar" : "Sugerencias"}
       </p>
       <ul className="space-y-0.5">
@@ -268,8 +356,8 @@ function IdleState({
         ))}
       </ul>
 
-      <div className="pt-3">
-        <p className="mb-2 font-mono text-[0.65rem] tracking-[0.12em] text-[var(--ink-soft)] uppercase opacity-60">
+      <div className="pt-4">
+        <p className="mb-2 px-2 font-mono text-[0.65rem] tracking-[0.12em] text-[var(--ink-soft)] uppercase opacity-60">
           comandos rápidos
         </p>
         <CommandsList commands={commands} onPick={onCommand} compact />
@@ -303,13 +391,13 @@ function CommandsList({
   const order: Array<CommandEntry["group"]> = ["navegar", "modo", "tema", "contacto", "secreto"];
 
   return (
-    <div className={cn("space-y-3", compact ? "" : "px-5 py-4")}>
+    <div className={cn("space-y-3", compact ? "" : "px-3 py-4 sm:px-4 sm:py-5")}>
       {order
         .filter((g) => grouped[g]?.length)
         .map((group) => (
           <div key={group}>
             {!compact && (
-              <p className="mb-1.5 px-3 font-mono text-[0.6rem] tracking-[0.12em] text-[var(--ink-soft)] uppercase opacity-50">
+              <p className="mb-1.5 px-2 font-mono text-[0.6rem] tracking-[0.12em] text-[var(--ink-soft)] uppercase opacity-50">
                 {group}
               </p>
             )}

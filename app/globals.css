@@ -12,13 +12,16 @@
   --color-surface-elev: var(--surface-elev);
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
+  --color-amber: var(--amber);
+  --color-amber-soft: var(--amber-soft);
   --color-border-glass: var(--border-glass);
   --color-specular: var(--specular);
   --color-drench-bg: var(--drench-bg);
   --color-drench-text: var(--drench-text);
 
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-mono: var(--font-jetbrains-mono);
+  --font-display: var(--font-geist-sans);
 
   --radius-sm: calc(var(--radius) * 0.5);
   --radius-md: calc(var(--radius) * 0.75);
@@ -40,29 +43,38 @@
   --surface: oklch(0.97 0.014 60);
   --surface-elev: oklch(0.94 0.018 60);
   --surface-glass: oklch(0.99 0.008 55 / 0.55);
-  --accent: oklch(0.66 0.22 33);
-  --accent-soft: oklch(0.86 0.1 35);
-  --accent-deep: oklch(0.58 0.23 32);
+  /* Orange accent — vivid, saturated, unmissable */
+  --accent: oklch(0.66 0.25 33);
+  --accent-soft: oklch(0.86 0.12 35);
+  --accent-deep: oklch(0.55 0.26 30);
+  --accent-glow: oklch(0.66 0.25 33 / 0.35);
+  /* Amber secondary — warm highlights */
+  --amber: oklch(0.80 0.18 68);
+  --amber-soft: oklch(0.93 0.09 72);
+  --amber-glow: oklch(0.80 0.18 68 / 0.3);
 
   --specular: oklch(1 0 0 / 0.55);
-  --highlight-warm: oklch(0.94 0.06 50 / 0.4);
+  --highlight-warm: oklch(0.94 0.08 52 / 0.5);
   --highlight-cool: oklch(0.9 0.04 220 / 0.18);
 
   --border-glass: oklch(1 0 0 / 0.18);
   --border-glass-dark: oklch(0.3 0.025 30 / 0.3);
+  --border-accent: oklch(0.66 0.25 33 / 0.4);
 
   --background: var(--surface);
   --foreground: var(--ink);
 
   --radius: 1.25rem;
 
-  /* DRENCH PALETTE — for hero, footer, manifesto zones */
-  --drench-bg: oklch(0.66 0.22 33);
-  --drench-bg-deeper: oklch(0.58 0.23 32);
+  /* DRENCH PALETTE — vivid orange, used in hero, footer, accent sections */
+  --drench-bg: oklch(0.64 0.25 33);
+  --drench-bg-deeper: oklch(0.54 0.26 30);
+  --drench-bg-light: oklch(0.74 0.22 38);
   --drench-text: oklch(0.99 0.008 55);
-  --drench-text-soft: oklch(0.94 0.04 55 / 0.78);
-  --drench-glass-bg: oklch(1 0.005 60 / 0.18);
-  --drench-border: oklch(1 0.008 55 / 0.35);
+  --drench-text-soft: oklch(0.93 0.05 55 / 0.85);
+  --drench-glass-bg: oklch(1 0.005 60 / 0.2);
+  --drench-border: oklch(1 0.008 55 / 0.45);
+  --drench-glow: oklch(0.66 0.25 33 / 0.7);
 
   /* GITHUB HEATMAP — canonical colors */
   --gh-0: #ebedf0;
@@ -77,21 +89,27 @@
 :root[data-theme="dark"] {
   --ink: oklch(0.96 0.008 50);
   --ink-soft: oklch(0.75 0.012 40);
-  --surface: oklch(0.14 0.015 35);
-  --surface-elev: oklch(0.18 0.018 35);
-  --surface-glass: oklch(0.22 0.018 35 / 0.55);
-  --accent: oklch(0.72 0.22 33);
-  --accent-soft: oklch(0.4 0.14 32);
-  --accent-deep: oklch(0.62 0.23 32);
+  --surface: oklch(0.11 0.014 35);
+  --surface-elev: oklch(0.15 0.016 35);
+  --surface-glass: oklch(0.18 0.016 35 / 0.55);
+  /* Vivid orange in dark mode — pops harder against dark surfaces */
+  --accent: oklch(0.74 0.25 33);
+  --accent-soft: oklch(0.42 0.16 32);
+  --accent-deep: oklch(0.62 0.26 30);
+  --accent-glow: oklch(0.74 0.25 33 / 0.4);
+  --amber: oklch(0.84 0.18 68);
+  --amber-soft: oklch(0.36 0.12 68);
+  --amber-glow: oklch(0.84 0.18 68 / 0.35);
 
   --specular: oklch(1 0 0 / 0.18);
-  --highlight-warm: oklch(0.6 0.1 45 / 0.28);
+  --highlight-warm: oklch(0.6 0.12 48 / 0.35);
   --highlight-cool: oklch(0.62 0.05 220 / 0.18);
 
   --border-glass: oklch(1 0 0 / 0.1);
-  --border-glass-dark: oklch(0.1 0.02 35 / 0.5);
+  --border-glass-dark: oklch(0.08 0.018 35 / 0.6);
+  --border-accent: oklch(0.74 0.25 33 / 0.45);
 
-  /* drench stays the same orange in dark mode — YC color is the brand color */
+  /* drench stays vivid orange in dark mode — brand color is non-negotiable */
 
   /* GitHub heatmap dark variant */
   --gh-0: #161b22;
@@ -106,17 +124,19 @@
   :root:not([data-theme="light"]) {
     --ink: oklch(0.96 0.008 50);
     --ink-soft: oklch(0.75 0.012 40);
-    --surface: oklch(0.14 0.015 35);
-    --surface-elev: oklch(0.18 0.018 35);
-    --surface-glass: oklch(0.22 0.018 35 / 0.55);
+    --surface: oklch(0.11 0.014 35);
+    --surface-elev: oklch(0.15 0.016 35);
+    --surface-glass: oklch(0.18 0.016 35 / 0.55);
     --accent: oklch(0.72 0.22 33);
     --accent-soft: oklch(0.4 0.14 32);
     --accent-deep: oklch(0.62 0.23 32);
+    --amber: oklch(0.82 0.16 70);
+    --amber-soft: oklch(0.35 0.1 70);
     --specular: oklch(1 0 0 / 0.18);
     --highlight-warm: oklch(0.6 0.1 45 / 0.28);
     --highlight-cool: oklch(0.62 0.05 220 / 0.18);
     --border-glass: oklch(1 0 0 / 0.1);
-    --border-glass-dark: oklch(0.1 0.02 35 / 0.5);
+    --border-glass-dark: oklch(0.08 0.018 35 / 0.6);
     --gh-0: #161b22;
     --gh-1: #0e4429;
     --gh-2: #006d32;
@@ -128,19 +148,24 @@
 
 /* DRENCH ZONE — opt-in per section, overrides tokens locally */
 .zone-drench {
-  background-color: var(--drench-bg);
+  background: linear-gradient(135deg, var(--drench-bg-deeper) 0%, var(--drench-bg) 50%, var(--drench-bg-light) 100%);
   color: var(--drench-text);
 
   --ink: var(--drench-text);
   --ink-soft: var(--drench-text-soft);
   --surface-glass: var(--drench-glass-bg);
   --border-glass: var(--drench-border);
-  --border-glass-dark: oklch(1 0.005 55 / 0.2);
-  --specular: oklch(1 0 0 / 0.35);
-  --highlight-warm: oklch(1 0.06 55 / 0.45);
+  --border-glass-dark: oklch(1 0.005 55 / 0.25);
+  --specular: oklch(1 0 0 / 0.45);
+  --highlight-warm: oklch(1 0.07 55 / 0.55);
 
   /* primary CTA pill becomes light-on-orange */
-  --surface: oklch(0.62 0.23 33);
+  --surface: oklch(0.58 0.25 30);
+}
+
+/* ORANGE ACCENT ZONE — lighter sections with orange tint */
+.zone-orange-tint {
+  background: linear-gradient(180deg, var(--surface) 0%, oklch(0.95 0.02 45) 100%);
 }
 
 @layer base {
@@ -231,6 +256,107 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
   }
+
+  /* Dot pattern background for hero / drench zones */
+  .bg-dot-pattern {
+    background-image: radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0);
+    background-size: 28px 28px;
+  }
+
+  /* Dotted field with center vignette (Vercel/Linear pattern) */
+  .bg-dotfield {
+    background-image: radial-gradient(
+      circle,
+      color-mix(in oklch, var(--ink) 22%, transparent) 1px,
+      transparent 1.5px
+    );
+    background-size: 22px 22px;
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 35%, transparent 78%);
+    mask-image: radial-gradient(ellipse at center, #000 35%, transparent 78%);
+  }
+
+  /* Dashed border that scales perfectly (4-sided repeating gradients) */
+  .border-dash {
+    background-image:
+      repeating-linear-gradient(0deg, currentColor 0 6px, transparent 6px 12px),
+      repeating-linear-gradient(90deg, currentColor 0 6px, transparent 6px 12px),
+      repeating-linear-gradient(180deg, currentColor 0 6px, transparent 6px 12px),
+      repeating-linear-gradient(270deg, currentColor 0 6px, transparent 6px 12px);
+    background-size: 1px 100%, 100% 1px, 1px 100%, 100% 1px;
+    background-position: 0 0, 0 0, 100% 0, 0 100%;
+    background-repeat: no-repeat;
+  }
+
+  /* 8-bit / pixel corner frame — four 8x8 corner marks only */
+  .pixel-frame {
+    background:
+      conic-gradient(from 90deg at 2px 2px, transparent 25%, currentColor 0) 0 0 / 10px 10px no-repeat,
+      conic-gradient(from 180deg at 2px 2px, transparent 25%, currentColor 0) 100% 0 / 10px 10px no-repeat,
+      conic-gradient(from 0deg at 2px 2px, transparent 25%, currentColor 0) 0 100% / 10px 10px no-repeat,
+      conic-gradient(from 270deg at 2px 2px, transparent 25%, currentColor 0) 100% 100% / 10px 10px no-repeat;
+  }
+
+  /* Dotted horizontal divider rule */
+  .divider-dots {
+    height: 8px;
+    background-image: radial-gradient(circle, currentColor 1px, transparent 1.5px);
+    background-size: 12px 8px;
+    background-position: center;
+    background-repeat: repeat-x;
+  }
+
+  /* Subtle scanline overlay — apply to hero ::after via wrapper */
+  .scanlines::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      oklch(0 0 0 / 0.06) 0 1px,
+      transparent 1px 3px
+    );
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Tabular numerals + slashed zero for editorial counters */
+  .nums-tabular {
+    font-variant-numeric: tabular-nums slashed-zero;
+    font-feature-settings: "tnum" 1, "zero" 1, "ss01" 1;
+  }
+
+  /* Float animation for profile card */
+  .animate-float {
+    animation: profile-float 7s ease-in-out infinite;
+  }
+
+  /* Ask button glow pulse */
+  .ask-pulse {
+    animation: ask-pulse 3.4s ease-in-out infinite;
+  }
+
+  /* Slow spin used by decorative tech icons (leiza atom, etc) */
+  .animate-spin-slow {
+    animation: spin 8s linear infinite;
+  }
+
+  /* Shimmer overlay for CTAs */
+  .shimmer-overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(
+      120deg,
+      transparent 30%,
+      oklch(1 0 0 / 0.18) 50%,
+      transparent 70%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 4s ease-in-out infinite;
+    pointer-events: none;
+    border-radius: inherit;
+  }
 }
 
 @keyframes reveal-up {
@@ -262,6 +388,38 @@
   }
 }
 
+@keyframes profile-float {
+  0%, 100% {
+    transform: translate3d(0, -6px, 0);
+  }
+  50% {
+    transform: translate3d(0, 6px, 0);
+  }
+}
+
+@keyframes ask-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 0 oklch(0.66 0.22 33 / 0.4),
+      0 0 0 1px var(--border-glass) inset;
+  }
+  50% {
+    box-shadow:
+      0 0 0 10px oklch(0.66 0.22 33 / 0),
+      0 0 24px -4px oklch(0.78 0.16 70 / 0.45),
+      0 0 0 1px var(--border-glass) inset;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -269,5 +427,115 @@
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+  }
+
+  .animate-float,
+  .ask-pulse {
+    animation: none !important;
+  }
+}
+
+/* TERMINAL CURSOR — pixel block + 4-corner reticle on interactives */
+@media (pointer: fine) {
+  html:not([data-no-cursor]),
+  html:not([data-no-cursor]) * {
+    cursor: none !important;
+  }
+  .cursor-root {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    will-change: transform, opacity;
+    transition: opacity 0.18s ease;
+    /* sharp pixel rendering */
+    image-rendering: pixelated;
+    -webkit-font-smoothing: none;
+  }
+  /* Center pivot: every child is centered on the cursor point */
+  .cursor-root > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    background: var(--accent);
+    transition:
+      opacity 0.18s ease,
+      transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+      width 0.22s cubic-bezier(0.2, 0.8, 0.2, 1),
+      height 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+    opacity: 0;
+  }
+
+  /* DEFAULT — solid pixel block */
+  .cursor-block {
+    width: 10px;
+    height: 10px;
+    border-radius: 1px;
+    mix-blend-mode: difference;
+    background: #fff;
+  }
+  .cursor-root[data-state="default"] .cursor-block {
+    opacity: 1;
+  }
+
+  /* RETICLE — 4 L-shaped corner brackets */
+  .cursor-bracket {
+    width: 12px;
+    height: 12px;
+    background: transparent !important;
+    border: 0 solid var(--accent);
+  }
+  .cursor-bracket-tl {
+    border-left-width: 2px;
+    border-top-width: 2px;
+    transform: translate(calc(-50% - 14px), calc(-50% - 14px));
+  }
+  .cursor-bracket-tr {
+    border-right-width: 2px;
+    border-top-width: 2px;
+    transform: translate(calc(-50% + 14px), calc(-50% - 14px));
+  }
+  .cursor-bracket-bl {
+    border-left-width: 2px;
+    border-bottom-width: 2px;
+    transform: translate(calc(-50% - 14px), calc(-50% + 14px));
+  }
+  .cursor-bracket-br {
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    transform: translate(calc(-50% + 14px), calc(-50% + 14px));
+  }
+  .cursor-root[data-state="reticle"] .cursor-bracket {
+    opacity: 1;
+  }
+  .cursor-root[data-state="reticle"] .cursor-block {
+    opacity: 1;
+    width: 4px;
+    height: 4px;
+  }
+
+  /* TEXT — I-beam */
+  .cursor-ibeam {
+    width: 2px;
+    height: 22px;
+    background: var(--accent);
+    border-radius: 0;
+  }
+  .cursor-root[data-state="text"] .cursor-ibeam {
+    opacity: 1;
+  }
+}
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .cursor-root {
+    display: none !important;
+  }
+  html,
+  html * {
+    cursor: auto !important;
   }
 }

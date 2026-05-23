@@ -1,6 +1,10 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { GithubIcon, LinkedinIcon, TwitterIcon, WhatsappIcon } from "@/components/icons/brand-icons";
 import { Mail, MapPin } from "lucide-react";
 import { CONTACTS, PROFILE } from "@/lib/site-data";
+import { AsciiSignature } from "@/components/primitives/ascii-signature";
 
 const NAV = [
   { label: "Hero", href: "#" },
@@ -8,6 +12,67 @@ const NAV = [
   { label: "GitHub", href: "#github" },
   { label: "Contacto", href: "#contact" },
 ];
+
+function ScrambleEmail({ email }: { email: string }) {
+  const [displayText, setDisplayText] = useState(email);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    if (!isHovered) {
+      setDisplayText(email);
+      return;
+    }
+
+    let frame = 0;
+    const glyphs = "X01X01#_@?/\\-$%+*=".split("");
+    const length = email.length;
+    const queue = email.split("").map((char, index) => {
+      const start = Math.floor(Math.random() * 8);
+      const end = start + Math.floor(Math.random() * 12) + 8;
+      return { char, start, end };
+    });
+
+    let active = true;
+    const tick = () => {
+      if (!active) return;
+      let complete = 0;
+      const result = queue.map((item, index) => {
+        if (frame >= item.end) {
+          complete++;
+          return item.char;
+        }
+        if (frame >= item.start) {
+          return glyphs[Math.floor(Math.random() * glyphs.length)];
+        }
+        return email[index];
+      });
+
+      setDisplayText(result.join(""));
+      frame++;
+
+      if (complete < length) {
+        requestAnimationFrame(tick);
+      }
+    };
+
+    requestAnimationFrame(tick);
+    return () => {
+      active = false;
+    };
+  }, [isHovered, email]);
+
+  return (
+    <a
+      href={`mailto:${email}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="relative inline-block py-1 text-[var(--drench-text-soft)] hover:text-[var(--drench-text)] transition-colors group/email"
+    >
+      <span className="relative z-10">{displayText}</span>
+      <span className="absolute bottom-0 left-0 w-full h-[1px] bg-current scale-x-0 group-hover/email:scale-x-100 origin-left transition-transform duration-500 ease-out" />
+    </a>
+  );
+}
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -34,15 +99,26 @@ export function SiteFooter() {
       <FooterAmbient />
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 pt-24 pb-12 sm:px-6 lg:px-8 lg:pt-32">
+        <p className="mb-3 font-mono text-[0.65rem] tracking-[0.18em] uppercase opacity-60">
+          [ HANDLE ]
+        </p>
         <a
           href={`mailto:${CONTACTS.email}`}
-          className="group block font-display text-[clamp(3rem,12vw,9rem)] leading-[0.9] font-semibold tracking-[-0.04em]"
+          aria-label={`Mandarme un email a ${CONTACTS.email}`}
+          className="group block"
+          data-cursor="reticle"
         >
-          robertino<span className="opacity-50">.dev</span>
-          <span className="block text-[0.4em] font-mono tracking-[0.05em] opacity-70 mt-3 group-hover:opacity-100 transition-opacity">
-            {CONTACTS.email} →
-          </span>
+          <AsciiSignature
+            variant="big"
+            className="text-[var(--drench-text)] transition-opacity duration-300 group-hover:opacity-90"
+          />
+          <p className="mt-2 font-mono text-xs tracking-[0.1em] text-[var(--drench-text-soft)] uppercase opacity-70">
+            robertino.dev · ./rober8b
+          </p>
         </a>
+        <div className="mt-6 max-w-prose-tight font-mono text-sm tracking-[0.04em] opacity-70 sm:text-base">
+          <ScrambleEmail email={CONTACTS.email} />
+        </div>
 
         <div className="mt-16 grid gap-10 border-t border-[var(--border-glass)] pt-10 sm:grid-cols-3">
           <div className="space-y-3 text-sm">

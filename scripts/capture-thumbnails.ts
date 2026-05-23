@@ -14,7 +14,7 @@ import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const OUTPUT_DIR = resolve(__dirname, "../public/thumbnails");
+const OUTPUT_DIR = resolve(__dirname, "../public/projects");
 
 type Target = {
   slug: string;
@@ -24,14 +24,14 @@ type Target = {
 };
 
 const TARGETS: Target[] = [
-  {
-    slug: "pizza-block",
-    url: "https://pizza-block.vercel.app/",
-  },
-  // Completar a medida que tengas URLs:
-  // { slug: "aredes-asociados", url: "https://aredesasociados.com.ar/" },
-  // { slug: "leiza-page", url: "https://..." },
-  // { slug: "xplora", url: "https://..." },
+  { slug: "aredes-asociados", url: "https://aredesasociados.com.ar/" },
+  { slug: "nebula", url: "https://www.somosnebula.ar/" },
+  { slug: "dental-app", url: "https://consultoriopyp.vercel.app/" },
+  { slug: "xplora", url: "https://xploraucema.com/" },
+  { slug: "leiza-page", url: "https://leiza-page.vercel.app/" },
+  { slug: "equitas-abogados", url: "https://equitas-abogados.vercel.app/" },
+  { slug: "pizza-block", url: "https://pizza-block.vercel.app/" },
+  { slug: "nomos", url: "https://nomos-tau.vercel.app/" },
 ];
 
 async function captureOne(target: Target, page: Page) {
@@ -52,7 +52,7 @@ async function captureOne(target: Target, page: Page) {
   // Settle animations
   await page.waitForTimeout(800);
 
-  const path = resolve(OUTPUT_DIR, `${target.slug}.webp`);
+  const path = resolve(OUTPUT_DIR, `${target.slug}.jpg`);
   await page.screenshot({
     path,
     fullPage: false,

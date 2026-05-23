@@ -1,11 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ModeProvider } from "@/components/mode/mode-provider";
 import { AskPaletteProvider } from "@/components/ask/ask-palette-provider";
 import { AskPalette } from "@/components/ask/ask-palette";
 import { LiquidRefractFilter } from "@/components/glass/liquid-refract-filter";
+import { CustomCursor } from "@/components/primitives/custom-cursor";
+import { ConsoleGreeting } from "@/components/primitives/console-greeting";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,8 +16,8 @@ const geistSans = Geist({
   display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
   display: "swap",
 });
@@ -58,13 +60,15 @@ export default function RootLayout({
   return (
     <html
       lang="es-AR"
-      className={`${geistSans.variable} ${geistMono.variable}`}
+      className={`${geistSans.variable} ${jetbrainsMono.variable}`}
       suppressHydrationWarning
     >
       <body className="bg-background text-foreground min-h-dvh font-sans">
         <ModeProvider>
           <AskPaletteProvider>
             <LiquidRefractFilter />
+            <CustomCursor />
+            <ConsoleGreeting />
             {children}
             <AskPalette />
           </AskPaletteProvider>

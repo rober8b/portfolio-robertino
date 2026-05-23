@@ -1,21 +1,19 @@
-import { ModeToggle } from "@/components/mode/mode-toggle";
-import { AskButton } from "@/components/ask/ask-button";
+import { FloatingNav } from "@/components/navigation/floating-nav";
 import { HeroSection } from "@/components/sections/hero-section";
 import { ProjectsSection } from "@/components/sections/projects-section";
 import { GithubSection } from "@/components/sections/github-section";
 import { ContactSection } from "@/components/sections/contact-section";
 import { SiteFooter } from "@/components/sections/site-footer";
+import { MarqueeDivider } from "@/components/primitives/marquee-divider";
 
 export default function Home() {
   return (
     <main className="relative min-h-dvh overflow-x-hidden">
-      <nav className="fixed top-6 left-1/2 z-50 flex -translate-x-1/2 items-center gap-2">
-        <ModeToggle />
-        <AskButton />
-      </nav>
+      <FloatingNav />
       <HeroSection />
       <CreamAurora />
       <ProjectsSection />
+      <MarqueeDivider />
       <GithubSection />
       <ContactSection />
       <SiteFooter />
