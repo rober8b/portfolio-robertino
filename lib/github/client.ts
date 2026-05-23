@@ -29,7 +29,7 @@ const QUERY = /* GraphQL */ `
         }
       }
       repositories(
-        first: 5
+        first: 20
         orderBy: { field: PUSHED_AT, direction: DESC }
         ownerAffiliations: OWNER
         isFork: false
@@ -39,6 +39,8 @@ const QUERY = /* GraphQL */ `
           description
           url
           pushedAt
+          isArchived
+          isPrivate
           primaryLanguage {
             name
             color
@@ -57,6 +59,18 @@ const QUERY = /* GraphQL */ `
     }
   }
 `;
+
+/**
+ * Repos to hide from "currently building" — test sandboxes, scratch projects, infra.
+ * Match by exact name or substring (case-insensitive).
+ */
+const HIDDEN_REPO_PATTERNS = [
+  /test/i,
+  /strict-test/i,
+  /sandbox/i,
+  /scratch/i,
+  /\.github$/i,
+];
 
 type GraphQLResponse = {
   data?: {
@@ -79,6 +93,8 @@ type GraphQLResponse = {
           description: string | null;
           url: string;
           pushedAt: string;
+          isArchived: boolean;
+          isPrivate: boolean;
           primaryLanguage: { name: string; color: string } | null;
           defaultBranchRef: {
             target: {
@@ -197,15 +213,20 @@ function computeStreak(calendar: ContributionCalendar): StreakInfo {
   return { current, longest, latestActiveDate };
 }
 
+function isShowableRepo(node: { name: string; isArchived: boolean; isPrivate: boolean }) {
+  if (node.isArchived) return false;
+  return !HIDDEN_REPO_PATTERNS.some((re) => re.test(node.name));
+}
+
 function transformCurrentlyBuilding(
   nodes: NonNullable<GraphQLResponse["data"]>["user"]["repositories"]["nodes"],
 ): CurrentlyBuilding | null {
-  const node = nodes[0];
+  const node = nodes.find(isShowableRepo);
   if (!node) return null;
   const target = node.defaultBranchRef?.target;
   return {
     repo: node.name,
-    url: node.url,
+    url: node.isPrivate ? `https://github.com/${GH_LOGIN}` : node.url,
     description: node.description,
     language: node.primaryLanguage?.name ?? null,
     languageColor: node.primaryLanguage?.color ?? null,
@@ -221,6 +242,7 @@ function pickTopLanguage(
 ): string | null {
   const counts = new Map<string, number>();
   for (const node of nodes) {
+    if (!isShowableRepo(node)) continue;
     const name = node.primaryLanguage?.name;
     if (!name) continue;
     counts.set(name, (counts.get(name) ?? 0) + 1);

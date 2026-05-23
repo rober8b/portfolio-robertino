@@ -9,13 +9,15 @@ test.describe("Homepage smoke", () => {
 
   test("mode toggle switches copy", async ({ page }) => {
     await page.goto("/");
+    // Hero words are split into per-word spans for stagger animation.
+    // Assert by individual distinctive words.
     const devBtn = page.getByRole("radio", { name: /Dev/i });
     await devBtn.click();
-    await expect(page.getByText(/sistemas agénticos/i).first()).toBeVisible();
+    await expect(page.getByText(/agénticos/i).first()).toBeVisible();
 
     const clientBtn = page.getByRole("radio", { name: /Cliente/i });
     await clientBtn.click();
-    await expect(page.getByText(/te armo tu/i).first()).toBeVisible();
+    await expect(page.getByText("armo").first()).toBeVisible();
   });
 
   test("projects section renders all featured projects", async ({ page }) => {
@@ -78,9 +80,11 @@ test.describe("Ask palette", () => {
   test("Esc closes the palette", async ({ page }) => {
     await page.goto("/");
     await page.keyboard.press("ControlOrMeta+K");
-    await expect(page.getByPlaceholder(/Preguntá|comandos/i).first()).toBeVisible();
+    const input = page.getByPlaceholder(/Preguntá|comandos/i).first();
+    await expect(input).toBeVisible();
     await page.keyboard.press("Escape");
-    await expect(page.getByPlaceholder(/Preguntá|comandos/i)).toHaveCount(0);
+    // AnimatePresence runs an exit transition; use not.toBeVisible with a tolerant wait.
+    await expect(input).not.toBeVisible({ timeout: 2000 });
   });
 });
 

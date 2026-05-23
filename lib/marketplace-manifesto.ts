@@ -11,7 +11,7 @@ export const MANIFESTO = {
   team: [
     { name: "Robertino Barbuto", role: "producto + tech" },
     { name: "Sylvestre Corti Maderna", role: "operator outreach + validación" },
-    { name: "Leonardo Cagliero Shictong", role: "distribución + contenido" },
+    { name: "Leonardo Cagliero Shictong", role: "distribución + Web3 Payments" },
     { name: "Martín Ezequiel Pulitano", role: "engine + squads" },
   ],
   hero: {
