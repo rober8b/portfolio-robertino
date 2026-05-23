@@ -100,6 +100,34 @@ export const PROJECTS: Project[] = [
     featured: true,
   },
   {
+    slug: "xplora",
+    name: "Xplora · Club de emprendedores",
+    tagline: {
+      dev: "Sitio del club de emprendedores UCEMA — eventos, workshops, bolsa de trabajo",
+      client: "El sitio del club de emprendedores de la UCEMA, donde participo como Team Maker",
+    },
+    description: {
+      dev: "Sitio del club de emprendedores Xplora (UCEMA). Eventos, workshops (AI, marketing, programación, business), bolsa de trabajo. Mantenido por el team de Makers del club, del que formo parte.",
+      client: "El sitio del club de emprendedores de mi universidad. Combina lo técnico con un proyecto comunitario que tiene impacto real en estudiantes y startups.",
+    },
+    status: "live",
+    statusLabel: { dev: "Activo · mantenido por el club", client: "Activo" },
+    year: "2025",
+    industry: "Comunidad · Universidad",
+    stack: ["React", "Vite"],
+    highlights: [
+      "Bolsa de trabajo para estudiantes",
+      "Calendario de eventos del club",
+      "Mantenido por el team de Makers",
+    ],
+    links: {
+      demo: "https://xploraucema.com/",
+      repo: "https://github.com/rober8b/xplora",
+    },
+    image: "/projects/xplora.jpg",
+    featured: true,
+  },
+  {
     slug: "aredes-asociados",
     name: "Aredes Asociados",
     tagline: {
@@ -122,7 +150,9 @@ export const PROJECTS: Project[] = [
       "Visual regression con Playwright + scripts/visual-check.ts",
       "JSON-LD structured data para SEO",
     ],
-    links: {},
+    links: {
+      demo: "https://aredesasociados.com.ar/",
+    },
     image: "/projects/aredes-asociados.jpg",
     featured: true,
   },
@@ -149,9 +179,10 @@ export const PROJECTS: Project[] = [
       "site-data.ts como single source of truth de contenido",
       "Mobile-first — 80% del tráfico desde IG en celular",
     ],
-    links: {},
+    links: {
+      demo: "https://leiza-page.vercel.app/",
+    },
     image: "/projects/leiza-page.jpg",
-    featured: true,
   },
   {
     slug: "nebula",
@@ -179,7 +210,6 @@ export const PROJECTS: Project[] = [
       demo: "https://www.somosnebula.ar/",
     },
     image: "/projects/nebula.jpg",
-    featured: true,
   },
   {
     slug: "equitas-abogados",
@@ -258,7 +288,9 @@ export const PROJECTS: Project[] = [
       "Bloqueos por slot o día completo",
       "Soft-delete en turnos cancelados",
     ],
-    links: {},
+    links: {
+      demo: "https://consultoriopyp.vercel.app/",
+    },
     image: "/projects/dental-app.jpg",
   },
   {
@@ -287,32 +319,6 @@ export const PROJECTS: Project[] = [
       repo: "https://github.com/rober8b/Pizza-Block",
     },
     image: "/projects/pizza-block.jpg",
-  },
-  {
-    slug: "xplora",
-    name: "Xplora · Club de emprendedores",
-    tagline: {
-      dev: "Sitio del club de emprendedores UCEMA — eventos, workshops, bolsa de trabajo",
-      client: "El sitio del club de emprendedores de la UCEMA, donde participo como Team Maker",
-    },
-    description: {
-      dev: "Sitio del club de emprendedores Xplora (UCEMA). Eventos, workshops (AI, marketing, programación, business), bolsa de trabajo. Mantenido por el team de Makers del club, del que formo parte.",
-      client: "El sitio del club de emprendedores de mi universidad. Combina lo técnico con un proyecto comunitario que tiene impacto real en estudiantes y startups.",
-    },
-    status: "live",
-    statusLabel: { dev: "Activo · mantenido por el club", client: "Activo" },
-    year: "2025",
-    industry: "Comunidad · Universidad",
-    stack: ["React", "Vite"],
-    highlights: [
-      "Bolsa de trabajo para estudiantes",
-      "Calendario de eventos del club",
-      "Mantenido por el team de Makers",
-    ],
-    links: {
-      repo: "https://github.com/rober8b/xplora",
-    },
-    image: "/projects/xplora.jpg",
   },
 ];
 

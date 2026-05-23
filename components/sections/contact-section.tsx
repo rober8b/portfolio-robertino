@@ -1,8 +1,9 @@
 "use client";
 
-import { motion } from "motion/react";
-import { ArrowUpRight, Calendar, Mail, MapPin } from "lucide-react";
+import { motion, type Variants } from "motion/react";
+import { ArrowUpRight, Calendar, Mail, MapPin, Sparkles } from "lucide-react";
 import { useMode } from "@/components/mode/mode-provider";
+import { useAskPalette } from "@/components/ask/ask-palette-provider";
 import {
   GithubIcon,
   LinkedinIcon,
@@ -12,6 +13,8 @@ import {
 import { CONTACTS, PROFILE } from "@/lib/site-data";
 import { cn } from "@/lib/utils";
 import type { ComponentType, SVGProps } from "react";
+
+const EASE_OUT_EXPO: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 type IconComponent = ComponentType<SVGProps<SVGSVGElement> & { size?: number; strokeWidth?: number }>;
 
@@ -51,7 +54,7 @@ export function ContactSection() {
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.7, ease: EASE_OUT_EXPO }}
           className="max-w-3xl"
         >
           <p className="font-mono text-xs tracking-[0.1em] text-[var(--ink-soft)] uppercase">
@@ -84,8 +87,9 @@ function PrimaryCard({ mode }: { mode: "dev" | "client" }) {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="glass relative flex flex-col justify-between overflow-hidden rounded-3xl p-8 lg:p-10"
+        transition={{ duration: 0.7, ease: EASE_OUT_EXPO }}
+        whileHover={{ y: -2 }}
+        className="glass group/card relative flex flex-col justify-between overflow-hidden rounded-3xl p-8 transition-shadow duration-500 hover:shadow-[0_30px_80px_-30px_oklch(0.62_0.18_145/0.55)] lg:p-10"
       >
         <SpecularBackdrop />
         <div className="relative">
@@ -106,14 +110,15 @@ function PrimaryCard({ mode }: { mode: "dev" | "client" }) {
               href={wa}
               target="_blank"
               rel="noreferrer"
-              className="group inline-flex items-center gap-2 rounded-full bg-[oklch(0.62_0.18_145)] px-6 py-3.5 text-base font-medium text-white transition-transform duration-300 hover:-translate-y-0.5"
+              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-[oklch(0.62_0.18_145)] px-6 py-3.5 text-base font-medium text-white shadow-[0_12px_28px_-12px_oklch(0.62_0.18_145/0.6)] transition-transform duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_36px_-12px_oklch(0.62_0.18_145/0.75)]"
             >
-              <WhatsappIcon className="h-4 w-4" />
-              Escribime ahora
+              <span className="shimmer-overlay absolute inset-0" />
+              <WhatsappIcon className="relative h-4 w-4" />
+              <span className="relative">Escribime ahora</span>
               <ArrowUpRight
                 size={16}
                 strokeWidth={1.75}
-                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                className="relative transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
               />
             </a>
           ) : (
@@ -127,6 +132,8 @@ function PrimaryCard({ mode }: { mode: "dev" | "client" }) {
             o mandame mail
           </a>
         </div>
+
+        <AskTeaser className="relative mt-6" mode={mode} />
       </motion.div>
     );
   }
@@ -137,8 +144,9 @@ function PrimaryCard({ mode }: { mode: "dev" | "client" }) {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-      className="glass relative flex flex-col justify-between overflow-hidden rounded-3xl p-8 lg:p-10"
+      transition={{ duration: 0.7, ease: EASE_OUT_EXPO }}
+      whileHover={{ y: -2 }}
+      className="glass relative flex flex-col justify-between overflow-hidden rounded-3xl p-8 transition-shadow duration-500 hover:shadow-[0_30px_80px_-30px_oklch(0.22_0.025_30/0.4)] lg:p-10"
     >
       <SpecularBackdrop />
       <div className="relative">
@@ -181,7 +189,35 @@ function PrimaryCard({ mode }: { mode: "dev" | "client" }) {
           <DisabledCta label="Cal.com — esperando link" />
         )}
       </div>
+
+      <AskTeaser className="relative mt-6" mode={mode} />
     </motion.div>
+  );
+}
+
+function AskTeaser({ className, mode }: { className?: string; mode: "dev" | "client" }) {
+  const { setOpen } = useAskPalette();
+  const label =
+    mode === "dev"
+      ? "¿Dudas técnicas? Preguntale al asistente del portfolio."
+      : "¿Tenés dudas? Preguntale al asistente, responde al toque.";
+  return (
+    <button
+      type="button"
+      onClick={() => setOpen(true)}
+      className={cn(
+        "group inline-flex items-center gap-2 text-xs text-[var(--ink-soft)] transition-colors hover:text-[var(--ink)]",
+        className,
+      )}
+    >
+      <Sparkles size={13} strokeWidth={1.75} className="text-[var(--amber)]" />
+      <span className="underline-offset-4 group-hover:underline">{label}</span>
+      <ArrowUpRight
+        size={12}
+        strokeWidth={1.75}
+        className="transition-transform duration-300 group-hover:translate-x-0.5"
+      />
+    </button>
   );
 }
 
@@ -233,10 +269,10 @@ function ChannelsList({ mode }: { mode: "dev" | "client" }) {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.7, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.7, delay: 0.05, ease: EASE_OUT_EXPO }}
       className="divide-y divide-[var(--border-glass-dark)] overflow-hidden rounded-3xl border border-[var(--border-glass-dark)] bg-[var(--surface-glass)] backdrop-blur"
     >
-      <li className="px-5 py-3">
+      <li className="px-6 py-4 sm:px-7">
         <p className="flex items-center gap-2 font-mono text-[0.65rem] tracking-[0.12em] text-[var(--ink-soft)] uppercase opacity-60">
           <MapPin size={11} strokeWidth={1.75} />
           {PROFILE.location}
@@ -249,28 +285,28 @@ function ChannelsList({ mode }: { mode: "dev" | "client" }) {
               href={href}
               target={href.startsWith("http") ? "_blank" : undefined}
               rel="noreferrer"
-              className="group flex items-center justify-between gap-3 px-5 py-3.5 transition-colors hover:bg-[oklch(0.99_0.005_55/0.5)]"
+              className="group flex items-center justify-between gap-4 px-6 py-4 transition-colors hover:bg-[oklch(0.99_0.005_55/0.5)] sm:px-7"
             >
-              <span className="flex items-center gap-3 text-sm text-[var(--ink)]">
-                <Icon size={16} strokeWidth={1.75} className="text-[var(--ink-soft)]" />
-                <span className="font-medium">{label}</span>
+              <span className="flex min-w-0 items-center gap-3 text-sm text-[var(--ink)]">
+                <Icon size={16} strokeWidth={1.75} className="shrink-0 text-[var(--ink-soft)]" />
+                <span className="truncate font-medium">{label}</span>
               </span>
-              <span className="flex items-center gap-2 font-mono text-[0.7rem] text-[var(--ink-soft)]">
-                {value}
+              <span className="flex shrink-0 items-center gap-2 font-mono text-[0.7rem] text-[var(--ink-soft)]">
+                <span className="truncate">{value}</span>
                 <ArrowUpRight
                   size={12}
                   strokeWidth={1.75}
-                  className="opacity-0 transition-opacity group-hover:opacity-100"
+                  className="shrink-0 opacity-0 transition-opacity group-hover:opacity-100"
                 />
               </span>
             </a>
           ) : (
-            <div className="flex items-center justify-between gap-3 px-5 py-3.5">
-              <span className="flex items-center gap-3 text-sm text-[var(--ink-soft)]">
-                <Icon size={16} strokeWidth={1.75} className="opacity-40" />
-                <span className="font-medium opacity-70">{label}</span>
+            <div className="flex items-center justify-between gap-4 px-6 py-4 sm:px-7">
+              <span className="flex min-w-0 items-center gap-3 text-sm text-[var(--ink-soft)]">
+                <Icon size={16} strokeWidth={1.75} className="shrink-0 opacity-40" />
+                <span className="truncate font-medium opacity-70">{label}</span>
               </span>
-              <span className="font-mono text-[0.65rem] tracking-[0.08em] text-[var(--ink-soft)] uppercase opacity-40">
+              <span className="shrink-0 font-mono text-[0.65rem] tracking-[0.08em] text-[var(--ink-soft)] uppercase opacity-40">
                 {hint ?? "pendiente"}
               </span>
             </div>

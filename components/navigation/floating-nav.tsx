@@ -1,43 +1,24 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, useScroll, useMotionValueEvent } from "motion/react";
+import { useState } from "react";
+import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "motion/react";
 import { ModeToggle } from "@/components/mode/mode-toggle";
+import { ThemeToggle } from "@/components/mode/theme-toggle";
 import { AskButton } from "@/components/ask/ask-button";
 import { cn } from "@/lib/utils";
 
 export function FloatingNav() {
   const { scrollY } = useScroll();
-  const [isVisible, setIsVisible] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    // Scrolled styling threshold
-    if (latest > 30) {
-      setIsScrolled(true);
-    } else {
-      setIsScrolled(false);
-    }
-
-    // Hide on scroll down, show on scroll up
-    const direction = latest - lastScrollY;
-    if (latest > 150 && direction > 10) {
-      setIsVisible(false);
-    } else if (direction < -10) {
-      setIsVisible(true);
-    }
-    
-    setLastScrollY(latest);
+    setIsScrolled(latest > 30);
   });
 
   return (
     <motion.nav
       initial={{ y: -100, opacity: 0 }}
-      animate={{
-        y: isVisible ? 0 : -100,
-        opacity: isVisible ? 1 : 0,
-      }}
+      animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       className="pointer-events-none fixed inset-x-0 top-4 z-50 flex justify-center px-4 sm:top-6"
     >
@@ -63,6 +44,20 @@ export function FloatingNav() {
           )}
         />
         <AskButton />
+        <AnimatePresence initial={false}>
+          {isScrolled && (
+            <motion.div
+              key="theme-toggle"
+              initial={{ width: 0, opacity: 0, marginLeft: 0 }}
+              animate={{ width: "auto", opacity: 1, marginLeft: 4 }}
+              exit={{ width: 0, opacity: 0, marginLeft: 0 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              className="overflow-hidden"
+            >
+              <ThemeToggle />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.nav>
   );
