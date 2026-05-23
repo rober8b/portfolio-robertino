@@ -3,7 +3,7 @@ import { ContributionHeatmap } from "@/components/github/contribution-heatmap";
 import { CurrentlyBuildingCard } from "@/components/github/currently-building";
 import { GithubStat } from "@/components/github/github-stat";
 import { GithubSetupNeeded } from "@/components/github/github-setup-needed";
-import { GithubIcon } from "@/components/icons/brand-icons";
+import { GithubSectionHeader } from "@/components/github/github-section-header";
 
 export async function GithubSection() {
   const activity = await fetchGithubActivity();
@@ -11,20 +11,7 @@ export async function GithubSection() {
   return (
     <section id="github" className="relative px-4 py-24 sm:px-6 md:py-32 lg:px-8">
       <div className="mx-auto max-w-6xl">
-        <header className="max-w-3xl">
-          <p className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.1em] text-[var(--ink-soft)] uppercase">
-            <GithubIcon className="h-3 w-3" /> github · @rober8b · live
-          </p>
-          <h2 className="mt-5 text-balance font-display text-4xl font-semibold sm:text-5xl lg:text-6xl">
-            Lo que vengo construyendo
-            <br className="hidden sm:inline" />
-            <span className="text-[var(--ink-soft)]"> en código abierto.</span>
-          </h2>
-          <p className="mt-6 max-w-prose-tight text-lg text-[var(--ink-soft)]">
-            Actividad real de GitHub, traída directo de la API. Cacheada por hora. Sin maquillaje:
-            si hay una semana muerta, se ve.
-          </p>
-        </header>
+        <GithubSectionHeader />
 
         {!activity ? (
           <div className="mt-16">
@@ -32,15 +19,16 @@ export async function GithubSection() {
           </div>
         ) : (
           <div className="mt-16 space-y-10">
-            <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
+            <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 sm:gap-10">
               <GithubStat
                 label="contribuciones · año"
-                value={activity.calendar.totalContributions.toLocaleString("es-AR")}
+                value={activity.calendar.totalContributions}
               />
               <GithubStat
                 label="streak actual"
                 value={activity.streak.current}
                 hint={activity.streak.current === 1 ? "día" : "días"}
+                highlight={activity.streak.current > 0}
               />
               <GithubStat
                 label="streak más larga"
@@ -53,7 +41,7 @@ export async function GithubSection() {
               />
             </div>
 
-            <div className="glass rounded-3xl p-6 sm:p-8">
+            <div className="glass rounded-lg p-6 sm:p-8">
               <ContributionHeatmap calendar={activity.calendar} />
             </div>
 

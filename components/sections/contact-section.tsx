@@ -89,7 +89,7 @@ function PrimaryCard({ mode }: { mode: "dev" | "client" }) {
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.7, ease: EASE_OUT_EXPO }}
         whileHover={{ y: -2 }}
-        className="glass group/card relative flex flex-col justify-between overflow-hidden rounded-3xl p-8 transition-shadow duration-500 hover:shadow-[0_30px_80px_-30px_oklch(0.62_0.18_145/0.55)] lg:p-10"
+        className="glass group/card relative flex flex-col justify-between overflow-hidden rounded-lg p-8 transition-shadow duration-500 hover:shadow-[0_30px_80px_-30px_oklch(0.62_0.18_145/0.55)] lg:p-10"
       >
         <SpecularBackdrop />
         <div className="relative">
@@ -110,7 +110,7 @@ function PrimaryCard({ mode }: { mode: "dev" | "client" }) {
               href={wa}
               target="_blank"
               rel="noreferrer"
-              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-[oklch(0.62_0.18_145)] px-6 py-3.5 text-base font-medium text-white shadow-[0_12px_28px_-12px_oklch(0.62_0.18_145/0.6)] transition-transform duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_36px_-12px_oklch(0.62_0.18_145/0.75)]"
+              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-lg bg-[oklch(0.62_0.18_145)] px-6 py-3.5 text-base font-medium text-white shadow-[0_12px_28px_-12px_oklch(0.62_0.18_145/0.6)] transition-transform duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_36px_-12px_oklch(0.62_0.18_145/0.75)]"
             >
               <span className="shimmer-overlay absolute inset-0" />
               <WhatsappIcon className="relative h-4 w-4" />
@@ -126,7 +126,7 @@ function PrimaryCard({ mode }: { mode: "dev" | "client" }) {
           )}
           <a
             href={`mailto:${CONTACTS.email}`}
-            className="glass inline-flex items-center gap-2 rounded-full px-5 py-3.5 text-sm font-medium text-[var(--ink)] transition-transform duration-300 hover:-translate-y-0.5"
+            className="glass inline-flex items-center gap-2 rounded-lg px-5 py-3.5 text-sm font-medium text-[var(--ink)] transition-transform duration-300 hover:-translate-y-0.5"
           >
             <Mail size={14} strokeWidth={1.75} />
             o mandame mail
@@ -146,7 +146,7 @@ function PrimaryCard({ mode }: { mode: "dev" | "client" }) {
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.7, ease: EASE_OUT_EXPO }}
       whileHover={{ y: -2 }}
-      className="glass relative flex flex-col justify-between overflow-hidden rounded-3xl p-8 transition-shadow duration-500 hover:shadow-[0_30px_80px_-30px_oklch(0.22_0.025_30/0.4)] lg:p-10"
+      className="glass relative flex flex-col justify-between overflow-hidden rounded-lg p-8 transition-shadow duration-500 hover:shadow-[0_30px_80px_-30px_oklch(0.22_0.025_30/0.4)] lg:p-10"
     >
       <SpecularBackdrop />
       <div className="relative">
@@ -165,7 +165,7 @@ function PrimaryCard({ mode }: { mode: "dev" | "client" }) {
       <div className="relative mt-8 flex flex-wrap items-center gap-3">
         <a
           href={`mailto:${CONTACTS.email}`}
-          className="group inline-flex items-center gap-2 rounded-full bg-[var(--ink)] px-6 py-3.5 text-base font-medium text-[var(--surface)] transition-transform duration-300 hover:-translate-y-0.5"
+           className="group inline-flex items-center gap-2 rounded-lg bg-[var(--ink)] px-6 py-3.5 text-base font-medium text-[var(--surface)] transition-transform duration-300 hover:-translate-y-0.5"
         >
           <Mail size={16} strokeWidth={1.75} />
           {CONTACTS.email}
@@ -180,7 +180,7 @@ function PrimaryCard({ mode }: { mode: "dev" | "client" }) {
             href={CONTACTS.cal}
             target="_blank"
             rel="noreferrer"
-            className="glass inline-flex items-center gap-2 rounded-full px-5 py-3.5 text-sm font-medium text-[var(--ink)] transition-transform duration-300 hover:-translate-y-0.5"
+            className="glass inline-flex items-center gap-2 rounded-lg px-5 py-3.5 text-sm font-medium text-[var(--ink)] transition-transform duration-300 hover:-translate-y-0.5"
           >
             <Calendar size={14} strokeWidth={1.75} />
             agendar 30 min
@@ -270,7 +270,7 @@ function ChannelsList({ mode }: { mode: "dev" | "client" }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.7, delay: 0.05, ease: EASE_OUT_EXPO }}
-      className="divide-y divide-[var(--border-glass-dark)] overflow-hidden rounded-3xl border border-[var(--border-glass-dark)] bg-[var(--surface-glass)] backdrop-blur"
+      className="divide-y divide-[var(--border-glass-dark)] overflow-hidden rounded-lg border border-[var(--border-glass-dark)] bg-[var(--surface-glass)] backdrop-blur"
     >
       <li className="px-6 py-4 sm:px-7">
         <p className="flex items-center gap-2 font-mono text-[0.65rem] tracking-[0.12em] text-[var(--ink-soft)] uppercase opacity-60">
@@ -288,7 +288,7 @@ function ChannelsList({ mode }: { mode: "dev" | "client" }) {
               className="group flex items-center justify-between gap-4 px-6 py-4 transition-colors hover:bg-[oklch(0.99_0.005_55/0.5)] sm:px-7"
             >
               <span className="flex min-w-0 items-center gap-3 text-sm text-[var(--ink)]">
-                <Icon size={16} strokeWidth={1.75} className="shrink-0 text-[var(--ink-soft)]" />
+                <Icon size={15} strokeWidth={1.75} className="shrink-0 text-[var(--ink-soft)]" />
                 <span className="truncate font-medium">{label}</span>
               </span>
               <span className="flex shrink-0 items-center gap-2 font-mono text-[0.7rem] text-[var(--ink-soft)]">
@@ -303,7 +303,7 @@ function ChannelsList({ mode }: { mode: "dev" | "client" }) {
           ) : (
             <div className="flex items-center justify-between gap-4 px-6 py-4 sm:px-7">
               <span className="flex min-w-0 items-center gap-3 text-sm text-[var(--ink-soft)]">
-                <Icon size={16} strokeWidth={1.75} className="shrink-0 opacity-40" />
+                <Icon size={15} strokeWidth={1.75} className="shrink-0 opacity-40" />
                 <span className="truncate font-medium opacity-70">{label}</span>
               </span>
               <span className="shrink-0 font-mono text-[0.65rem] tracking-[0.08em] text-[var(--ink-soft)] uppercase opacity-40">
@@ -321,7 +321,7 @@ function DisabledCta({ label }: { label: string }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-2 rounded-full border border-dashed border-[var(--border-glass-dark)] px-5 py-3.5 text-sm text-[var(--ink-soft)] opacity-70",
+        "inline-flex items-center gap-2 rounded-lg border border-dashed border-[var(--border-glass-dark)] px-5 py-3.5 text-sm text-[var(--ink-soft)] opacity-70",
       )}
     >
       {label}

@@ -32,7 +32,7 @@ export default function NotFound() {
         <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
           <Link
             href="/"
-            className="group inline-flex items-center gap-2 rounded-full bg-[var(--drench-text)] px-6 py-3.5 text-base font-medium text-[var(--drench-bg)] transition-transform duration-300 hover:-translate-y-0.5"
+            className="group inline-flex items-center gap-2 rounded-lg bg-[var(--drench-text)] px-6 py-3.5 text-base font-medium text-[var(--drench-bg)] transition-transform duration-300 hover:-translate-y-0.5"
           >
             <ArrowLeft
               size={16}
@@ -41,7 +41,7 @@ export default function NotFound() {
             />
             Volver al inicio
           </Link>
-          <span className="inline-flex items-center gap-2 rounded-full border border-[var(--drench-border)] bg-[var(--drench-glass-bg)] px-5 py-3.5 text-sm backdrop-blur">
+          <span className="inline-flex items-center gap-2 rounded-lg border border-[var(--drench-border)] bg-[var(--drench-glass-bg)] px-5 py-3.5 text-sm backdrop-blur">
             <Sparkles size={14} strokeWidth={1.75} />
             <span>O probá</span>
             <kbd className="rounded border border-[var(--drench-border)] bg-[var(--drench-glass-bg)] px-1.5 py-0.5 font-mono text-[0.65rem]">

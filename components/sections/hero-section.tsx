@@ -21,7 +21,7 @@ type ModeCopy = {
 const COPY: Record<"dev" | "client", ModeCopy> = {
   dev: {
     eyebrow: "freelance · buenos aires · disponible",
-    words: ["Construyo", "software", "web", "y", "sistemas", "agénticos", "para", "LATAM."],
+    words: ["AI", "Builder", "y", "Web", "Developer"],
     primaryCta: { label: "Ver Marketplace agéntico", href: "#projects" },
     secondaryCta: { label: "github.com/rober8b", href: PROFILE.github, Icon: GithubIcon },
     askPrompt: "o preguntale directo al asistente",
@@ -110,7 +110,7 @@ export function HeroSection() {
           >
             <a
               href={copy.primaryCta.href}
-              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-[var(--drench-text)] px-5 py-3 text-sm font-medium text-[var(--drench-bg)] transition-transform duration-300 hover:-translate-y-0.5"
+              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-lg bg-[var(--drench-text)] px-5 py-3 text-sm font-medium text-[var(--drench-bg)] transition-transform duration-300 hover:-translate-y-0.5"
             >
               {mode === "client" ? <MessageCircle size={16} strokeWidth={1.75} /> : null}
               {copy.primaryCta.label}
@@ -124,7 +124,7 @@ export function HeroSection() {
               href={copy.secondaryCta.href}
               target={copy.secondaryCta.href.startsWith("http") ? "_blank" : undefined}
               rel="noreferrer"
-              className="glass inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-medium text-[var(--drench-text)] transition-transform duration-300 hover:-translate-y-0.5"
+              className="glass inline-flex items-center gap-2 rounded-lg px-5 py-3 text-sm font-medium text-[var(--drench-text)] transition-transform duration-300 hover:-translate-y-0.5"
             >
               <copy.secondaryCta.Icon size={16} strokeWidth={1.75} />
               {copy.secondaryCta.label}
@@ -148,21 +148,20 @@ export function HeroSection() {
           </motion.button>
         </motion.div>
 
-        <HeroGlassCard floating={!reduced} />
+        <HeroGlassCard />
       </div>
     </section>
   );
 }
 
-function HeroGlassCard({ floating }: { floating: boolean }) {
+function HeroGlassCard() {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20, scale: 0.98 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.7, delay: 0.3, ease: EASE_OUT_EXPO }}
-      className={floating ? "animate-float" : undefined}
     >
-      <div className="glass-strong relative flex aspect-[5/6] flex-col justify-between overflow-hidden rounded-3xl p-7 lg:p-8">
+      <div className="glass-strong relative flex aspect-[5/6] flex-col justify-between overflow-hidden rounded-lg p-7 lg:p-8">
         <SpecularDrift />
         <div className="relative">
           <span className="font-mono text-[0.65rem] tracking-[0.12em] text-[var(--drench-text-soft)] uppercase">

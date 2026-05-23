@@ -83,9 +83,11 @@ export function ProjectMockup({ project }: { project: Project }) {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={cn(
-        "relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-3xl p-6 sm:p-10",
-        "bg-gradient-to-br border border-[var(--border-glass-dark)] shadow-xl transition-shadow duration-500 hover:shadow-2xl",
-        theme.gradient,
+        "relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-lg",
+        // Gradient bg only when no image (placeholder mode). When image, transparent wrapper, no frame.
+        project.image
+          ? "bg-transparent"
+          : ["bg-gradient-to-br shadow-xl transition-shadow duration-500 hover:shadow-2xl p-6 sm:p-10", theme.gradient],
       )}
       style={{ perspective: 1200 }}
     >
@@ -126,7 +128,7 @@ export function ProjectMockup({ project }: { project: Project }) {
         className="relative w-full h-full flex items-center justify-center"
       >
         {project.image ? (
-          <div className="relative w-[90%] h-[90%] overflow-hidden rounded-2xl border border-[var(--border-glass)] shadow-[0_24px_50px_-15px_rgba(0,0,0,0.5)] transition-all duration-500 group-hover/mockup:scale-[1.02] group-hover/mockup:shadow-[0_32px_64px_-10px_rgba(0,0,0,0.6)]">
+          <div className="relative h-full w-full overflow-hidden rounded-lg transition-transform duration-500 group-hover/mockup:scale-[1.02]">
             <Image
               src={project.image}
               alt={`Mockup de ${project.name}`}
@@ -135,23 +137,18 @@ export function ProjectMockup({ project }: { project: Project }) {
               className="object-cover transition-transform duration-700 group-hover/mockup:scale-105"
               priority
             />
-            {/* Glossy Reflection overlay */}
+            {/* Subtle reflection overlay (much lighter than before — no frame feel) */}
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/10 opacity-60 transition-opacity group-hover/mockup:opacity-80"
-            />
-            {/* Hover overlay shadow */}
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0 bg-black/5 opacity-100 transition-opacity group-hover/mockup:opacity-0"
+              className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-white/0 via-white/[0.02] to-white/[0.05] opacity-50"
             />
           </div>
         ) : (
-          <div className="relative flex h-[90%] w-[90%] flex-col items-center justify-center overflow-hidden rounded-2xl border border-[var(--border-glass-dark)] bg-black/50 backdrop-blur-xl p-6 text-center shadow-[0_24px_50px_-15px_rgba(0,0,0,0.6)]">
+          <div className="relative flex h-[90%] w-[90%] flex-col items-center justify-center overflow-hidden rounded-xl bg-black/50 backdrop-blur-xl p-6 text-center shadow-[0_24px_50px_-15px_rgba(0,0,0,0.6)]">
             {/* Tech Stack Logo Symbol Container */}
-            <div className="relative flex items-center justify-center h-16 w-16 rounded-2xl bg-white/[0.03] border border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] mb-5 transition-transform duration-500 hover:scale-105">
+            <div className="relative flex items-center justify-center h-16 w-16 rounded-lg bg-white/[0.03] border border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] mb-5 transition-transform duration-500 hover:scale-105">
               {/* Radial gradient background light inside the logo box */}
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/5 to-white/0 opacity-50" />
+              <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-white/5 to-white/0 opacity-50" />
               <TechStackIcon slug={project.slug} />
             </div>
 

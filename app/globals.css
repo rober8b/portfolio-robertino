@@ -64,7 +64,7 @@
   --background: var(--surface);
   --foreground: var(--ink);
 
-  --radius: 1.25rem;
+  --radius: 0.75rem;
 
   /* DRENCH PALETTE — vivid orange, used in hero, footer, accent sections */
   --drench-bg: oklch(0.64 0.25 33);

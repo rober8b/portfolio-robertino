@@ -45,7 +45,7 @@ function BackLink() {
   return (
     <Link
       href="/"
-      className="glass fixed top-6 left-6 z-40 inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm text-[var(--ink)] transition-transform duration-300 hover:-translate-x-0.5"
+      className="glass fixed top-6 left-6 z-40 inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-[var(--ink)] transition-transform duration-300 hover:-translate-x-0.5"
       style={{ color: "oklch(0.99 0.008 55)" }}
     >
       <ArrowLeft size={14} strokeWidth={1.75} />
@@ -75,7 +75,7 @@ function Hero() {
               href={waEarlyAccess}
               target="_blank"
               rel="noreferrer"
-              className="group inline-flex items-center gap-2 rounded-full bg-[var(--drench-text)] px-6 py-3.5 text-base font-medium text-[var(--drench-bg)] transition-transform duration-300 hover:-translate-y-0.5"
+              className="group inline-flex items-center gap-2 rounded-lg bg-[var(--drench-text)] px-6 py-3.5 text-base font-medium text-[var(--drench-bg)] transition-transform duration-300 hover:-translate-y-0.5"
             >
               <WhatsappIcon className="h-4 w-4" />
               Pedir early access
@@ -88,7 +88,7 @@ function Hero() {
           ) : (
             <a
               href={`mailto:${CONTACTS.email}?subject=Early access marketplace agéntico`}
-              className="group inline-flex items-center gap-2 rounded-full bg-[var(--drench-text)] px-6 py-3.5 text-base font-medium text-[var(--drench-bg)] transition-transform duration-300 hover:-translate-y-0.5"
+              className="group inline-flex items-center gap-2 rounded-lg bg-[var(--drench-text)] px-6 py-3.5 text-base font-medium text-[var(--drench-bg)] transition-transform duration-300 hover:-translate-y-0.5"
             >
               <Mail size={16} strokeWidth={1.75} />
               Pedir early access
@@ -121,7 +121,7 @@ function Thesis() {
           {MANIFESTO.thesis.map((item, i) => (
             <div
               key={item.heading}
-              className="glass relative overflow-hidden rounded-3xl p-6 lg:p-8"
+              className="glass relative overflow-hidden rounded-lg p-6 lg:p-8"
             >
               <p className="font-mono text-[0.65rem] tracking-[0.12em] text-[var(--ink-soft)] uppercase opacity-60">
                 {String(i + 1).padStart(2, "0")} / 03
@@ -175,7 +175,7 @@ function Squads() {
                 </p>
               </div>
 
-              <div className="glass relative flex flex-col justify-between gap-6 overflow-hidden rounded-3xl p-8">
+              <div className="glass relative flex flex-col justify-between gap-6 overflow-hidden rounded-lg p-8">
                 <p className="font-mono text-[0.65rem] tracking-[0.12em] text-[var(--ink-soft)] uppercase opacity-60">
                   outcome metric
                 </p>
@@ -229,7 +229,7 @@ function Defensibility() {
           {MANIFESTO.defensibility.pillars.map((pillar) => (
             <div
               key={pillar.title}
-              className="relative rounded-2xl border border-[var(--drench-border)] bg-[var(--drench-glass-bg)] p-6 backdrop-blur lg:p-8"
+              className="relative rounded-lg border border-[var(--drench-border)] bg-[var(--drench-glass-bg)] p-6 backdrop-blur lg:p-8"
             >
               <p className="font-mono text-[0.65rem] tracking-[0.12em] uppercase opacity-70">
                 vector · {pillar.title.toLowerCase()}
@@ -313,7 +313,7 @@ function Team() {
           {MANIFESTO.team.map((member) => (
             <li
               key={member.name}
-              className="glass flex items-center justify-between gap-4 rounded-2xl p-5"
+              className="glass flex items-center justify-between gap-4 rounded-lg p-5"
             >
               <span className="font-display text-xl font-semibold">{member.name}</span>
               <span className="font-mono text-[0.65rem] tracking-[0.08em] text-[var(--ink-soft)] uppercase opacity-70">
@@ -371,7 +371,7 @@ function FinalCta() {
               href={waEarlyAccess}
               target="_blank"
               rel="noreferrer"
-              className="group inline-flex items-center gap-2 rounded-full bg-[var(--drench-text)] px-6 py-3.5 text-base font-medium text-[var(--drench-bg)] transition-transform duration-300 hover:-translate-y-0.5"
+              className="group inline-flex items-center gap-2 rounded-lg bg-[var(--drench-text)] px-6 py-3.5 text-base font-medium text-[var(--drench-bg)] transition-transform duration-300 hover:-translate-y-0.5"
             >
               <WhatsappIcon className="h-4 w-4" />
               WhatsApp
@@ -386,7 +386,7 @@ function FinalCta() {
             href={`mailto:${CONTACTS.email}?subject=Early access marketplace agéntico&body=${encodeURIComponent(
               "Hola Rober, vi el manifesto del marketplace agéntico y me gustaría sumarme al early access. Te cuento un poco sobre mi tienda:",
             )}`}
-            className="inline-flex items-center gap-2 rounded-full border border-[var(--drench-border)] bg-[var(--drench-glass-bg)] px-6 py-3.5 text-base font-medium text-[var(--drench-text)] backdrop-blur transition-transform duration-300 hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2 rounded-lg border border-[var(--drench-border)] bg-[var(--drench-glass-bg)] px-6 py-3.5 text-base font-medium text-[var(--drench-text)] backdrop-blur transition-transform duration-300 hover:-translate-y-0.5"
           >
             <Mail size={16} strokeWidth={1.75} />
             Email
