@@ -8,6 +8,7 @@ import { AsciiRain } from "@/components/experiments/ascii-rain";
 import { RefractSandbox } from "@/components/experiments/refract-sandbox";
 import { TerminalToy } from "@/components/experiments/terminal-toy";
 import { Scanlines } from "@/components/ambient/scanlines";
+import { AsciiHeading } from "@/components/primitives/ascii-heading";
 import { EXPERIMENTS } from "@/lib/experiments/data";
 import { easeOutExpo } from "@/lib/motion/variants";
 
@@ -43,23 +44,11 @@ export function ExperimentsSection() {
   return (
     <section id="lab" className="relative px-4 py-24 sm:px-6 md:py-32 lg:px-8">
       <div className="mx-auto max-w-6xl">
-        <motion.header
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7, ease: easeOutExpo }}
-          className="max-w-3xl"
-        >
-          <p className="font-mono text-xs tracking-[0.1em] text-[var(--ink-soft)] uppercase">
-            {copy.eyebrow}
-          </p>
-          <h2 className="mt-5 text-balance font-display text-4xl font-semibold sm:text-5xl lg:text-6xl">
-            {copy.title}
-          </h2>
-          <p className="mt-6 max-w-prose-tight text-lg text-[var(--ink-soft)]">
-            {copy.description}
-          </p>
-        </motion.header>
+        <AsciiHeading
+          eyebrow={copy.eyebrow}
+          title={copy.title}
+          description={copy.description}
+        />
 
         <div className="mt-16 grid gap-6 lg:grid-cols-3">
           {EXPERIMENTS.map((exp, i) => (

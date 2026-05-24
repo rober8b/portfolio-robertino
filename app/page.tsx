@@ -1,20 +1,40 @@
 import { FloatingNav } from "@/components/navigation/floating-nav";
 import { HeroSection } from "@/components/sections/hero-section";
+import { LiveRuntimePanel } from "@/components/hero/live-runtime-panel";
+import { TrustBar } from "@/components/sections/trust-bar";
+import { WhoSection } from "@/components/sections/who-section";
 import { ProjectsSection } from "@/components/sections/projects-section";
+import { BuildProcessSection } from "@/components/sections/build-process-section";
 import { GithubSection } from "@/components/sections/github-section";
+import { ExperimentsSection } from "@/components/sections/experiments-section";
+import { NotesSection } from "@/components/sections/notes-section";
+import { FeedbackLogSection } from "@/components/sections/feedback-log-section";
 import { ContactSection } from "@/components/sections/contact-section";
 import { SiteFooter } from "@/components/sections/site-footer";
 import { MarqueeDivider } from "@/components/primitives/marquee-divider";
+import { SectionTransition } from "@/components/primitives/section-transition";
+import { fetchGithubActivity } from "@/lib/github/client";
 
-export default function Home() {
+export default async function Home() {
+  const activity = await fetchGithubActivity();
+
   return (
     <main className="relative min-h-dvh overflow-x-hidden">
       <FloatingNav />
-      <HeroSection />
+      <HeroSection runtimePanel={<LiveRuntimePanel activity={activity} />} />
+      <TrustBar />
       <CreamAurora />
+      <SectionTransition command="mounting /who.manifesto" />
+      <WhoSection />
+      <SectionTransition command="loading projects.featured" />
       <ProjectsSection />
+      <BuildProcessSection />
       <MarqueeDivider />
       <GithubSection />
+      <SectionTransition command="entering experiments.runtime" />
+      <ExperimentsSection />
+      <NotesSection />
+      <FeedbackLogSection />
       <ContactSection />
       <SiteFooter />
     </main>

@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "motion/react";
 import type { LucideIcon } from "lucide-react";
 import { Compass, Network, Repeat, Rocket, Gauge } from "lucide-react";
 import { useMode } from "@/components/mode/mode-provider";
+import { AsciiHeading } from "@/components/primitives/ascii-heading";
 import { easeOutExpo } from "@/lib/motion/variants";
 
 type Step = {
@@ -114,23 +115,11 @@ export function BuildProcessSection() {
   return (
     <section id="process" className="relative px-4 py-24 sm:px-6 md:py-32 lg:px-8">
       <div className="mx-auto max-w-6xl">
-        <motion.header
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7, ease: easeOutExpo }}
-          className="max-w-3xl"
-        >
-          <p className="font-mono text-xs tracking-[0.1em] text-[var(--ink-soft)] uppercase">
-            {copy.eyebrow}
-          </p>
-          <h2 className="mt-5 text-balance font-display text-4xl font-semibold sm:text-5xl lg:text-6xl">
-            {copy.title}
-          </h2>
-          <p className="mt-6 max-w-prose-tight text-lg text-[var(--ink-soft)]">
-            {copy.description}
-          </p>
-        </motion.header>
+        <AsciiHeading
+          command="build.process"
+          title={copy.title}
+          description={copy.description}
+        />
 
         {/* Rail — fills accent on first scroll-in */}
         <div className="relative mt-16">
@@ -156,8 +145,11 @@ export function BuildProcessSection() {
                 <div className="relative flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border-glass)] bg-[var(--surface)]">
                   <step.Icon className="h-4 w-4 text-[var(--accent)]" strokeWidth={1.5} />
                 </div>
-                <p className="mt-4 nums-tabular font-mono text-[0.65rem] tracking-[0.12em] text-[var(--ink-soft)] uppercase">
-                  {step.id} · {step.title}
+                <p className="mt-4 nums-tabular inline-flex items-center gap-1.5 font-mono text-[0.65rem] tracking-[0.12em] text-[var(--ink-soft)] uppercase">
+                  <span aria-hidden className="opacity-60">[</span>
+                  <span className="text-[var(--accent)]">{step.id}</span>
+                  <span aria-hidden className="opacity-60">]</span>
+                  <span>{step.title}</span>
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-[var(--ink-soft)]">
                   {step.body}

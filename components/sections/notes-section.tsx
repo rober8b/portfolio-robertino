@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { useMode } from "@/components/mode/mode-provider";
+import { AsciiHeading } from "@/components/primitives/ascii-heading";
 import { NOTES } from "@/lib/notes/data";
 import { easeOutExpo } from "@/lib/motion/variants";
 
@@ -44,23 +45,11 @@ export function NotesSection() {
   return (
     <section id="notes" className="relative px-4 py-24 sm:px-6 md:py-32 lg:px-8">
       <div className="mx-auto max-w-6xl">
-        <motion.header
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7, ease: easeOutExpo }}
-          className="max-w-3xl"
-        >
-          <p className="font-mono text-xs tracking-[0.1em] text-[var(--ink-soft)] uppercase">
-            {copy.eyebrow}
-          </p>
-          <h2 className="mt-5 text-balance font-display text-4xl font-semibold sm:text-5xl lg:text-6xl">
-            {copy.title}
-          </h2>
-          <p className="mt-6 max-w-prose-tight text-lg text-[var(--ink-soft)]">
-            {copy.description}
-          </p>
-        </motion.header>
+        <AsciiHeading
+          command="ls ./notes"
+          title={copy.title}
+          description={copy.description}
+        />
 
         <ol className="mt-16 divide-y divide-[var(--border-glass)] border-y border-[var(--border-glass)]">
           {NOTES.map((note, i) => (
@@ -85,6 +74,9 @@ export function NotesSection() {
                   <h3 className="font-display text-2xl font-semibold leading-snug text-[var(--ink)] sm:text-3xl">
                     {note.title}
                   </h3>
+                  <p className="mt-1 font-mono text-[0.65rem] tracking-tight text-[var(--ink-soft)] opacity-60">
+                    ~/notes/{note.slug}.md
+                  </p>
                   <p className="mt-2 max-w-[65ch] text-base text-[var(--ink-soft)]">{note.dek}</p>
                   <div className="mt-3 flex flex-wrap gap-1.5">
                     {note.tags.map((t) => (

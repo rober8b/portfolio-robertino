@@ -2,8 +2,9 @@
 
 import { motion } from "motion/react";
 import { useMode } from "@/components/mode/mode-provider";
-import { FeaturedProjectCard } from "@/components/projects/featured-project-card";
-import { ProjectCard } from "@/components/projects/project-card";
+import { ComposedFeaturedCase } from "@/components/cases/composed-featured-case";
+import { CaseCardGrid } from "@/components/cases/case-card-grid";
+import { AsciiHeading } from "@/components/primitives/ascii-heading";
 import { PROJECTS } from "@/lib/site-data";
 import { cn } from "@/lib/utils";
 
@@ -44,27 +45,20 @@ export function ProjectsSection() {
       className="relative px-4 py-24 sm:px-6 md:py-32 lg:px-8"
     >
       <div className="mx-auto max-w-6xl">
-        <motion.header
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-3xl"
-        >
-          <p className="font-mono text-xs tracking-[0.1em] text-[var(--ink-soft)] uppercase">
-            {copy.eyebrow}
-          </p>
-          <h2 className="mt-5 text-balance font-display text-4xl font-semibold sm:text-5xl lg:text-6xl">
-            {copy.title}
-          </h2>
-          <p className="mt-6 max-w-prose-tight text-lg text-[var(--ink-soft)]">
-            {copy.description}
-          </p>
-        </motion.header>
+        <AsciiHeading
+          eyebrow={copy.eyebrow}
+          title={copy.title}
+          description={copy.description}
+        />
 
         <div className="mt-20 space-y-24 md:space-y-32">
           {featured.map((project, index) => (
-            <FeaturedProjectCard key={project.slug} project={project} index={index} />
+            <ComposedFeaturedCase
+              key={project.slug}
+              project={project}
+              index={index}
+              flipped={index % 2 === 1}
+            />
           ))}
         </div>
 
@@ -103,7 +97,7 @@ export function ProjectsSection() {
                     index === 3 && "lg:col-span-7",
                   )}
                 >
-                  <ProjectCard project={project} index={index} />
+                  <CaseCardGrid project={project} />
                 </div>
               ))}
             </div>

@@ -1,76 +1,50 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { motion } from "motion/react";
 import { GithubIcon, LinkedinIcon, TwitterIcon, WhatsappIcon } from "@/components/icons/brand-icons";
 import { Mail, MapPin } from "lucide-react";
 import { CONTACTS, PROFILE } from "@/lib/site-data";
 import { AsciiSignature } from "@/components/primitives/ascii-signature";
+import { ScrambleText } from "@/components/primitives/scramble-text";
+import { RuntimeBadge } from "@/components/primitives/runtime-badge";
+import { PixelAvatar } from "@/components/hero/pixel-avatar";
+import { easeOutExpo } from "@/lib/motion/variants";
 
 const NAV = [
   { label: "Hero", href: "#" },
-  { label: "Proyectos", href: "#projects" },
+  { label: "Quién", href: "#who" },
+  { label: "Casos", href: "#projects" },
+  { label: "Proceso", href: "#process" },
   { label: "GitHub", href: "#github" },
+  { label: "Lab", href: "#lab" },
+  { label: "Notas", href: "#notes" },
   { label: "Contacto", href: "#contact" },
 ];
 
+const SITE_VERSION = "v2.0.0";
+
 function ScrambleEmail({ email }: { email: string }) {
-  const [displayText, setDisplayText] = useState(email);
-  const [isHovered, setIsHovered] = useState(false);
-
-  useEffect(() => {
-    if (!isHovered) {
-      setDisplayText(email);
-      return;
-    }
-
-    let frame = 0;
-    const glyphs = "X01X01#_@?/\\-$%+*=".split("");
-    const length = email.length;
-    const queue = email.split("").map((char, index) => {
-      const start = Math.floor(Math.random() * 8);
-      const end = start + Math.floor(Math.random() * 12) + 8;
-      return { char, start, end };
-    });
-
-    let active = true;
-    const tick = () => {
-      if (!active) return;
-      let complete = 0;
-      const result = queue.map((item, index) => {
-        if (frame >= item.end) {
-          complete++;
-          return item.char;
-        }
-        if (frame >= item.start) {
-          return glyphs[Math.floor(Math.random() * glyphs.length)];
-        }
-        return email[index];
-      });
-
-      setDisplayText(result.join(""));
-      frame++;
-
-      if (complete < length) {
-        requestAnimationFrame(tick);
-      }
-    };
-
-    requestAnimationFrame(tick);
-    return () => {
-      active = false;
-    };
-  }, [isHovered, email]);
-
   return (
     <a
       href={`mailto:${email}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
       className="relative inline-block py-1 text-[var(--drench-text-soft)] hover:text-[var(--drench-text)] transition-colors group/email"
     >
-      <span className="relative z-10">{displayText}</span>
+      <span className="relative z-10">
+        <ScrambleText text={email} trigger="hover" />
+      </span>
       <span className="absolute bottom-0 left-0 w-full h-[1px] bg-current scale-x-0 group-hover/email:scale-x-100 origin-left transition-transform duration-500 ease-out" />
     </a>
+  );
+}
+
+function LiveDataStrip() {
+  return (
+    <div className="grid gap-3 sm:grid-cols-4 sm:gap-4">
+      <RuntimeBadge label="uptime · 99.9%" tone="ok" pulse />
+      <RuntimeBadge label="last deploy · today" tone="muted" />
+      <RuntimeBadge label="region · BA" tone="muted" />
+      <RuntimeBadge label={`build · ${SITE_VERSION}`} tone="muted" />
+    </div>
   );
 }
 
@@ -99,33 +73,52 @@ export function SiteFooter() {
       <FooterAmbient />
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 pt-24 pb-12 sm:px-6 lg:px-8 lg:pt-32">
-        <p className="mb-3 font-mono text-[0.65rem] tracking-[0.18em] uppercase opacity-60">
-          [ HANDLE ]
+        <p className="mb-4 font-mono text-[0.65rem] tracking-[0.18em] uppercase opacity-60">
+          [ system.session.end ]
         </p>
-        <a
-          href={`mailto:${CONTACTS.email}`}
-          aria-label={`Mandarme un email a ${CONTACTS.email}`}
-          className="group block"
-          data-cursor="reticle"
-        >
-          <AsciiSignature
-            variant="big"
-            className="text-[var(--drench-text)] transition-opacity duration-300 group-hover:opacity-90"
-          />
-          <p className="mt-2 font-mono text-xs tracking-[0.1em] text-[var(--drench-text-soft)] uppercase opacity-70">
-            robertino.dev · ./rober8b
-          </p>
-        </a>
+
+        <div className="flex items-start gap-5">
+          <div className="shrink-0 pt-1">
+            <PixelAvatar size={56} />
+          </div>
+
+          <a
+            href={`mailto:${CONTACTS.email}`}
+            aria-label={`Mandarme un email a ${CONTACTS.email}`}
+            className="group min-w-0 block"
+            data-cursor="reticle"
+          >
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 1.1, ease: easeOutExpo }}
+            >
+              <AsciiSignature
+                variant="big"
+                className="text-[var(--drench-text)] transition-opacity duration-300 group-hover:opacity-90"
+              />
+            </motion.div>
+            <p className="mt-2 font-mono text-xs tracking-[0.1em] text-[var(--drench-text-soft)] uppercase opacity-70">
+              robertino.dev · ./rober8b
+            </p>
+          </a>
+        </div>
+
         <div className="mt-6 max-w-prose-tight font-mono text-sm tracking-[0.04em] opacity-70 sm:text-base">
           <ScrambleEmail email={CONTACTS.email} />
         </div>
 
-        <div className="mt-16 grid gap-10 border-t border-[var(--border-glass)] pt-10 sm:grid-cols-3">
+        <div className="mt-10 border-y border-[var(--border-glass)] py-5">
+          <LiveDataStrip />
+        </div>
+
+        <div className="mt-12 grid gap-10 sm:grid-cols-3">
           <div className="space-y-3 text-sm">
             <p className="font-mono text-[0.65rem] tracking-[0.12em] uppercase opacity-60">
               navegación
             </p>
-            <ul className="space-y-1.5">
+            <ul className="grid grid-cols-2 gap-y-1.5 sm:grid-cols-1">
               {NAV.map((item) => (
                 <li key={item.label}>
                   <a
@@ -202,7 +195,7 @@ export function SiteFooter() {
             {PROFILE.location}
           </p>
           <p>
-            © {year} {PROFILE.name} · todos los derechos reservados
+            © {year} {PROFILE.name} · {SITE_VERSION}
           </p>
         </div>
       </div>

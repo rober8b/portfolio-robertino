@@ -3,6 +3,9 @@
 import { motion } from "motion/react";
 import { useMode } from "@/components/mode/mode-provider";
 import { WorkshopArtifact } from "@/components/who/workshop-artifact";
+import { AsciiHeading } from "@/components/primitives/ascii-heading";
+import { AsciiFrame } from "@/components/primitives/ascii-frame";
+import { RuntimeBadge } from "@/components/primitives/runtime-badge";
 import { MANIFESTO, PRINCIPLES, WORKSHOP_ARTIFACTS } from "@/lib/site-data";
 import { easeOutExpo } from "@/lib/motion/variants";
 
@@ -41,23 +44,11 @@ export function WhoSection() {
   return (
     <section id="who" className="relative px-4 py-24 sm:px-6 md:py-32 lg:px-8">
       <div className="mx-auto max-w-6xl">
-        <motion.header
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7, ease: easeOutExpo }}
-          className="max-w-3xl"
-        >
-          <p className="font-mono text-xs tracking-[0.1em] text-[var(--ink-soft)] uppercase">
-            {copy.eyebrow}
-          </p>
-          <h2 className="mt-5 text-balance font-display text-4xl font-semibold sm:text-5xl lg:text-6xl">
-            {copy.title}
-          </h2>
-          <p className="mt-6 max-w-prose-tight text-lg text-[var(--ink-soft)]">
-            {copy.description}
-          </p>
-        </motion.header>
+        <AsciiHeading
+          eyebrow={copy.eyebrow}
+          title={copy.title}
+          description={copy.description}
+        />
 
         <div className="mt-16 grid gap-10 lg:grid-cols-[5fr_4fr_3fr] lg:gap-12">
           {/* MANIFESTO */}
@@ -68,9 +59,7 @@ export function WhoSection() {
             transition={{ duration: 0.7, ease: easeOutExpo }}
             className="max-w-[60ch] space-y-2"
           >
-            <p className="font-mono text-[0.6rem] tracking-[0.12em] text-[var(--ink-soft)] uppercase opacity-70">
-              ./manifesto.md
-            </p>
+            <RuntimeBadge label="./manifesto.md" tone="muted" />
             <div className="mt-3 space-y-2 text-lg leading-snug text-[var(--ink)]">
               {manifesto.map((line) => (
                 <p key={line}>{line}</p>
@@ -86,9 +75,7 @@ export function WhoSection() {
             transition={{ duration: 0.7, delay: 0.08, ease: easeOutExpo }}
             className="space-y-5"
           >
-            <p className="font-mono text-[0.6rem] tracking-[0.12em] text-[var(--ink-soft)] uppercase opacity-70">
-              ./workshop/
-            </p>
+            <RuntimeBadge label="./workshop/" tone="muted" />
             <div className="space-y-4">
               {WORKSHOP_ARTIFACTS.map((a, i) => (
                 <WorkshopArtifact key={a.title} artifact={a} tilt={TILTS[i] ?? 0} />
@@ -103,20 +90,20 @@ export function WhoSection() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.7, delay: 0.16, ease: easeOutExpo }}
           >
-            <p className="font-mono text-[0.6rem] tracking-[0.12em] text-[var(--ink-soft)] uppercase opacity-70">
-              ./principles
-            </p>
-            <ol className="mt-3 font-mono text-[0.85rem]">
-              {PRINCIPLES.map((p, i) => (
-                <li key={p.id} className="grid grid-cols-[auto_1fr] items-baseline gap-x-3 py-2">
-                  <span className="text-[var(--ink-soft)] opacity-70">{p.id}</span>
-                  <span className="text-[var(--ink)]">{p.label}</span>
-                  {i < PRINCIPLES.length - 1 ? (
-                    <span aria-hidden className="divider-dots col-span-2 mt-2 text-[var(--ink-soft)] opacity-40" />
-                  ) : null}
-                </li>
-              ))}
-            </ol>
+            <RuntimeBadge label="./principles" tone="muted" />
+            <AsciiFrame label="principles" tone="ink" className="mt-3" innerClassName="p-4 sm:p-5">
+              <ol className="font-mono text-[0.85rem]">
+                {PRINCIPLES.map((p, i) => (
+                  <li key={p.id} className="grid grid-cols-[auto_1fr] items-baseline gap-x-3 py-2">
+                    <span className="text-[var(--ink-soft)] opacity-70">{p.id}</span>
+                    <span className="text-[var(--ink)]">{p.label}</span>
+                    {i < PRINCIPLES.length - 1 ? (
+                      <span aria-hidden className="divider-dots col-span-2 mt-2 text-[var(--ink-soft)] opacity-40" />
+                    ) : null}
+                  </li>
+                ))}
+              </ol>
+            </AsciiFrame>
           </motion.div>
         </div>
       </div>

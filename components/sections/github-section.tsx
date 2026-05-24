@@ -4,6 +4,8 @@ import { CurrentlyBuildingCard } from "@/components/github/currently-building";
 import { GithubStat } from "@/components/github/github-stat";
 import { GithubSetupNeeded } from "@/components/github/github-setup-needed";
 import { GithubSectionHeader } from "@/components/github/github-section-header";
+import { CommitLogStrip } from "@/components/github/commit-log-strip";
+import { AsciiFrame } from "@/components/primitives/ascii-frame";
 
 export async function GithubSection() {
   const activity = await fetchGithubActivity();
@@ -41,9 +43,13 @@ export async function GithubSection() {
               />
             </div>
 
-            <div className="glass rounded-lg p-6 sm:p-8">
+            <AsciiFrame label="contributions.year" tone="accent" innerClassName="p-6 sm:p-8">
               <ContributionHeatmap calendar={activity.calendar} />
-            </div>
+            </AsciiFrame>
+
+            {activity.recentCommits.length > 0 ? (
+              <CommitLogStrip commits={activity.recentCommits} />
+            ) : null}
 
             {activity.currentlyBuilding && (
               <div className="grid gap-6 md:grid-cols-2">

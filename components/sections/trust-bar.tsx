@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import { useMode } from "@/components/mode/mode-provider";
+import { ScrambleText } from "@/components/primitives/scramble-text";
 import { PROFILE, PROJECTS } from "@/lib/site-data";
 import { easeOutExpo } from "@/lib/motion/variants";
 
@@ -59,7 +60,9 @@ export function TrustBar() {
                 className="flex items-baseline gap-2 whitespace-nowrap font-mono text-[0.7rem] text-[var(--ink)]"
               >
                 <span className="text-[var(--ink-soft)] opacity-70">[ {p.key} ]</span>
-                <span className="nums-tabular font-medium">{p.value}</span>
+                <span className="nums-tabular font-medium">
+                  <ScrambleText text={p.value} trigger="hover" />
+                </span>
               </motion.li>
             ))}
           </ul>
