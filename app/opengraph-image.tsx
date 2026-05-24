@@ -73,7 +73,7 @@ export default async function OpenGraphImage() {
           }}
         >
           <span>Robertino Barbuto · @rober8b</span>
-          <span>next.js · mastra · mercadopago</span>
+          <span>next.js · mastra · ai gateway</span>
         </div>
       </div>
     ),

@@ -1,6 +1,7 @@
 import "server-only";
 
 import type {
+  CommitEntry,
   ContributionCalendar,
   ContributionDay,
   CurrentlyBuilding,
@@ -143,6 +144,7 @@ export async function fetchGithubActivity(): Promise<GithubActivity | null> {
     const calendar = transformCalendar(payload.data.user.contributionsCollection.contributionCalendar);
     const streak = computeStreak(calendar);
     const currentlyBuilding = transformCurrentlyBuilding(payload.data.user.repositories.nodes);
+    const recentCommits = transformRecentCommits(payload.data.user.repositories.nodes);
     const topLanguage = pickTopLanguage(payload.data.user.repositories.nodes);
 
     return {
@@ -151,6 +153,7 @@ export async function fetchGithubActivity(): Promise<GithubActivity | null> {
       calendar,
       streak,
       currentlyBuilding,
+      recentCommits,
       topLanguage,
       stale: false,
     };
@@ -235,6 +238,27 @@ function transformCurrentlyBuilding(
     commitDate: target?.committedDate ?? null,
     commitOid: target?.oid ?? null,
   };
+}
+
+function transformRecentCommits(
+  nodes: NonNullable<GraphQLResponse["data"]>["user"]["repositories"]["nodes"],
+): CommitEntry[] {
+  const entries: CommitEntry[] = [];
+  for (const node of nodes) {
+    if (!isShowableRepo(node)) continue;
+    const target = node.defaultBranchRef?.target;
+    if (!target?.committedDate || !target.messageHeadline || !target.oid) continue;
+    entries.push({
+      sha: target.oid.slice(0, 7),
+      repo: node.name,
+      url: node.isPrivate ? `https://github.com/${GH_LOGIN}` : node.url,
+      message: target.messageHeadline,
+      date: target.committedDate,
+      language: node.primaryLanguage?.name ?? null,
+    });
+  }
+  entries.sort((a, b) => b.date.localeCompare(a.date));
+  return entries.slice(0, 5);
 }
 
 function pickTopLanguage(

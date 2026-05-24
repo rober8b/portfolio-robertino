@@ -1,5 +1,30 @@
 export type ProjectStatus = "live" | "building" | "prototype" | "qa";
 
+export type ProjectMediaRole =
+  | "hero"
+  | "ui-crop"
+  | "dashboard"
+  | "mobile"
+  | "terminal"
+  | "metric-card"
+  | "code";
+
+export type ProjectMedia = {
+  role: ProjectMediaRole;
+  src: string;
+  caption?: string;
+  alt?: string;
+  tilt?: number;
+  depth?: number;
+  frame?: "device" | "browser" | "terminal" | "card" | "none";
+};
+
+export type ProjectMetric = {
+  label: string;
+  value: string;
+  hint?: string;
+};
+
 export type Project = {
   slug: string;
   name: string;
@@ -17,7 +42,11 @@ export type Project = {
     repo?: string;
     manifesto?: string;
   };
+  /** @deprecated Use media[role="hero"] instead. Kept for current card components until Phase B. */
   image?: string;
+  media?: ProjectMedia[];
+  buildNotes?: string[];
+  metrics?: ProjectMetric[];
   featured?: boolean;
 };
 
@@ -28,9 +57,15 @@ export const PROFILE = {
   email: "robertinobarbuto@gmail.com",
   github: "https://github.com/rober8b",
   tagline: {
-    dev: "Construyo sistemas web y agénticos para LATAM. Next.js, TypeScript, Mastra, MercadoPago.",
+    dev: "Construyo sistemas web y agénticos para LATAM. Next.js, TypeScript, Mastra, AI Gateway.",
     client: "Te armo tu sitio web, tu tienda online o tu app, sin vueltas. Hablamos por WhatsApp.",
   },
+  /** First year shipping production code. Drives the "years.building" metric in the hero panel. */
+  startedAt: 2022,
+  /** Short, public-facing line shown in the hero runtime terminal. Update when focus shifts. */
+  currentlyBuilding: "marketplace · recovery operator",
+  /** One-word focus shown in the hero metrics strip. */
+  currentFocus: "marketplace",
   stack: [
     "Next.js 16",
     "React 19",
@@ -39,7 +74,7 @@ export const PROFILE = {
     "Prisma",
     "Supabase",
     "shadcn/ui",
-    "MercadoPago",
+    "AI Gateway",
     "Mastra",
     "Inngest",
     "Gemini",
@@ -97,6 +132,9 @@ export const PROJECTS: Project[] = [
       manifesto: "/marketplace",
     },
     image: "/projects/marketplace.png",
+    media: [
+      { role: "hero", src: "/cases/marketplace/hero.png", alt: "Marketplace agéntico — vista principal del dashboard" },
+    ],
     featured: true,
   },
   {
@@ -125,6 +163,10 @@ export const PROJECTS: Project[] = [
       repo: "https://github.com/rober8b/xplora",
     },
     image: "/projects/xplora.jpg",
+    media: [
+      { role: "hero", src: "/cases/xplora/hero.jpg", alt: "Xplora — home del club" },
+      { role: "mobile", src: "/cases/xplora/mobile.jpg", alt: "Xplora — vista móvil" },
+    ],
     featured: true,
   },
   {
@@ -154,6 +196,10 @@ export const PROJECTS: Project[] = [
       demo: "https://aredesasociados.com.ar/",
     },
     image: "/projects/aredes-asociados.jpg",
+    media: [
+      { role: "hero", src: "/cases/aredes-asociados/hero.jpg", alt: "Aredes Asociados — home institucional" },
+      { role: "mobile", src: "/cases/aredes-asociados/mobile.jpg", alt: "Aredes Asociados — vista móvil" },
+    ],
     featured: true,
   },
   {
@@ -183,6 +229,9 @@ export const PROJECTS: Project[] = [
       demo: "https://leiza-page.vercel.app/",
     },
     image: "/projects/leiza-page.jpg",
+    media: [
+      { role: "hero", src: "/cases/leiza-page/hero.jpg", alt: "Madre Naturaleza — home brand" },
+    ],
   },
   {
     slug: "nebula",
@@ -210,6 +259,9 @@ export const PROJECTS: Project[] = [
       demo: "https://www.somosnebula.ar/",
     },
     image: "/projects/nebula.jpg",
+    media: [
+      { role: "hero", src: "/cases/nebula/hero.jpg", alt: "Nebula — hub editorial" },
+    ],
   },
   {
     slug: "equitas-abogados",
@@ -237,6 +289,9 @@ export const PROJECTS: Project[] = [
       demo: "https://equitas-abogados.vercel.app/",
     },
     image: "/projects/equitas-abogados.jpg",
+    media: [
+      { role: "hero", src: "/cases/equitas-abogados/hero.jpg", alt: "Equitas Abogados — home institucional" },
+    ],
   },
   {
     slug: "nomos",
@@ -264,6 +319,9 @@ export const PROJECTS: Project[] = [
       demo: "https://nomos-tau.vercel.app/",
     },
     image: "/projects/nomos.jpg",
+    media: [
+      { role: "hero", src: "/cases/nomos/hero.jpg", alt: "Nomos — demo del marketplace agéntico" },
+    ],
   },
   {
     slug: "dental-app",
@@ -292,6 +350,10 @@ export const PROJECTS: Project[] = [
       demo: "https://consultoriopyp.vercel.app/",
     },
     image: "/projects/dental-app.jpg",
+    media: [
+      { role: "hero", src: "/cases/dental-app/hero.jpg", alt: "Consultorio P&P — wizard de reserva" },
+      { role: "mobile", src: "/cases/dental-app/mobile.jpg", alt: "Consultorio P&P — vista móvil" },
+    ],
   },
   {
     slug: "pizza-block",
@@ -319,6 +381,10 @@ export const PROJECTS: Project[] = [
       repo: "https://github.com/rober8b/Pizza-Block",
     },
     image: "/projects/pizza-block.jpg",
+    media: [
+      { role: "hero", src: "/cases/pizza-block/hero.jpg", alt: "Pizza Block — armado de pedido" },
+      { role: "mobile", src: "/cases/pizza-block/mobile.jpg", alt: "Pizza Block — vista móvil" },
+    ],
   },
 ];
 
@@ -381,6 +447,86 @@ export const EDUCATION = [
     status: "completado",
   },
 ] as const;
+
+/**
+ * "Who is rober8b" section content. Hand-authored, voice-aligned with PROFILE.tagline.
+ * Manifesto: short statement, one sentence per line. Principles: 5 short rules, mono cadence.
+ */
+export const MANIFESTO = {
+  dev: [
+    "Construyo sistemas web y agénticos desde Buenos Aires.",
+    "Cliente directo, sin intermediarios, sin agencia.",
+    "Prefiero un sistema que funciona a una arquitectura que impresiona.",
+    "Ship semanal, deuda técnica documentada, pruebas reales.",
+    "LATAM primero — spanish-first cuando hace sentido.",
+    "Build in public — la mayor parte vive en GitHub.",
+  ],
+  client: [
+    "Soy desarrollador freelance, basado en Buenos Aires.",
+    "Trabajás directo conmigo — sin intermediarios, sin agencia que te pase entre 4 personas.",
+    "Prefiero algo que funcione antes que algo que se vea complicado.",
+    "Te entrego en semanas, no en meses. Sin sorpresas.",
+    "Te respondo en el día. Cliente y persona, no ticket.",
+    "Cada cosa que envío me la veo a la cara — no se delega.",
+  ],
+} as const;
+
+export type Principle = { id: string; label: string };
+export const PRINCIPLES: Principle[] = [
+  { id: "001", label: "ship.weekly" },
+  { id: "002", label: "systems > scripts" },
+  { id: "003", label: "ai.as.leverage" },
+  { id: "004", label: "client.direct" },
+  { id: "005", label: "build.in.public" },
+];
+
+export type WorkshopArtifact =
+  | { kind: "code"; title: string; lang: string; body: string }
+  | { kind: "note"; title: string; body: string }
+  | { kind: "diagram"; title: string; body: string };
+
+export const WORKSHOP_ARTIFACTS: WorkshopArtifact[] = [
+  {
+    kind: "code",
+    title: "wallet.ts",
+    lang: "typescript",
+    body: `// integer cents, serializable isolation
+async function debit(walletId: string, cents: number) {
+  return db.$transaction(async (tx) => {
+    const w = await tx.wallet.findUnique({
+      where: { id: walletId },
+      select: { balanceCents: true },
+    });
+    if (!w || w.balanceCents < cents)
+      throw new InsufficientFunds();
+    return tx.wallet.update({
+      where: { id: walletId },
+      data: { balanceCents: { decrement: cents } },
+    });
+  }, { isolationLevel: "Serializable" });
+}`,
+  },
+  {
+    kind: "note",
+    title: "build.log",
+    body: "Recovery Operator — work-block 6/8. La idea: si un comprador abandona el carrito en una tienda LATAM, un agente le manda un WhatsApp 30 min despues, en castellano de su pais, con el producto y un descuento contextual. Inngest engancha el evento de cart-abandon, Mastra rutea al modelo barato que pueda redactar bien (Groq 70b por defecto, Gemini Pro si hay imagen). Primer A/B contra control la semana que viene.",
+  },
+  {
+    kind: "diagram",
+    title: "marketplace.arch",
+    body: `   client.app
+       |
+       v
+  [ wallet (ARS) ] ----> [ ledger (audit) ]
+       |
+       v
+  [ mastra.router ] -> [ groq | gemini | claude ]
+       |
+       v
+  [ mp.api ]   charge.ars
+`,
+  },
+];
 
 export const NOW_LEARNING = [
   "Programa Ejecutivo de IA Generativa para Programadores",

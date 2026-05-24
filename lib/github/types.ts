@@ -31,12 +31,22 @@ export type CurrentlyBuilding = {
   commitOid: string | null;
 };
 
+export type CommitEntry = {
+  sha: string;
+  repo: string;
+  url: string;
+  message: string;
+  date: string;
+  language: string | null;
+};
+
 export type GithubActivity = {
   login: string;
   fetchedAt: string;
   calendar: ContributionCalendar;
   streak: StreakInfo;
   currentlyBuilding: CurrentlyBuilding | null;
+  recentCommits: CommitEntry[];
   topLanguage: string | null;
   stale: boolean;
 };
