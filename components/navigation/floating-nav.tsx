@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "motion/react";
 import { ModeToggle } from "@/components/mode/mode-toggle";
 import { ThemeToggle } from "@/components/mode/theme-toggle";
+import { CrtToggle } from "@/components/mode/crt-toggle";
 import { AskButton } from "@/components/ask/ask-button";
 import { cn } from "@/lib/utils";
 
@@ -58,6 +59,7 @@ export function FloatingNav() {
             </motion.div>
           )}
         </AnimatePresence>
+        <CrtToggle className="ml-1" />
       </div>
     </motion.nav>
   );

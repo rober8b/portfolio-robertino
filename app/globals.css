@@ -420,6 +420,137 @@
   }
 }
 
+/* Ambient ASCII grain — slow breath so the back layer feels alive */
+@keyframes grain-breathe {
+  0%, 100% {
+    opacity: 0.7;
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    opacity: 1;
+    transform: translate3d(2px, -1px, 0);
+  }
+}
+
+.grain-breathe {
+  animation: grain-breathe 7s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+/* Chromatic glitch — section h2s pop in with a brief RGB split.
+   Quick, single-pass, settles to clean text. */
+@keyframes chromatic-glitch {
+  0% {
+    text-shadow:
+      -2px 0 0 oklch(0.66 0.25 33 / 0.9),
+      2px 0 0 oklch(0.72 0.2 220 / 0.7);
+    transform: translate3d(-1px, 0, 0);
+    opacity: 0.92;
+  }
+  35% {
+    text-shadow:
+      1px 0 0 oklch(0.66 0.25 33 / 0.7),
+      -1px 0 0 oklch(0.72 0.2 220 / 0.5);
+    transform: translate3d(1px, 0, 0);
+    opacity: 1;
+  }
+  70% {
+    text-shadow:
+      -0.5px 0 0 oklch(0.66 0.25 33 / 0.4),
+      0.5px 0 0 oklch(0.72 0.2 220 / 0.3);
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  100% {
+    text-shadow: 0 0 0 transparent;
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+.glitch-in {
+  animation: chromatic-glitch 0.6s var(--ease-out-expo) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grain-breathe,
+  .glitch-in {
+    animation: none !important;
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────
+   CRT MODE — opt-in via [data-crt="on"] on <html>. Toggles a
+   full-bleed phosphor-tube aesthetic across the whole site:
+   tight scanlines, slight chromatic aberration on body text,
+   amber-tinted phosphor glow, accelerated grain flicker.
+   ─────────────────────────────────────────────────────────────── */
+
+html[data-crt="on"] {
+  /* Global chromatic split on body text. */
+  text-shadow:
+    0.5px 0 0 oklch(0.66 0.25 33 / 0.45),
+    -0.5px 0 0 oklch(0.72 0.2 220 / 0.35);
+}
+
+/* Tight horizontal scanlines across the entire viewport. */
+html[data-crt="on"] body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 40;
+  background-image: repeating-linear-gradient(
+    0deg,
+    oklch(0 0 0 / 0.18) 0 1px,
+    transparent 1px 3px
+  );
+  mix-blend-mode: multiply;
+}
+
+/* Phosphor vignette + flicker tint. */
+html[data-crt="on"] body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 41;
+  background:
+    radial-gradient(
+      ellipse at center,
+      transparent 55%,
+      oklch(0 0 0 / 0.25) 100%
+    ),
+    linear-gradient(
+      90deg,
+      oklch(0.66 0.25 33 / 0.05),
+      oklch(0.72 0.2 220 / 0.05)
+    );
+  mix-blend-mode: overlay;
+  animation: crt-flicker 7s steps(2, end) infinite;
+}
+
+@keyframes crt-flicker {
+  0%, 60%, 100% { opacity: 1; }
+  62% { opacity: 0.82; }
+  64% { opacity: 1; }
+  92% { opacity: 0.88; }
+  94% { opacity: 1; }
+}
+
+/* Boost the ambient grain when CRT is on so it reads like dust on
+   the tube. */
+html[data-crt="on"] .grain-breathe {
+  animation-duration: 2.6s;
+  filter: contrast(140%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-crt="on"] body::after {
+    animation: none !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

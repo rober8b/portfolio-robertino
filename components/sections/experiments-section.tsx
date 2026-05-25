@@ -42,7 +42,7 @@ export function ExperimentsSection() {
   const copy = HEADER[mode];
 
   return (
-    <section id="lab" className="relative px-4 py-24 sm:px-6 md:py-32 lg:px-8">
+    <section id="lab" className="relative px-4 py-4 sm:px-6 md:py-2 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <AsciiHeading
           eyebrow={copy.eyebrow}
