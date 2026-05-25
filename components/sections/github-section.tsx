@@ -1,11 +1,10 @@
 import { fetchGithubActivity } from "@/lib/github/client";
-import { ContributionHeatmap } from "@/components/github/contribution-heatmap";
+import { HeatmapToggle } from "@/components/github/heatmap-toggle";
 import { CurrentlyBuildingCard } from "@/components/github/currently-building";
 import { GithubStat } from "@/components/github/github-stat";
 import { GithubSetupNeeded } from "@/components/github/github-setup-needed";
 import { GithubSectionHeader } from "@/components/github/github-section-header";
 import { CommitLogStrip } from "@/components/github/commit-log-strip";
-import { AsciiFrame } from "@/components/primitives/ascii-frame";
 
 export async function GithubSection() {
   const activity = await fetchGithubActivity();
@@ -43,9 +42,7 @@ export async function GithubSection() {
               />
             </div>
 
-            <AsciiFrame label="contributions.year" tone="accent" innerClassName="p-6 sm:p-8">
-              <ContributionHeatmap calendar={activity.calendar} />
-            </AsciiFrame>
+            <HeatmapToggle calendar={activity.calendar} />
 
             {activity.recentCommits.length > 0 ? (
               <CommitLogStrip commits={activity.recentCommits} />
