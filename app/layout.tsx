@@ -8,7 +8,6 @@ import { AskPalette } from "@/components/ask/ask-palette";
 import { LiquidRefractFilter } from "@/components/glass/liquid-refract-filter";
 import { CustomCursor } from "@/components/primitives/custom-cursor";
 import { ConsoleGreeting } from "@/components/primitives/console-greeting";
-import { AsciiGrain } from "@/components/ambient/ascii-grain";
 import { AsciiParticles } from "@/components/ambient/ascii-particles";
 import "./globals.css";
 
@@ -66,12 +65,6 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="bg-background text-foreground min-h-dvh font-sans">
-        <div
-          aria-hidden
-          className="pointer-events-none fixed inset-0 -z-10 text-[var(--ink)] grain-breathe"
-        >
-          <AsciiGrain width={140} height={72} opacity={0.055} />
-        </div>
         <AsciiParticles />
         <ModeProvider>
           <AskPaletteProvider>

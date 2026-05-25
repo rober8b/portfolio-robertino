@@ -2,7 +2,6 @@ import type { GithubActivity } from "@/lib/github/types";
 import { buildRuntimeSnapshot } from "@/lib/runtime/data";
 import { PROFILE } from "@/lib/site-data";
 import { Scanlines } from "@/components/ambient/scanlines";
-import { AsciiGrain } from "@/components/ambient/ascii-grain";
 import { RuntimeTerminal } from "@/components/hero/runtime-terminal";
 import { SystemMetrics } from "@/components/hero/system-metrics";
 import { IdentityAvatar } from "@/components/hero/identity-avatar";
@@ -18,7 +17,6 @@ export function LiveRuntimePanel({ activity }: LiveRuntimePanelProps) {
   return (
     <div className="glass-strong relative flex aspect-[5/6] flex-col overflow-hidden rounded-lg p-5 sm:p-6 lg:p-7">
       <Scanlines opacity={0.05} blend="soft-light" />
-      <AsciiGrain width={80} height={48} opacity={0.04} />
       <SpecularDrift />
 
       <header className="relative flex items-center gap-4">

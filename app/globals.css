@@ -420,23 +420,6 @@
   }
 }
 
-/* Ambient ASCII grain — slow breath so the back layer feels alive */
-@keyframes grain-breathe {
-  0%, 100% {
-    opacity: 0.7;
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    opacity: 1;
-    transform: translate3d(2px, -1px, 0);
-  }
-}
-
-.grain-breathe {
-  animation: grain-breathe 7s ease-in-out infinite;
-  will-change: opacity, transform;
-}
-
 /* Chromatic glitch — section h2s pop in with a brief RGB split.
    Quick, single-pass, settles to clean text. */
 @keyframes chromatic-glitch {
@@ -473,7 +456,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .grain-breathe,
   .glitch-in {
     animation: none !important;
   }
@@ -483,7 +465,7 @@
    CRT MODE — opt-in via [data-crt="on"] on <html>. Toggles a
    full-bleed phosphor-tube aesthetic across the whole site:
    tight scanlines, slight chromatic aberration on body text,
-   amber-tinted phosphor glow, accelerated grain flicker.
+   amber-tinted phosphor glow.
    ─────────────────────────────────────────────────────────────── */
 
 html[data-crt="on"] {
@@ -536,13 +518,6 @@ html[data-crt="on"] body::after {
   64% { opacity: 1; }
   92% { opacity: 0.88; }
   94% { opacity: 1; }
-}
-
-/* Boost the ambient grain when CRT is on so it reads like dust on
-   the tube. */
-html[data-crt="on"] .grain-breathe {
-  animation-duration: 2.6s;
-  filter: contrast(140%);
 }
 
 @media (prefers-reduced-motion: reduce) {
