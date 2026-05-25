@@ -1,9 +1,10 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { cn } from "@/lib/utils";
 import { revealUp, withReducedMotion } from "@/lib/motion/variants";
+import { ScrambleText } from "@/components/primitives/scramble-text";
 
 type AsciiHeadingProps = {
   eyebrow?: string;
@@ -27,6 +28,31 @@ export function AsciiHeading({
   const reduced = useReducedMotion();
   const variants = withReducedMotion(reduced ?? false, revealUp());
 
+  // Toggle .glitch-in on the h2 when it enters the viewport so the
+  // chromatic shift fires exactly once per heading.
+  const h2Ref = useRef<HTMLHeadingElement>(null);
+  const [glitched, setGlitched] = useState(false);
+
+  useEffect(() => {
+    if (reduced) return;
+    const node = h2Ref.current;
+    if (!node) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            setGlitched(true);
+            obs.disconnect();
+            break;
+          }
+        }
+      },
+      { threshold: 0.3 },
+    );
+    obs.observe(node);
+    return () => obs.disconnect();
+  }, [reduced]);
+
   return (
     <motion.header
       initial="hidden"
@@ -42,7 +68,9 @@ export function AsciiHeading({
       {command ? (
         <p className="inline-flex items-center gap-1.5 font-mono text-xs tracking-[0.08em] text-[var(--ink-soft)]">
           <span className="text-[var(--accent)] opacity-90">$</span>
-          <span>{command}</span>
+          <span>
+            <ScrambleText text={command} trigger="inView" />
+          </span>
           <span
             aria-hidden
             className="inline-block h-3 w-1.5 animate-pulse bg-[var(--amber)] align-middle"
@@ -60,18 +88,26 @@ export function AsciiHeading({
               <span aria-hidden className="opacity-60">
                 [
               </span>
-              <span>{eyebrow}</span>
+              <span>
+                <ScrambleText text={eyebrow} trigger="inView" />
+              </span>
               <span aria-hidden className="opacity-60">
                 ]
               </span>
             </>
           ) : (
-            eyebrow
+            <ScrambleText text={eyebrow} trigger="inView" />
           )}
         </p>
       ) : null}
 
-      <h2 className="mt-5 font-display text-4xl font-semibold text-balance sm:text-5xl lg:text-6xl">
+      <h2
+        ref={h2Ref}
+        className={cn(
+          "mt-5 font-display text-4xl font-semibold text-balance sm:text-5xl lg:text-6xl",
+          glitched && "glitch-in",
+        )}
+      >
         {title}
       </h2>
 

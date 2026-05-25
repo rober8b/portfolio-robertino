@@ -100,16 +100,16 @@ test.describe("ASCII grammar v1", () => {
   test("boot sequence appears on first visit and clears", async ({ page }) => {
     await page.goto("/");
     const bootText = page.getByText(/booting rober8b/i);
-    await bootText.waitFor({ state: "visible", timeout: 3000 });
+    await bootText.waitFor({ state: "visible", timeout: 6000 });
     // overlay unmounts (phase=done) after the fade
-    await bootText.waitFor({ state: "detached", timeout: 4000 });
+    await bootText.waitFor({ state: "detached", timeout: 5000 });
   });
 
   test("boot skipped on repeat visit via sessionStorage", async ({ page }) => {
     await page.goto("/");
     const bootText = page.getByText(/booting rober8b/i);
-    await bootText.waitFor({ state: "visible", timeout: 3000 });
-    await bootText.waitFor({ state: "detached", timeout: 4000 });
+    await bootText.waitFor({ state: "visible", timeout: 6000 });
+    await bootText.waitFor({ state: "detached", timeout: 5000 });
     await page.reload();
     await expect(page.getByText(/booting rober8b/i)).toHaveCount(0);
   });

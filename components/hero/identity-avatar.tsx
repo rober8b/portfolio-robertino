@@ -2,26 +2,31 @@
 
 import Image from "next/image";
 import { useMode } from "@/components/mode/mode-provider";
-
-const SOURCES = {
-  dev: { src: "/avatars/rober8b.png", alt: "rober8b pixel art portrait" },
-  client: { src: "/avatars/rober8b-photo.png", alt: "Robertino Barbuto portrait" },
-} as const;
+import { AsciiPortrait } from "@/components/hero/ascii-portrait";
 
 export function IdentityAvatar({ size = 144 }: { size?: number }) {
   const { mode } = useMode();
-  const { src, alt } = SOURCES[mode];
+
+  if (mode === "dev") {
+    return (
+      <AsciiPortrait
+        src="/avatars/rober8b-photo.png"
+        size={size}
+        alt="rober8b ASCII portrait"
+      />
+    );
+  }
 
   return (
     <div
       role="img"
-      aria-label={alt}
+      aria-label="Robertino Barbuto portrait"
       className="shrink-0 overflow-hidden rounded-xl"
       style={{ width: size, height: size }}
     >
       <Image
         key={mode}
-        src={src}
+        src="/avatars/rober8b-photo.png"
         alt=""
         width={size}
         height={size}
