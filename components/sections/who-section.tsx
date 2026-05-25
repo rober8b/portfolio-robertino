@@ -46,6 +46,7 @@ export function WhoSection() {
       <div className="mx-auto max-w-6xl">
         <AsciiHeading
           eyebrow={copy.eyebrow}
+          frame
           title={copy.title}
           description={copy.description}
         />

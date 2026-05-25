@@ -9,6 +9,7 @@ import { useAskPalette } from "@/components/ask/ask-palette-provider";
 import { MicroGrid } from "@/components/ambient/micro-grid";
 import { BootSequence } from "@/components/ambient/boot-sequence";
 import { RuntimeBadge } from "@/components/primitives/runtime-badge";
+import { ScrambleText } from "@/components/primitives/scramble-text";
 import { PROFILE } from "@/lib/site-data";
 
 type IconComponent = ComponentType<SVGProps<SVGSVGElement> & { size?: number; strokeWidth?: number }>;
@@ -79,7 +80,7 @@ export function HeroSection({ runtimePanel }: HeroSectionProps = {}) {
             variants={wordVariants}
             className="font-mono text-xs tracking-[0.08em] text-[var(--drench-text-soft)] uppercase"
           >
-            {copy.eyebrow}
+            <ScrambleText text={copy.eyebrow} trigger="mount" />
           </motion.p>
 
           <h1 className="mt-6 flex flex-wrap gap-x-3 gap-y-1 font-semibold text-balance">
