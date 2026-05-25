@@ -57,12 +57,12 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.6, delay: 0.05 * index, ease: [0.16, 1, 0.3, 1] }}
       data-cursor="grow"
-      className={`group glass relative flex h-full flex-col rounded-3xl p-6 transition-all duration-500 hover:-translate-y-1.5 hover:scale-[1.02] ${theme.borderClass}`}
+      className={`group glass relative flex h-full flex-col rounded-lg p-6 transition-all duration-500 hover:-translate-y-1.5 hover:scale-[1.02] ${theme.borderClass}`}
     >
       {/* Pixel-corner accent — appears on hover */}
       <div
         aria-hidden
-        className="pixel-frame pointer-events-none absolute inset-0 rounded-3xl text-[var(--accent)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        className="pixel-frame pointer-events-none absolute inset-0 rounded-lg text-[var(--accent)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
       />
 
       {/* Specular Edge Highlighting */}
@@ -71,7 +71,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
       {/* Custom Themed Glow Background */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        className="pointer-events-none absolute inset-0 rounded-lg opacity-0 transition-opacity duration-500 group-hover:opacity-100"
         style={{ background: theme.glow }}
       />
 
@@ -91,7 +91,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
       </div>
 
       {/* Visual Header (Screenshot or Placeholder) */}
-      <div className="relative mt-4 aspect-[16/10] w-full overflow-hidden rounded-2xl border border-[var(--border-glass-dark)] bg-black/10 z-10 group-hover:border-[var(--border-glass)] transition-colors duration-500">
+      <div className="relative mt-4 aspect-[16/10] w-full overflow-hidden rounded-xl bg-black/10 z-10">
         {project.image ? (
           <div className="relative h-full w-full overflow-hidden">
             <Image
@@ -146,7 +146,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
             target={primaryLink.startsWith("http") ? "_blank" : undefined}
             rel="noreferrer"
             data-cursor="reticle"
-            className="group/visit inline-flex items-center gap-1.5 rounded-full border border-[var(--border-glass-dark)] bg-[var(--surface-elev)] px-4 py-2 text-xs font-semibold text-[var(--ink)] shadow-[0_2px_8px_-4px_oklch(0.22_0.025_30/0.2)] transition-all duration-300 hover:-translate-y-0.5 hover:border-transparent hover:bg-[var(--accent)] hover:text-white hover:shadow-[0_10px_24px_-8px_var(--accent-glow)]"
+            className="group/visit inline-flex items-center gap-1.5 rounded-lg border border-[var(--border-glass-dark)] bg-[var(--surface-elev)] px-4 py-2 text-xs font-semibold text-[var(--ink)] shadow-[0_2px_8px_-4px_oklch(0.22_0.025_30/0.2)] transition-all duration-300 hover:-translate-y-0.5 hover:border-transparent hover:bg-[var(--accent)] hover:text-white hover:shadow-[0_10px_24px_-8px_var(--accent-glow)]"
             aria-label={`Abrir ${project.name}`}
           >
             {project.links.repo === primaryLink ? (
@@ -175,7 +175,7 @@ function CardSpecular() {
   return (
     <div
       aria-hidden
-      className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+      className="pointer-events-none absolute inset-0 rounded-lg opacity-0 transition-opacity duration-500 group-hover:opacity-100"
       style={{
         background:
           "radial-gradient(ellipse 60% 40% at 20% 0%, var(--specular), transparent 60%)",

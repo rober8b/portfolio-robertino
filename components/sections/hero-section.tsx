@@ -1,11 +1,15 @@
 "use client";
 
-import type { ComponentType, SVGProps } from "react";
-import { motion, useReducedMotion, type Variants } from "motion/react";
+import type { ComponentType, ReactNode, SVGProps } from "react";
+import { motion, type Variants } from "motion/react";
 import { ArrowUpRight, MessageCircle, Sparkles } from "lucide-react";
 import { GithubIcon } from "@/components/icons/brand-icons";
 import { useMode } from "@/components/mode/mode-provider";
 import { useAskPalette } from "@/components/ask/ask-palette-provider";
+import { MicroGrid } from "@/components/ambient/micro-grid";
+import { BootSequence } from "@/components/ambient/boot-sequence";
+import { RuntimeBadge } from "@/components/primitives/runtime-badge";
+import { ScrambleText } from "@/components/primitives/scramble-text";
 import { PROFILE } from "@/lib/site-data";
 
 type IconComponent = ComponentType<SVGProps<SVGSVGElement> & { size?: number; strokeWidth?: number }>;
@@ -21,7 +25,7 @@ type ModeCopy = {
 const COPY: Record<"dev" | "client", ModeCopy> = {
   dev: {
     eyebrow: "freelance · buenos aires · disponible",
-    words: ["Construyo", "software", "web", "y", "sistemas", "agénticos", "para", "LATAM."],
+    words: ["AI", "Builder", "y", "Web", "Developer"],
     primaryCta: { label: "Ver Marketplace agéntico", href: "#projects" },
     secondaryCta: { label: "github.com/rober8b", href: PROFILE.github, Icon: GithubIcon },
     askPrompt: "o preguntale directo al asistente",
@@ -46,10 +50,13 @@ const wordVariants: Variants = {
   }),
 };
 
-export function HeroSection() {
+type HeroSectionProps = {
+  runtimePanel?: ReactNode;
+};
+
+export function HeroSection({ runtimePanel }: HeroSectionProps = {}) {
   const { mode } = useMode();
   const { setOpen } = useAskPalette();
-  const reduced = useReducedMotion();
   const copy = COPY[mode];
 
   return (
@@ -64,14 +71,8 @@ export function HeroSection() {
           animate="visible"
           className="flex flex-col justify-center"
         >
-          <motion.div
-            custom={0}
-            variants={wordVariants}
-            className="mb-4 inline-flex w-fit items-center gap-2 border border-[var(--drench-border)] bg-[var(--drench-glass-bg)] px-2.5 py-1 font-mono text-[0.6rem] tracking-[0.18em] text-[var(--drench-text)] uppercase backdrop-blur"
-            style={{ borderRadius: "2px" }}
-          >
-            <span aria-hidden className="inline-block h-1.5 w-1.5 animate-pulse bg-[var(--amber)]" />
-            <span>./rober8b · connected</span>
+          <motion.div custom={0} variants={wordVariants} className="mb-4">
+            <RuntimeBadge label="./rober8b · connected" tone="ok" pulse />
           </motion.div>
 
           <motion.p
@@ -79,7 +80,7 @@ export function HeroSection() {
             variants={wordVariants}
             className="font-mono text-xs tracking-[0.08em] text-[var(--drench-text-soft)] uppercase"
           >
-            {copy.eyebrow}
+            <ScrambleText text={copy.eyebrow} trigger="mount" />
           </motion.p>
 
           <h1 className="mt-6 flex flex-wrap gap-x-3 gap-y-1 font-semibold text-balance">
@@ -110,7 +111,7 @@ export function HeroSection() {
           >
             <a
               href={copy.primaryCta.href}
-              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-[var(--drench-text)] px-5 py-3 text-sm font-medium text-[var(--drench-bg)] transition-transform duration-300 hover:-translate-y-0.5"
+              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-lg bg-[var(--drench-text)] px-5 py-3 text-sm font-medium text-[var(--drench-bg)] transition-transform duration-300 hover:-translate-y-0.5"
             >
               {mode === "client" ? <MessageCircle size={16} strokeWidth={1.75} /> : null}
               {copy.primaryCta.label}
@@ -124,7 +125,7 @@ export function HeroSection() {
               href={copy.secondaryCta.href}
               target={copy.secondaryCta.href.startsWith("http") ? "_blank" : undefined}
               rel="noreferrer"
-              className="glass inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-medium text-[var(--drench-text)] transition-transform duration-300 hover:-translate-y-0.5"
+              className="glass inline-flex items-center gap-2 rounded-lg px-5 py-3 text-sm font-medium text-[var(--drench-text)] transition-transform duration-300 hover:-translate-y-0.5"
             >
               <copy.secondaryCta.Icon size={16} strokeWidth={1.75} />
               {copy.secondaryCta.label}
@@ -148,21 +149,24 @@ export function HeroSection() {
           </motion.button>
         </motion.div>
 
-        <HeroGlassCard floating={!reduced} />
+        <motion.div
+          initial={{ opacity: 0, y: 20, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.3, ease: EASE_OUT_EXPO }}
+          className="relative"
+        >
+          {runtimePanel ?? <HeroGlassCard />}
+          <BootSequence />
+        </motion.div>
       </div>
     </section>
   );
 }
 
-function HeroGlassCard({ floating }: { floating: boolean }) {
+function HeroGlassCard() {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20, scale: 0.98 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.7, delay: 0.3, ease: EASE_OUT_EXPO }}
-      className={floating ? "animate-float" : undefined}
-    >
-      <div className="glass-strong relative flex aspect-[5/6] flex-col justify-between overflow-hidden rounded-3xl p-7 lg:p-8">
+    <div>
+      <div className="glass-strong relative flex aspect-[5/6] flex-col justify-between overflow-hidden rounded-lg p-7 lg:p-8">
         <SpecularDrift />
         <div className="relative">
           <span className="font-mono text-[0.65rem] tracking-[0.12em] text-[var(--drench-text-soft)] uppercase">
@@ -196,7 +200,7 @@ function HeroGlassCard({ floating }: { floating: boolean }) {
           ))}
         </motion.ul>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -216,25 +220,31 @@ function SpecularDrift() {
 
 function DrenchAmbient() {
   return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden text-[var(--drench-text)]">
+      {/* Warm radial top-left — keeps the persimmon punch */}
       <div
         className="absolute top-[-20%] left-[-10%] h-[70vh] w-[70vh] rounded-full opacity-60 blur-3xl"
         style={{
-          background:
-            "radial-gradient(circle, var(--drench-bg-deeper) 0%, transparent 65%)",
+          background: "radial-gradient(circle, var(--drench-bg-deeper) 0%, transparent 65%)",
         }}
       />
+      {/* Bright sun-flare middle-right — was the only depth move; kept */}
       <div
-        className="absolute right-[-15%] bottom-[-20%] h-[65vh] w-[65vh] rounded-full opacity-50 blur-3xl"
+        className="absolute right-[-15%] bottom-[-5%] h-[55vh] w-[55vh] rounded-full opacity-45 blur-3xl"
         style={{
-          background:
-            "radial-gradient(circle, oklch(0.78 0.18 50) 0%, transparent 70%)",
+          background: "radial-gradient(circle, oklch(0.78 0.18 50) 0%, transparent 70%)",
         }}
       />
+      {/* Burnt-umber dark radial bottom-right — adds nighttime depth instead of more orange */}
       <div
-        aria-hidden
-        className="bg-dot-pattern absolute inset-0 text-[var(--drench-text)] opacity-[0.07]"
+        className="absolute right-[-20%] bottom-[-25%] h-[80vh] w-[80vh] rounded-full opacity-55 blur-3xl"
+        style={{
+          background: "radial-gradient(circle, oklch(0.18 0.07 30) 0%, transparent 60%)",
+          mixBlendMode: "multiply",
+        }}
       />
+      {/* 16x16 micro-grid replaces the old dot pattern */}
+      <MicroGrid size={16} opacity={0.05} />
     </div>
   );
 }

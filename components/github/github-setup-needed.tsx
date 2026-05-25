@@ -1,6 +1,6 @@
 export function GithubSetupNeeded() {
   return (
-    <div className="glass rounded-3xl p-8 text-sm leading-relaxed text-[var(--ink-soft)]">
+    <div className="glass rounded-lg p-8 text-sm leading-relaxed text-[var(--ink-soft)]">
       <p className="font-mono text-xs tracking-[0.1em] text-[var(--ink-soft)] uppercase opacity-60">
         GitHub Activity — setup pendiente
       </p>

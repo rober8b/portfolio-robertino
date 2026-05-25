@@ -9,13 +9,15 @@ test.describe("Homepage smoke", () => {
 
   test("mode toggle switches copy", async ({ page }) => {
     await page.goto("/");
+    // Hero words are split into per-word spans for stagger animation.
+    // Assert by individual distinctive words.
     const devBtn = page.getByRole("radio", { name: /Dev/i });
     await devBtn.click();
-    await expect(page.getByText(/sistemas agénticos/i).first()).toBeVisible();
+    await expect(page.getByText(/agénticos/i).first()).toBeVisible();
 
     const clientBtn = page.getByRole("radio", { name: /Cliente/i });
     await clientBtn.click();
-    await expect(page.getByText(/te armo tu/i).first()).toBeVisible();
+    await expect(page.getByText("armo").first()).toBeVisible();
   });
 
   test("projects section renders all featured projects", async ({ page }) => {
@@ -34,7 +36,7 @@ test.describe("Homepage smoke", () => {
 
   test("contact + footer render", async ({ page }) => {
     await page.goto("/");
-    await page.locator("footer").scrollIntoViewIfNeeded();
+    await page.locator("footer").last().scrollIntoViewIfNeeded();
     await expect(page.getByText("robertino").last()).toBeVisible();
   });
 
@@ -78,9 +80,11 @@ test.describe("Ask palette", () => {
   test("Esc closes the palette", async ({ page }) => {
     await page.goto("/");
     await page.keyboard.press("ControlOrMeta+K");
-    await expect(page.getByPlaceholder(/Preguntá|comandos/i).first()).toBeVisible();
+    const input = page.getByPlaceholder(/Preguntá|comandos/i).first();
+    await expect(input).toBeVisible();
     await page.keyboard.press("Escape");
-    await expect(page.getByPlaceholder(/Preguntá|comandos/i)).toHaveCount(0);
+    // AnimatePresence runs an exit transition; use not.toBeVisible with a tolerant wait.
+    await expect(input).not.toBeVisible({ timeout: 2000 });
   });
 });
 
@@ -89,5 +93,46 @@ test.describe("404", () => {
     const res = await page.goto("/this-does-not-exist");
     expect(res?.status()).toBe(404);
     await expect(page.getByRole("heading", { name: /404/ })).toBeVisible();
+  });
+});
+
+test.describe("ASCII grammar v1", () => {
+  test("boot sequence appears on first visit and clears", async ({ page }) => {
+    await page.goto("/");
+    const bootText = page.getByText(/booting rober8b/i);
+    await bootText.waitFor({ state: "visible", timeout: 3000 });
+    // overlay unmounts (phase=done) after the fade
+    await bootText.waitFor({ state: "detached", timeout: 4000 });
+  });
+
+  test("boot skipped on repeat visit via sessionStorage", async ({ page }) => {
+    await page.goto("/");
+    const bootText = page.getByText(/booting rober8b/i);
+    await bootText.waitFor({ state: "visible", timeout: 3000 });
+    await bootText.waitFor({ state: "detached", timeout: 4000 });
+    await page.reload();
+    await expect(page.getByText(/booting rober8b/i)).toHaveCount(0);
+  });
+
+  test("section transitions render between zones", async ({ page }) => {
+    await page.goto("/");
+    await expect(page.getByText(/mounting \/who\.manifesto/i)).toBeAttached();
+    await expect(page.getByText(/loading projects\.featured/i)).toBeAttached();
+    await expect(page.getByText(/entering experiments\.runtime/i)).toBeAttached();
+  });
+
+  test("feedback.log renders only placeholders (no fake quotes)", async ({ page }) => {
+    await page.goto("/");
+    await page.locator("#feedback").scrollIntoViewIfNeeded();
+    await expect(page.getByText(/feedback\.log/i).first()).toBeVisible();
+    await expect(page.getByText(/pendiente/i).first()).toBeVisible();
+  });
+
+  test("reduced motion does not break boot sequence", async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto("/");
+    // Under reduced motion, boot collapses to an instant render + short hold.
+    // h1 must remain visible throughout — boot does not block paint.
+    await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
   });
 });

@@ -148,11 +148,11 @@ export function AskPalette() {
             exit={{ opacity: 0, y: -8, scale: 0.98 }}
             transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
             onClick={(e) => e.stopPropagation()}
-            className="glass-strong relative flex w-full max-w-lg flex-col overflow-hidden rounded-2xl sm:rounded-3xl"
+            className="glass-strong relative flex w-full max-w-lg flex-col overflow-hidden rounded-lg sm:rounded-lg"
           >
             <div
               aria-hidden
-              className="pixel-frame pointer-events-none absolute inset-0 z-10 rounded-2xl text-[var(--accent)] opacity-35 sm:rounded-3xl"
+              className="pixel-frame pointer-events-none absolute inset-0 z-10 rounded-lg text-[var(--accent)] opacity-35 sm:rounded-lg"
             />
             <header className="flex items-center gap-2.5 border-b border-[var(--border-glass-dark)] px-6 py-4 sm:gap-3 sm:px-7 sm:py-5">
               <Sparkles
@@ -489,7 +489,7 @@ function NoMatchState({ mode }: { mode: "dev" | "client" }) {
       </p>
       <a
         href={mode === "dev" ? "mailto:robertinobarbuto@gmail.com" : "#contact"}
-        className="mt-4 inline-flex items-center gap-2 rounded-full bg-[var(--accent)] px-4 py-2 text-sm font-medium text-white transition-transform duration-300 hover:-translate-y-0.5"
+        className="mt-4 inline-flex items-center gap-2 rounded-lg bg-[var(--accent)] px-4 py-2 text-sm font-medium text-white transition-transform duration-300 hover:-translate-y-0.5"
       >
         <MessageCircle size={14} strokeWidth={1.75} />
         {mode === "dev" ? "Mandame mail" : "Escribime por WhatsApp"}

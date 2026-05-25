@@ -24,7 +24,7 @@ export function ConsoleGreeting() {
     /* eslint-disable no-console */
     console.log(`%c${SIG}`, orange);
     console.log("%c> robertino barbuto · freelance · buenos aires", orange);
-    console.log("%c> stack:%c next.js · typescript · mastra · mercadopago", dim, "");
+    console.log("%c> stack:%c next.js · typescript · mastra · ai gateway", dim, "");
     console.log(
       "%c> looking for a dev?%c robertinobarbuto@gmail.com",
       dim,

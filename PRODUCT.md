@@ -5,7 +5,7 @@
 **Nombre:** Robertino Barbuto · `rober8b`
 **Posicionamiento:** Desarrollador freelance + agencia (mismo trabajo, vendido como freelance). Ecommerce, apps web y sistemas agénticos para LATAM.
 **Base:** Buenos Aires, Argentina.
-**Stack signature:** Next.js, TypeScript, Prisma, Supabase, Tailwind v4, shadcn/ui, MercadoPago, Mastra, Inngest, Gemini/Groq/Claude.
+**Stack signature:** Next.js, TypeScript, Prisma, Supabase, Tailwind v4, shadcn/ui, AI Gateway, Mastra, Inngest, Gemini/Groq/Claude.
 
 register: brand
 

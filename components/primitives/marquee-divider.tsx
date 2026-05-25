@@ -13,7 +13,7 @@ const DEFAULTS = [
   "NEXT.JS",
   "TYPESCRIPT",
   "MASTRA",
-  "MERCADOPAGO",
+  "AI GATEWAY",
   "2026",
 ];
 
@@ -45,7 +45,7 @@ export function MarqueeDivider({ items = DEFAULTS, speed = 32 }: Props) {
         {track.map((item, i) => (
           <span key={`${item}-${i}`} className="flex items-center gap-12">
             <span>{item}</span>
-            <span className="opacity-40">·</span>
+            <span className="opacity-50">›</span>
           </span>
         ))}
       </div>

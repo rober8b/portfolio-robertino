@@ -33,7 +33,7 @@ export function FeaturedProjectCard({
       )}
     >
       {/* IMAGE / MOCKUP COLUMN */}
-      <div className={cn("relative group/mockup overflow-hidden rounded-3xl", inverted ? "lg:order-2" : "lg:order-1")}>
+      <div className={cn("relative group/mockup overflow-hidden rounded-lg", inverted ? "lg:order-2" : "lg:order-1")}>
         <ProjectMockup project={project} />
       </div>
 
@@ -149,7 +149,7 @@ function FeaturedCardActions({ project, mode }: { project: Project; mode: "dev" 
           target="_blank"
           rel="noreferrer"
           data-cursor="reticle"
-          className="group inline-flex items-center gap-2 rounded-full bg-[var(--ink)] px-5 py-2.5 text-sm font-semibold text-[var(--surface)] shadow-[0_10px_30px_-12px_oklch(0.22_0.025_30/0.5)] transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_16px_36px_-12px_oklch(0.22_0.025_30/0.7)]"
+          className="group inline-flex items-center gap-2 rounded-lg bg-[var(--ink)] px-5 py-2.5 text-sm font-semibold text-[var(--surface)] shadow-[0_10px_30px_-12px_oklch(0.22_0.025_30/0.5)] transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_16px_36px_-12px_oklch(0.22_0.025_30/0.7)]"
         >
           {mode === "dev" ? "Live demo" : "Ver en vivo"}
           <ExternalLink
@@ -163,7 +163,7 @@ function FeaturedCardActions({ project, mode }: { project: Project; mode: "dev" 
         <a
           href={links.manifesto}
           data-cursor="reticle"
-          className="group inline-flex items-center gap-2 rounded-full bg-[var(--accent)] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_10px_30px_-12px_var(--accent-glow)] transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_16px_36px_-10px_var(--accent)]"
+          className="group inline-flex items-center gap-2 rounded-lg bg-[var(--accent)] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_10px_30px_-12px_var(--accent-glow)] transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_16px_36px_-10px_var(--accent)]"
         >
           {mode === "dev" ? "Leer manifesto" : "Conocer la idea"}
           <ArrowUpRight
@@ -179,7 +179,7 @@ function FeaturedCardActions({ project, mode }: { project: Project; mode: "dev" 
           target="_blank"
           rel="noreferrer"
           data-cursor="reticle"
-          className="glass inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-[var(--ink)] transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.02]"
+          className="glass inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold text-[var(--ink)] transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.02]"
         >
           <GithubIcon className="h-4 w-4" />
           Repo

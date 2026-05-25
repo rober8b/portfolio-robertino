@@ -32,7 +32,7 @@ export function CurrentlyBuildingCard({ data }: { data: CurrentlyBuilding }) {
       href={data.url}
       target="_blank"
       rel="noreferrer"
-      className="glass group relative flex flex-col gap-4 rounded-3xl p-6 transition-transform duration-500 hover:-translate-y-1"
+      className="glass group relative flex flex-col gap-4 rounded-lg p-6 transition-transform duration-500 hover:-translate-y-1"
     >
       <div className="flex items-center justify-between">
         <span className="inline-flex items-center gap-1.5 font-mono text-[0.65rem] tracking-[0.1em] text-[var(--ink-soft)] uppercase">

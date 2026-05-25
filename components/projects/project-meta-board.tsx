@@ -14,7 +14,7 @@ export function ProjectMetaBoard({ project, mode }: { project: Project; mode: Mo
   }
 
   return (
-    <div className="glass relative flex h-full flex-col justify-between overflow-hidden rounded-3xl p-6 lg:p-8">
+    <div className="glass relative flex h-full flex-col justify-between overflow-hidden rounded-lg p-6 lg:p-8">
       <SpecularBackdrop />
       <dl className="relative grid gap-3 font-mono text-[0.65rem] tracking-[0.06em] uppercase">
         {rows.map(([label, value]) => (
