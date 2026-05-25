@@ -168,6 +168,35 @@
   background: linear-gradient(180deg, var(--surface) 0%, oklch(0.95 0.02 45) 100%);
 }
 
+/* CASE CARD — asymmetric hover/exit transitions per spec (enter 200ms,
+   exit 350ms). Border color + halftone filter shift on hover. */
+.case-card {
+  transition-property: border-color, transform;
+  transition-duration: 350ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+.case-card:hover {
+  transition-duration: 200ms;
+}
+.case-card-halftone {
+  transition-property: filter;
+  transition-duration: 350ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+.case-card:hover .case-card-halftone {
+  transition-duration: 200ms;
+  filter: saturate(1.15) brightness(1.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-card-halftone {
+    transition: none !important;
+  }
+  .case-card:hover .case-card-halftone {
+    filter: none !important;
+  }
+}
+
 /* NIGHT ZONE — black background, cream foreground. Used by the hero so the
    ASCII centerpiece sits on solid dark regardless of theme. Mirrors the
    dark-mode tokens but locks them on the section. */

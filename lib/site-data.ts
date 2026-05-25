@@ -48,6 +48,9 @@ export type Project = {
   buildNotes?: string[];
   metrics?: ProjectMetric[];
   featured?: boolean;
+  /** Path to ASCII halftone PNG inside /public/ascii/cases/ — orange on black, ratio 4:5.
+   *  When unset, CaseCard renders a placeholder showing the expected filename. */
+  asciiHalftone?: string;
 };
 
 export const PROFILE = {
