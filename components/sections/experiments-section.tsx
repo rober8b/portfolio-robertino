@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { useMode } from "@/components/mode/mode-provider";
 import { HermesAgent } from "@/components/experiments/hermes-agent";
-import { RefractSandbox } from "@/components/experiments/refract-sandbox";
+import { SecondBrainGraph } from "@/components/experiments/second-brain-graph";
 import { TerminalToy } from "@/components/experiments/terminal-toy";
 import { Scanlines } from "@/components/ambient/scanlines";
 import { AsciiHeading } from "@/components/primitives/ascii-heading";
@@ -73,7 +73,7 @@ export function ExperimentsSection() {
               <div className="relative">
                 {exp.slug === "terminal-toy" ? <TerminalToy height={240} /> : null}
                 {exp.slug === "hermes-agent" ? <HermesAgent height={240} /> : null}
-                {exp.slug === "refract-sandbox" ? <RefractSandbox height={240} /> : null}
+                {exp.slug === "second-brain-graph" ? <SecondBrainGraph height={240} /> : null}
                 <Scanlines opacity={0.05} blend="overlay" />
               </div>
 

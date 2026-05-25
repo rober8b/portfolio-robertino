@@ -22,10 +22,10 @@ export const EXPERIMENTS: ExperimentMeta[] = [
     blurb: "simulación de mi agente personal de organización. click avanza al próximo comando.",
   },
   {
-    slug: "refract-sandbox",
-    title: "liquid.refract",
+    slug: "second-brain-graph",
+    title: "second.brain",
     version: "v0.1",
     date: "2026-05",
-    blurb: "el mismo filtro SVG del sistema de glass, con slider para tunear la deformación.",
+    blurb: "graph view tipo Obsidian sobre proyectos y conceptos. drag para mover, hover para resaltar.",
   },
 ];
