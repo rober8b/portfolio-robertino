@@ -21,7 +21,7 @@ export default async function Home() {
   return (
     <main className="relative min-h-dvh overflow-x-hidden">
       <FloatingNav />
-      <HeroSection runtimePanel={<LiveRuntimePanel activity={activity} />} />
+      <HeroSection />
       <TrustBar />
       <CreamAurora />
       <SectionTransition command="mounting /who.manifesto" />
@@ -30,6 +30,13 @@ export default async function Home() {
       <ProjectsSection />
       <BuildProcessSection />
       <MarqueeDivider />
+      <section className="relative px-4 pt-16 pb-0 sm:px-6 md:pt-20 lg:px-8">
+        <div className="mx-auto max-w-6xl">
+          <div className="lg:max-w-md">
+            <LiveRuntimePanel activity={activity} />
+          </div>
+        </div>
+      </section>
       <GithubSection />
       <SectionTransition command="entering experiments.runtime" />
       <ExperimentsSection />

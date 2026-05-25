@@ -1,15 +1,15 @@
 "use client";
 
-import type { ComponentType, ReactNode, SVGProps } from "react";
+import type { ComponentType, SVGProps } from "react";
 import { motion, type Variants } from "motion/react";
 import { ArrowUpRight, MessageCircle, Sparkles } from "lucide-react";
 import { GithubIcon } from "@/components/icons/brand-icons";
 import { useMode } from "@/components/mode/mode-provider";
 import { useAskPalette } from "@/components/ask/ask-palette-provider";
-import { MicroGrid } from "@/components/ambient/micro-grid";
 import { BootSequence } from "@/components/ambient/boot-sequence";
 import { RuntimeBadge } from "@/components/primitives/runtime-badge";
 import { ScrambleText } from "@/components/primitives/scramble-text";
+import { AsciiTorus } from "@/components/hero/ascii-torus";
 import { PROFILE } from "@/lib/site-data";
 
 type IconComponent = ComponentType<SVGProps<SVGSVGElement> & { size?: number; strokeWidth?: number }>;
@@ -50,21 +50,14 @@ const wordVariants: Variants = {
   }),
 };
 
-type HeroSectionProps = {
-  runtimePanel?: ReactNode;
-};
-
-export function HeroSection({ runtimePanel }: HeroSectionProps = {}) {
+export function HeroSection() {
   const { mode } = useMode();
   const { setOpen } = useAskPalette();
   const copy = COPY[mode];
 
   return (
-    <section className="zone-drench relative flex items-center overflow-hidden px-4 pt-20 pb-10 sm:px-6 sm:pt-24 sm:pb-14 lg:px-8 lg:pt-24 lg:pb-16">
-      <DrenchAmbient />
-      <BottomGradient />
-
-      <div className="relative z-10 mx-auto grid w-full max-w-6xl gap-8 sm:gap-10 lg:grid-cols-[1.2fr_1fr] lg:gap-14">
+    <section className="zone-night relative flex items-center overflow-hidden px-4 pt-20 pb-12 sm:px-6 sm:pt-24 sm:pb-16 lg:px-8 lg:pt-24 lg:pb-20">
+      <div className="relative z-10 mx-auto grid w-full max-w-6xl gap-10 sm:gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-14">
         <motion.div
           key={`hero-text-${mode}`}
           initial="hidden"
@@ -111,7 +104,7 @@ export function HeroSection({ runtimePanel }: HeroSectionProps = {}) {
           >
             <a
               href={copy.primaryCta.href}
-              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-lg bg-[var(--drench-text)] px-5 py-3 text-sm font-medium text-[var(--drench-bg)] transition-transform duration-300 hover:-translate-y-0.5"
+              className="group inline-flex items-center gap-2 rounded-lg border border-[#ff4000] px-5 py-3 text-sm font-medium text-[#ff4000] transition-colors duration-300 hover:bg-[#ff4000] hover:text-[#0a0a0a]"
             >
               {mode === "client" ? <MessageCircle size={16} strokeWidth={1.75} /> : null}
               {copy.primaryCta.label}
@@ -125,7 +118,7 @@ export function HeroSection({ runtimePanel }: HeroSectionProps = {}) {
               href={copy.secondaryCta.href}
               target={copy.secondaryCta.href.startsWith("http") ? "_blank" : undefined}
               rel="noreferrer"
-              className="glass inline-flex items-center gap-2 rounded-lg px-5 py-3 text-sm font-medium text-[var(--drench-text)] transition-transform duration-300 hover:-translate-y-0.5"
+              className="group inline-flex items-center gap-2 rounded-lg border border-[#ff4000] px-5 py-3 text-sm font-medium text-[#ff4000] transition-colors duration-300 hover:bg-[#ff4000] hover:text-[#0a0a0a]"
             >
               <copy.secondaryCta.Icon size={16} strokeWidth={1.75} />
               {copy.secondaryCta.label}
@@ -150,114 +143,15 @@ export function HeroSection({ runtimePanel }: HeroSectionProps = {}) {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20, scale: 0.98 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.7, delay: 0.3, ease: EASE_OUT_EXPO }}
-          className="relative"
+          initial={{ opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.9, delay: 0.35, ease: EASE_OUT_EXPO }}
+          className="relative flex items-center justify-center"
         >
-          {runtimePanel ?? <HeroGlassCard />}
+          <AsciiTorus className="block w-full" />
           <BootSequence />
         </motion.div>
       </div>
     </section>
-  );
-}
-
-function HeroGlassCard() {
-  return (
-    <div>
-      <div className="glass-strong relative flex aspect-[5/6] flex-col justify-between overflow-hidden rounded-lg p-7 lg:p-8">
-        <SpecularDrift />
-        <div className="relative">
-          <span className="font-mono text-[0.65rem] tracking-[0.12em] text-[var(--drench-text-soft)] uppercase">
-            {PROFILE.handle}
-          </span>
-          <h2 className="mt-3 font-display text-3xl font-semibold text-[var(--drench-text)]">
-            {PROFILE.name}
-          </h2>
-          <p className="mt-2 text-sm text-[var(--drench-text-soft)]">{PROFILE.location}</p>
-        </div>
-
-        <motion.ul
-          initial="hidden"
-          animate="visible"
-          variants={{
-            visible: { transition: { staggerChildren: 0.05, delayChildren: 0.6 } },
-          }}
-          className="relative grid grid-cols-2 gap-2 font-mono text-[0.65rem] tracking-tight"
-        >
-          {PROFILE.stack.slice(0, 10).map((tech) => (
-            <motion.li
-              key={tech}
-              variants={{
-                hidden: { opacity: 0, x: -8 },
-                visible: { opacity: 1, x: 0, transition: { duration: 0.4 } },
-              }}
-              className="rounded-md border border-[var(--drench-border)] bg-[var(--drench-glass-bg)] px-2 py-1 text-[var(--drench-text-soft)] backdrop-blur"
-            >
-              {tech.toLowerCase()}
-            </motion.li>
-          ))}
-        </motion.ul>
-      </div>
-    </div>
-  );
-}
-
-function SpecularDrift() {
-  return (
-    <div
-      aria-hidden
-      className="pointer-events-none absolute inset-0 opacity-70"
-      style={{
-        background:
-          "radial-gradient(ellipse 60% 40% at 30% 10%, var(--specular), transparent 60%)",
-        animation: "specular-drift 8s cubic-bezier(0.25,1,0.5,1) infinite alternate",
-      }}
-    />
-  );
-}
-
-function DrenchAmbient() {
-  return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden text-[var(--drench-text)]">
-      {/* Warm radial top-left — keeps the persimmon punch */}
-      <div
-        className="absolute top-[-20%] left-[-10%] h-[70vh] w-[70vh] rounded-full opacity-60 blur-3xl"
-        style={{
-          background: "radial-gradient(circle, var(--drench-bg-deeper) 0%, transparent 65%)",
-        }}
-      />
-      {/* Bright sun-flare middle-right — was the only depth move; kept */}
-      <div
-        className="absolute right-[-15%] bottom-[-5%] h-[55vh] w-[55vh] rounded-full opacity-45 blur-3xl"
-        style={{
-          background: "radial-gradient(circle, oklch(0.78 0.18 50) 0%, transparent 70%)",
-        }}
-      />
-      {/* Burnt-umber dark radial bottom-right — adds nighttime depth instead of more orange */}
-      <div
-        className="absolute right-[-20%] bottom-[-25%] h-[80vh] w-[80vh] rounded-full opacity-55 blur-3xl"
-        style={{
-          background: "radial-gradient(circle, oklch(0.18 0.07 30) 0%, transparent 60%)",
-          mixBlendMode: "multiply",
-        }}
-      />
-      {/* 16x16 micro-grid replaces the old dot pattern */}
-      <MicroGrid size={16} opacity={0.05} />
-    </div>
-  );
-}
-
-function BottomGradient() {
-  return (
-    <div
-      aria-hidden
-      className="pointer-events-none absolute right-0 bottom-0 left-0 h-48 z-[5]"
-      style={{
-        background:
-          "linear-gradient(to bottom, transparent 0%, oklch(0.55 0.22 32) 55%, var(--surface) 100%)",
-      }}
-    />
   );
 }
