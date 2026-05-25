@@ -48,8 +48,11 @@ export type Project = {
   buildNotes?: string[];
   metrics?: ProjectMetric[];
   featured?: boolean;
-  /** Path to ASCII halftone PNG inside /public/ascii/cases/ — orange on black, ratio 4:5.
-   *  When unset, CaseCard renders a placeholder showing the expected filename. */
+  /** Canonical expected path of the ASCII halftone PNG. Always set so the
+   *  CaseCard placeholder can show the exact filename that will be dropped. */
+  expectedHalftone: string;
+  /** Set when the PNG actually lives at the path. Triggers the real image
+   *  render. Usually equal to expectedHalftone once the file is ready. */
   asciiHalftone?: string;
 };
 
@@ -139,6 +142,7 @@ export const PROJECTS: Project[] = [
       { role: "hero", src: "/cases/marketplace/hero.png", alt: "Marketplace agéntico — vista principal del dashboard" },
     ],
     featured: true,
+    expectedHalftone: "/ascii/cases/case-marketplace.png",
   },
   {
     slug: "xplora",
@@ -171,6 +175,7 @@ export const PROJECTS: Project[] = [
       { role: "mobile", src: "/cases/xplora/mobile.jpg", alt: "Xplora — vista móvil" },
     ],
     featured: true,
+    expectedHalftone: "/ascii/cases/case-xplora.png",
   },
   {
     slug: "aredes-asociados",
@@ -204,6 +209,7 @@ export const PROJECTS: Project[] = [
       { role: "mobile", src: "/cases/aredes-asociados/mobile.jpg", alt: "Aredes Asociados — vista móvil" },
     ],
     featured: true,
+    expectedHalftone: "/ascii/cases/case-aredes.png",
   },
   {
     slug: "leiza-page",
@@ -235,6 +241,7 @@ export const PROJECTS: Project[] = [
     media: [
       { role: "hero", src: "/cases/leiza-page/hero.jpg", alt: "Madre Naturaleza — home brand" },
     ],
+    expectedHalftone: "/ascii/cases/case-leiza.png",
   },
   {
     slug: "nebula",
@@ -265,6 +272,7 @@ export const PROJECTS: Project[] = [
     media: [
       { role: "hero", src: "/cases/nebula/hero.jpg", alt: "Nebula — hub editorial" },
     ],
+    expectedHalftone: "/ascii/cases/case-nebula.png",
   },
   {
     slug: "equitas-abogados",
@@ -295,6 +303,7 @@ export const PROJECTS: Project[] = [
     media: [
       { role: "hero", src: "/cases/equitas-abogados/hero.jpg", alt: "Equitas Abogados — home institucional" },
     ],
+    expectedHalftone: "/ascii/cases/case-equitas.png",
   },
   {
     slug: "nomos",
@@ -325,6 +334,7 @@ export const PROJECTS: Project[] = [
     media: [
       { role: "hero", src: "/cases/nomos/hero.jpg", alt: "Nomos — demo del marketplace agéntico" },
     ],
+    expectedHalftone: "/ascii/cases/case-nomos.png",
   },
   {
     slug: "dental-app",
@@ -357,6 +367,7 @@ export const PROJECTS: Project[] = [
       { role: "hero", src: "/cases/dental-app/hero.jpg", alt: "Consultorio P&P — wizard de reserva" },
       { role: "mobile", src: "/cases/dental-app/mobile.jpg", alt: "Consultorio P&P — vista móvil" },
     ],
+    expectedHalftone: "/ascii/cases/case-consultorio.png",
   },
   {
     slug: "pizza-block",
@@ -388,6 +399,7 @@ export const PROJECTS: Project[] = [
       { role: "hero", src: "/cases/pizza-block/hero.jpg", alt: "Pizza Block — armado de pedido" },
       { role: "mobile", src: "/cases/pizza-block/mobile.jpg", alt: "Pizza Block — vista móvil" },
     ],
+    expectedHalftone: "/ascii/cases/case-pizzablock.png",
   },
 ];
 

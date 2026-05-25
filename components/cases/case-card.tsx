@@ -15,24 +15,10 @@ type CaseCardProps = {
   priority?: boolean;
 };
 
-const EXPECTED_FILENAMES: Record<string, string> = {
-  marketplace: "case-marketplace.png",
-  xplora: "case-xplora.png",
-  "aredes-asociados": "case-aredes.png",
-  "leiza-page": "case-leiza.png",
-  nebula: "case-nebula.png",
-  "equitas-abogados": "case-equitas.png",
-  nomos: "case-nomos.png",
-  "dental-app": "case-consultorio.png",
-  "pizza-block": "case-pizzablock.png",
-};
-
 export function CaseCard({ project, priority = false }: CaseCardProps) {
   const { mode } = useMode();
   const detailHref = project.links.manifesto ?? `/work/${project.slug}`;
   const halftone = project.asciiHalftone;
-  const expectedFilename =
-    EXPECTED_FILENAMES[project.slug] ?? `case-${project.slug}.png`;
 
   return (
     <motion.article
@@ -53,7 +39,7 @@ export function CaseCard({ project, priority = false }: CaseCardProps) {
             priority={priority}
           />
         ) : (
-          <HalftonePlaceholder filename={expectedFilename} />
+          <HalftonePlaceholder path={project.expectedHalftone} />
         )}
         <Scanlines opacity={0.04} blend="overlay" />
       </div>
@@ -109,7 +95,7 @@ export function CaseCard({ project, priority = false }: CaseCardProps) {
   );
 }
 
-function HalftonePlaceholder({ filename }: { filename: string }) {
+function HalftonePlaceholder({ path }: { path: string }) {
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-[#0a0a0a]">
       <span
@@ -119,7 +105,7 @@ function HalftonePlaceholder({ filename }: { filename: string }) {
         ?
       </span>
       <span className="font-mono text-[0.65rem] tracking-[0.1em] text-[oklch(0.72_0.012_40)] opacity-70">
-        /ascii/cases/{filename}
+        {path}
       </span>
     </div>
   );
