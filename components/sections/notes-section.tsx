@@ -51,7 +51,8 @@ export function NotesSection() {
           description={copy.description}
         />
 
-        <ol className="mt-16 divide-y divide-[var(--border-glass)] border-y border-[var(--border-glass)]">
+        {/* MOBILE list — divider rows, easy to tap */}
+        <ol className="mt-16 divide-y divide-[var(--border-glass)] border-y border-[var(--border-glass)] lg:hidden">
           {NOTES.map((note, i) => (
             <motion.li
               key={note.slug}
@@ -98,6 +99,72 @@ export function NotesSection() {
             </motion.li>
           ))}
         </ol>
+
+        {/* DESKTOP file tree */}
+        <div className="mt-16 hidden lg:block">
+          <p className="mb-6 font-mono text-[0.8rem] tracking-tight text-[var(--ink-soft)]">
+            <span className="text-[var(--accent)] opacity-90">~/notes/</span>
+          </p>
+
+          <ol className="font-mono text-[0.78rem]">
+            {NOTES.map((note, i) => {
+              const isLast = i === NOTES.length - 1;
+              const branch = isLast ? "└──" : "├──";
+              const trunk = isLast ? "   " : "│  ";
+              return (
+                <motion.li
+                  key={note.slug}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.55, delay: 0.06 * i, ease: easeOutExpo }}
+                >
+                  <Link
+                    href={`/notes/${note.slug}`}
+                    className="group block py-3 transition-colors hover:bg-[var(--surface-elevated)]"
+                  >
+                    <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-baseline gap-x-3">
+                      <span className="select-none text-[var(--ink-soft)] opacity-60">{branch}</span>
+                      <div className="min-w-0">
+                        <p className="flex items-baseline gap-3">
+                          <span className="text-[var(--accent)] opacity-90">{note.slug}.md</span>
+                          <span className="text-[var(--ink-soft)] opacity-60">
+                            [{formatDate(note.date)} · {note.readTime}]
+                          </span>
+                        </p>
+                        <h3 className="mt-2 font-display text-2xl font-semibold leading-snug text-[var(--ink)]">
+                          {note.title}
+                        </h3>
+                        <p className="mt-1 max-w-[65ch] font-sans text-base text-[var(--ink-soft)]">
+                          {note.dek}
+                        </p>
+                        <div className="mt-3 flex flex-wrap gap-1.5">
+                          {note.tags.map((t) => (
+                            <span
+                              key={t}
+                              className="rounded-sm border border-[var(--border-glass)] px-1.5 py-0.5 text-[0.65rem] tracking-tight text-[var(--ink-soft)]"
+                            >
+                              #{t}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      <span className="inline-flex items-center gap-1 text-[0.7rem] text-[var(--ink-soft)] group-hover:text-[var(--accent)]">
+                        leer
+                        <ArrowUpRight size={12} strokeWidth={1.75} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      </span>
+                    </div>
+                    {!isLast ? (
+                      <p className="mt-2 select-none text-[var(--ink-soft)] opacity-40">
+                        {trunk}
+                      </p>
+                    ) : null}
+                  </Link>
+                </motion.li>
+              );
+            })}
+          </ol>
+        </div>
       </div>
     </section>
   );

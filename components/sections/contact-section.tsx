@@ -8,6 +8,7 @@ import { GithubIcon } from "@/components/icons/brand-icons";
 import { StartSessionPrompt } from "@/components/contact/start-session-prompt";
 import { AsciiHeading } from "@/components/primitives/ascii-heading";
 import { AsciiFrame } from "@/components/primitives/ascii-frame";
+import { ScrambleText } from "@/components/primitives/scramble-text";
 import { CONTACTS, PROFILE } from "@/lib/site-data";
 import { easeOutExpo } from "@/lib/motion/variants";
 import { cn } from "@/lib/utils";
@@ -133,14 +134,28 @@ function ChannelsList({ mode }: { mode: "dev" | "client" }) {
       transition={{ duration: 0.7, delay: 0.05, ease: easeOutExpo }}
       className="h-fit"
     >
-      <AsciiFrame label="direct.channels" tone="accent" innerClassName="p-0">
+      <AsciiFrame
+        style="double"
+        corners="double"
+        label="direct.channels"
+        tone="accent"
+        innerClassName="p-0"
+      >
+        {/* Business card header — handle + role */}
+        <div className="border-b border-[var(--border-glass-dark)] px-6 py-4 sm:px-7">
+          <p className="font-mono text-[0.6rem] tracking-[0.18em] text-[var(--accent)] uppercase opacity-90">
+            ./{PROFILE.handle}
+          </p>
+          <p className="mt-1 font-mono text-[0.7rem] text-[var(--ink-soft)]">
+            {mode === "dev" ? "freelance · ai builder · web developer" : "freelance · desarrollador independiente"}
+          </p>
+          <p className="mt-2 flex items-center gap-2 font-mono text-[0.6rem] tracking-[0.1em] text-[var(--ink-soft)] uppercase opacity-60">
+            <MapPin size={11} strokeWidth={1.75} />
+            {PROFILE.location}
+          </p>
+        </div>
+
         <ul className="divide-y divide-[var(--border-glass-dark)]">
-          <li className="px-6 py-4 sm:px-7">
-        <p className="flex items-center gap-2 font-mono text-[0.65rem] tracking-[0.12em] text-[var(--ink-soft)] uppercase opacity-60">
-          <MapPin size={11} strokeWidth={1.75} />
-          {PROFILE.location}
-        </p>
-      </li>
           {channels.map(({ Icon, label, value, href }) => (
             <li key={label}>
               {href ? (
@@ -155,7 +170,9 @@ function ChannelsList({ mode }: { mode: "dev" | "client" }) {
                     <span className="truncate font-medium">{label}</span>
                   </span>
                   <span className="flex shrink-0 items-center gap-2 font-mono text-[0.7rem] text-[var(--ink-soft)]">
-                    <span className="truncate">{value}</span>
+                    <span className="truncate">
+                      <ScrambleText text={value} trigger="hover" />
+                    </span>
                     <ArrowUpRight
                       size={12}
                       strokeWidth={1.75}
