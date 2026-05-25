@@ -10,14 +10,11 @@ const PHI_STEP = 0.04;
 const ROT_X_STEP = 0.012;
 const ROT_Y_STEP = 0.008;
 
-const WARMUP_FRAMES = 30;
-const SAMPLE_WINDOW = 60;
-const FRAME_BUDGET_MS = 14;
-
 const GLITCH_MIN_MS = 8000;
 const GLITCH_MAX_MS = 15000;
 const GLITCH_DURATION_MIN = 200;
 const GLITCH_DURATION_MAX = 400;
+const HOVER_GLITCH_CHANCE = 0.35;
 
 const MOUSE_RADIUS = 150;
 
@@ -63,9 +60,7 @@ export function AsciiTorus({ className }: { className?: string }) {
     glitchUntil: 0,
     nextGlitchAt: 0,
     mouse: { x: -9999, y: -9999 } as Mouse,
-    frameCount: 0,
-    frameTimes: [] as number[],
-    fallback: false,
+    hovered: false,
   });
 
   const [dims] = useState<Dims>(computeInitialDims);
@@ -126,7 +121,7 @@ export function AsciiTorus({ className }: { className?: string }) {
   }, [cols, rows, cellCount]);
 
   useEffect(() => {
-    if (reducedMotion || lowEnd || paused || stateRef.current.fallback) {
+    if (reducedMotion || lowEnd || paused) {
       if (animRef.current !== null) {
         cancelAnimationFrame(animRef.current);
         animRef.current = null;
@@ -140,31 +135,14 @@ export function AsciiTorus({ className }: { className?: string }) {
 
     const st = stateRef.current;
     st.nextGlitchAt = performance.now() + randRange(GLITCH_MIN_MS, GLITCH_MAX_MS);
-    let last = performance.now();
     const zBuffer = new Float32Array(cellCount);
     const charBuffer = new Int8Array(cellCount);
 
     const tick = (now: number) => {
-      const delta = now - last;
-      last = now;
-
-      st.frameCount++;
-      if (st.frameCount > WARMUP_FRAMES) {
-        st.frameTimes.push(delta);
-        if (st.frameTimes.length > SAMPLE_WINDOW) st.frameTimes.shift();
-        if (st.frameTimes.length === SAMPLE_WINDOW) {
-          let sum = 0;
-          for (let i = 0; i < SAMPLE_WINDOW; i++) sum += st.frameTimes[i];
-          if (sum / SAMPLE_WINDOW > FRAME_BUDGET_MS) {
-            st.fallback = true;
-            animRef.current = null;
-            return;
-          }
-        }
-      }
-
       let glitch = false;
-      if (now < st.glitchUntil) {
+      if (st.hovered) {
+        glitch = Math.random() < HOVER_GLITCH_CHANCE;
+      } else if (now < st.glitchUntil) {
         glitch = true;
       } else if (now > st.nextGlitchAt) {
         st.glitchUntil = now + randRange(GLITCH_DURATION_MIN, GLITCH_DURATION_MAX);
@@ -197,14 +175,20 @@ export function AsciiTorus({ className }: { className?: string }) {
       st.mouse.x = e.clientX - rect.left;
       st.mouse.y = e.clientY - rect.top;
     };
+    const onEnter = () => {
+      st.hovered = true;
+    };
     const onLeave = () => {
       st.mouse.x = -9999;
       st.mouse.y = -9999;
+      st.hovered = false;
     };
     node.addEventListener("pointermove", onMove);
+    node.addEventListener("pointerenter", onEnter);
     node.addEventListener("pointerleave", onLeave);
     return () => {
       node.removeEventListener("pointermove", onMove);
+      node.removeEventListener("pointerenter", onEnter);
       node.removeEventListener("pointerleave", onLeave);
     };
   }, []);
