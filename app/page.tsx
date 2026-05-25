@@ -1,6 +1,5 @@
 import { FloatingNav } from "@/components/navigation/floating-nav";
 import { HeroSection } from "@/components/sections/hero-section";
-import { LiveRuntimePanel } from "@/components/hero/live-runtime-panel";
 import { TrustBar } from "@/components/sections/trust-bar";
 import { WhoSection } from "@/components/sections/who-section";
 import { ProjectsSection } from "@/components/sections/projects-section";
@@ -30,14 +29,7 @@ export default async function Home() {
       <ProjectsSection />
       <BuildProcessSection />
       <MarqueeDivider />
-      <section className="relative px-4 pt-16 pb-0 sm:px-6 md:pt-20 lg:px-8">
-        <div className="mx-auto max-w-6xl">
-          <div className="lg:max-w-md">
-            <LiveRuntimePanel activity={activity} />
-          </div>
-        </div>
-      </section>
-      <GithubSection />
+      <GithubSection activity={activity} />
       <SectionTransition command="entering experiments.runtime" />
       <ExperimentsSection />
       <NotesSection />
