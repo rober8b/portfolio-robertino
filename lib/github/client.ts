@@ -2,6 +2,7 @@ import "server-only";
 
 import type {
   CommitEntry,
+  ContributionBreakdown,
   ContributionCalendar,
   ContributionDay,
   CurrentlyBuilding,
@@ -28,6 +29,10 @@ const QUERY = /* GraphQL */ `
             }
           }
         }
+        totalCommitContributions
+        totalPullRequestContributions
+        totalIssueContributions
+        restrictedContributionsCount
       }
       repositories(
         first: 20
@@ -87,6 +92,10 @@ type GraphQLResponse = {
             }>;
           }>;
         };
+        totalCommitContributions: number;
+        totalPullRequestContributions: number;
+        totalIssueContributions: number;
+        restrictedContributionsCount: number;
       };
       repositories: {
         nodes: Array<{
@@ -141,11 +150,18 @@ export async function fetchGithubActivity(): Promise<GithubActivity | null> {
     }
     if (!payload.data) return null;
 
-    const calendar = transformCalendar(payload.data.user.contributionsCollection.contributionCalendar);
+    const collection = payload.data.user.contributionsCollection;
+    const calendar = transformCalendar(collection.contributionCalendar);
     const streak = computeStreak(calendar);
     const currentlyBuilding = transformCurrentlyBuilding(payload.data.user.repositories.nodes);
     const recentCommits = transformRecentCommits(payload.data.user.repositories.nodes);
     const topLanguage = pickTopLanguage(payload.data.user.repositories.nodes);
+    const breakdown: ContributionBreakdown = {
+      commits: collection.totalCommitContributions,
+      pullRequests: collection.totalPullRequestContributions,
+      issues: collection.totalIssueContributions,
+      restricted: collection.restrictedContributionsCount,
+    };
 
     return {
       login: GH_LOGIN,
@@ -155,6 +171,7 @@ export async function fetchGithubActivity(): Promise<GithubActivity | null> {
       currentlyBuilding,
       recentCommits,
       topLanguage,
+      breakdown,
       stale: false,
     };
   } catch (err) {
