@@ -1,12 +1,14 @@
 "use client";
 
-import { motion } from "motion/react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import { useMode } from "@/components/mode/mode-provider";
-import { ComposedFeaturedCase } from "@/components/cases/composed-featured-case";
-import { CaseCardGrid } from "@/components/cases/case-card-grid";
+import { CaseCard } from "@/components/cases/case-card";
 import { AsciiHeading } from "@/components/primitives/ascii-heading";
 import { PROJECTS } from "@/lib/site-data";
-import { cn } from "@/lib/utils";
+import { easeOutExpo } from "@/lib/motion/variants";
+
+const VISIBLE_COUNT = 6;
 
 const HEADER_COPY = {
   dev: {
@@ -36,14 +38,14 @@ const HEADER_COPY = {
 export function ProjectsSection() {
   const { mode } = useMode();
   const copy = HEADER_COPY[mode];
-  const featured = PROJECTS.filter((p) => p.featured);
-  const others = PROJECTS.filter((p) => !p.featured);
+  const [expanded, setExpanded] = useState(false);
+
+  const visible = PROJECTS.slice(0, VISIBLE_COUNT);
+  const rest = PROJECTS.slice(VISIBLE_COUNT);
+  const hasMore = rest.length > 0;
 
   return (
-    <section
-      id="projects"
-      className="relative px-4 py-4 sm:px-6 md:py-2 lg:px-8"
-    >
+    <section id="projects" className="relative px-4 py-4 sm:px-6 md:py-2 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <AsciiHeading
           eyebrow={copy.eyebrow}
@@ -51,58 +53,39 @@ export function ProjectsSection() {
           description={copy.description}
         />
 
-        <div className="mt-20 space-y-24 md:space-y-32">
-          {featured.map((project, index) => (
-            <ComposedFeaturedCase
-              key={project.slug}
-              project={project}
-              index={index}
-              flipped={index % 2 === 1}
-            />
+        <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+          {visible.map((project, i) => (
+            <CaseCard key={project.slug} project={project} priority={i === 0} />
           ))}
+          <AnimatePresence initial={false}>
+            {expanded
+              ? rest.map((project, i) => (
+                  <motion.div
+                    key={project.slug}
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 8 }}
+                    transition={{ duration: 0.5, delay: 0.05 * i, ease: easeOutExpo }}
+                  >
+                    <CaseCard project={project} />
+                  </motion.div>
+                ))
+              : null}
+          </AnimatePresence>
         </div>
 
-        {others.length > 0 && (
-          <div className="mt-24 pt-4">
-            <div
-              aria-hidden
-              className="divider-dots mb-16 text-[var(--ink-soft)] opacity-60"
-            />
-
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="mb-10 flex items-end justify-between gap-6"
+        {hasMore ? (
+          <div className="mt-10 flex justify-center">
+            <button
+              type="button"
+              onClick={() => setExpanded((v) => !v)}
+              aria-expanded={expanded}
+              className="inline-flex items-center gap-2 rounded-full border border-[var(--border-glass)] bg-[var(--surface-elev)] px-5 py-2.5 font-mono text-xs tracking-[0.1em] text-[var(--ink-soft)] uppercase transition-colors duration-300 hover:border-[#ff4000] hover:text-[#ff4000]"
             >
-              <h3 className="font-display text-2xl font-semibold sm:text-3xl">
-                {mode === "dev" ? "More builds" : "Otros trabajos"}
-              </h3>
-              <p className="nums-tabular font-mono text-xs tracking-[0.08em] text-[var(--ink-soft)] uppercase opacity-60">
-                {others.length.toString().padStart(2, "0")} · piezas
-              </p>
-            </motion.div>
-
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-12">
-              {others.map((project, index) => (
-                <div
-                  key={project.slug}
-                  className={cn(
-                    "lg:col-span-6",
-                    // Bento rhythm: pair 1 = 7/5, pair 2 = 5/7
-                    index === 0 && "lg:col-span-7",
-                    index === 1 && "lg:col-span-5",
-                    index === 2 && "lg:col-span-5",
-                    index === 3 && "lg:col-span-7",
-                  )}
-                >
-                  <CaseCardGrid project={project} />
-                </div>
-              ))}
-            </div>
+              {expanded ? "− ocultar" : `+ ver todos (${rest.length} más)`}
+            </button>
           </div>
-        )}
+        ) : null}
       </div>
     </section>
   );
