@@ -2,9 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const COLS = 80;
-const ROWS = 40;
-const CELL_COUNT = COLS * ROWS;
 const RAMP = ".,-~:;=!*#$@";
 const RAMP_LEN = RAMP.length;
 
@@ -27,9 +24,34 @@ const MOUSE_RADIUS = 150;
 const R1 = 1;
 const R2 = 2;
 const K2 = 5;
-const K1 = (COLS * K2 * 3) / (8 * (R1 + R2));
 
 type Mouse = { x: number; y: number };
+
+type Dims = {
+  cols: number;
+  rows: number;
+  fontSize: string;
+  lineHeight: number;
+};
+
+const DESKTOP_DIMS: Dims = {
+  cols: 80,
+  rows: 40,
+  fontSize: "clamp(7px, 1.3vw, 13px)",
+  lineHeight: 1.15,
+};
+
+const MOBILE_DIMS: Dims = {
+  cols: 60,
+  rows: 26,
+  fontSize: "8px",
+  lineHeight: 1.05,
+};
+
+function computeInitialDims(): Dims {
+  if (typeof window === "undefined") return DESKTOP_DIMS;
+  return window.matchMedia("(max-width: 640px)").matches ? MOBILE_DIMS : DESKTOP_DIMS;
+}
 
 export function AsciiTorus({ className }: { className?: string }) {
   const preRef = useRef<HTMLPreElement>(null);
@@ -45,6 +67,10 @@ export function AsciiTorus({ className }: { className?: string }) {
     frameTimes: [] as number[],
     fallback: false,
   });
+
+  const [dims] = useState<Dims>(computeInitialDims);
+  const { cols, rows, fontSize, lineHeight } = dims;
+  const cellCount = cols * rows;
 
   const [paused, setPaused] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
@@ -75,29 +101,29 @@ export function AsciiTorus({ className }: { className?: string }) {
     const node = preRef.current;
     if (!node) return;
     const frag = document.createDocumentFragment();
-    const spans: HTMLSpanElement[] = new Array(CELL_COUNT);
-    for (let r = 0; r < ROWS; r++) {
-      for (let c = 0; c < COLS; c++) {
+    const spans: HTMLSpanElement[] = new Array(cellCount);
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
         const span = document.createElement("span");
         span.textContent = " ";
-        spans[c + r * COLS] = span;
+        spans[c + r * cols] = span;
         frag.appendChild(span);
       }
-      if (r < ROWS - 1) frag.appendChild(document.createTextNode("\n"));
+      if (r < rows - 1) frag.appendChild(document.createTextNode("\n"));
     }
     node.appendChild(frag);
     cellsRef.current = spans;
 
     const st = stateRef.current;
-    const zBuffer = new Float32Array(CELL_COUNT);
-    const charBuffer = new Int8Array(CELL_COUNT);
-    renderTorusFrame(st.A, st.B, false, st.mouse, spans, node, zBuffer, charBuffer);
+    const zBuffer = new Float32Array(cellCount);
+    const charBuffer = new Int8Array(cellCount);
+    renderTorusFrame(st.A, st.B, false, st.mouse, spans, node, zBuffer, charBuffer, cols, rows);
 
     return () => {
       while (node.firstChild) node.removeChild(node.firstChild);
       cellsRef.current = [];
     };
-  }, []);
+  }, [cols, rows, cellCount]);
 
   useEffect(() => {
     if (reducedMotion || lowEnd || paused || stateRef.current.fallback) {
@@ -115,8 +141,8 @@ export function AsciiTorus({ className }: { className?: string }) {
     const st = stateRef.current;
     st.nextGlitchAt = performance.now() + randRange(GLITCH_MIN_MS, GLITCH_MAX_MS);
     let last = performance.now();
-    const zBuffer = new Float32Array(CELL_COUNT);
-    const charBuffer = new Int8Array(CELL_COUNT);
+    const zBuffer = new Float32Array(cellCount);
+    const charBuffer = new Int8Array(cellCount);
 
     const tick = (now: number) => {
       const delta = now - last;
@@ -149,7 +175,7 @@ export function AsciiTorus({ className }: { className?: string }) {
       st.A += ROT_X_STEP;
       st.B += ROT_Y_STEP;
 
-      renderTorusFrame(st.A, st.B, glitch, st.mouse, spans, node, zBuffer, charBuffer);
+      renderTorusFrame(st.A, st.B, glitch, st.mouse, spans, node, zBuffer, charBuffer, cols, rows);
       animRef.current = requestAnimationFrame(tick);
     };
     animRef.current = requestAnimationFrame(tick);
@@ -160,7 +186,7 @@ export function AsciiTorus({ className }: { className?: string }) {
         animRef.current = null;
       }
     };
-  }, [reducedMotion, lowEnd, paused]);
+  }, [reducedMotion, lowEnd, paused, cols, rows, cellCount]);
 
   useEffect(() => {
     const node = preRef.current;
@@ -192,8 +218,8 @@ export function AsciiTorus({ className }: { className?: string }) {
       className={className}
       style={{
         fontFamily: "var(--font-jetbrains-mono), ui-monospace, monospace",
-        fontSize: "clamp(7px, 1.3vw, 13px)",
-        lineHeight: 1.15,
+        fontSize,
+        lineHeight,
         letterSpacing: 0,
         color: "#ff4000",
         background: "#0a0a0a",
@@ -218,9 +244,14 @@ function renderTorusFrame(
   node: HTMLPreElement,
   zBuffer: Float32Array,
   charBuffer: Int8Array,
+  cols: number,
+  rows: number,
 ) {
   zBuffer.fill(0);
   charBuffer.fill(-1);
+
+  const cellCount = cols * rows;
+  const K1 = (cols * K2 * 3) / (8 * (R1 + R2));
 
   const cosA = Math.cos(A);
   const sinA = Math.sin(A);
@@ -247,11 +278,11 @@ function renderTorusFrame(
       if (z <= 0) continue;
       const ooz = 1 / z;
 
-      const xp = Math.floor(COLS / 2 + K1 * ooz * x);
-      const yp = Math.floor(ROWS / 2 - (K1 / 2) * ooz * y);
-      if (xp < 0 || xp >= COLS || yp < 0 || yp >= ROWS) continue;
+      const xp = Math.floor(cols / 2 + K1 * ooz * x);
+      const yp = Math.floor(rows / 2 - (K1 / 2) * ooz * y);
+      if (xp < 0 || xp >= cols || yp < 0 || yp >= rows) continue;
 
-      const idx = xp + yp * COLS;
+      const idx = xp + yp * cols;
       if (ooz <= zBuffer[idx]) continue;
       zBuffer[idx] = ooz;
 
@@ -270,11 +301,11 @@ function renderTorusFrame(
   let cellH = 0;
   if (mouseActive) {
     const rect = node.getBoundingClientRect();
-    cellW = rect.width / COLS;
-    cellH = rect.height / ROWS;
+    cellW = rect.width / cols;
+    cellH = rect.height / rows;
   }
 
-  for (let i = 0; i < CELL_COUNT; i++) {
+  for (let i = 0; i < cellCount; i++) {
     const lit = charBuffer[i] >= 0;
     const span = spans[i];
     if (!span) continue;
@@ -287,8 +318,8 @@ function renderTorusFrame(
     let charIdx = charBuffer[i];
 
     if (mouseActive) {
-      const c = i % COLS;
-      const r = (i - c) / COLS;
+      const c = i % cols;
+      const r = (i - c) / cols;
       const px = c * cellW + cellW / 2;
       const py = r * cellH + cellH / 2;
       const dx = px - mouse.x;
