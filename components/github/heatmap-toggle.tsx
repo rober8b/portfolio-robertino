@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { ContributionHeatmap } from "@/components/github/contribution-heatmap";
 import { ContributionHeatmapAscii } from "@/components/github/contribution-heatmap-ascii";
-import { AsciiFrame } from "@/components/primitives/ascii-frame";
 import { cn } from "@/lib/utils";
 import type { ContributionCalendar } from "@/lib/github/types";
 
@@ -37,20 +36,26 @@ export function HeatmapToggle({ calendar }: HeatmapToggleProps) {
   };
 
   return (
-    <AsciiFrame
-      label="contributions.year"
-      tone="accent"
-      innerClassName="p-6 sm:p-8"
-      headerSlot={
-        <span className="pointer-events-auto inline-flex items-center gap-2">
-          <span className="opacity-90">contributions.year</span>
-          <span aria-hidden className="opacity-40">·</span>
+    <div
+      className="overflow-hidden rounded-lg border border-[var(--border-glass)] bg-[#0a0a0a]"
+      style={{
+        ["--ink" as string]: "oklch(0.96 0.008 50)",
+        ["--ink-soft" as string]: "oklch(0.72 0.012 40)",
+      }}
+    >
+      <header className="flex items-center justify-between gap-2 border-b border-[oklch(1_0_0/0.08)] bg-[oklch(1_0_0/0.03)] px-4 py-2.5">
+        <span className="inline-flex items-center gap-2 font-mono text-[0.6rem] tracking-[0.18em] uppercase text-[#ff4000]">
+          contributions.year
+        </span>
+        <span className="inline-flex items-center gap-2">
           <button
             type="button"
             onClick={() => switchTo("squares")}
             className={cn(
-              "font-mono text-[0.55rem] tracking-[0.18em] uppercase transition-opacity",
-              view === "squares" ? "opacity-100" : "opacity-50 hover:opacity-80",
+              "font-mono text-[0.55rem] tracking-[0.18em] uppercase transition-colors",
+              view === "squares"
+                ? "text-[#ff4000]"
+                : "text-[oklch(0.72_0.012_40)] hover:text-white",
             )}
             aria-pressed={view === "squares"}
           >
@@ -60,21 +65,24 @@ export function HeatmapToggle({ calendar }: HeatmapToggleProps) {
             type="button"
             onClick={() => switchTo("ascii")}
             className={cn(
-              "font-mono text-[0.55rem] tracking-[0.18em] uppercase transition-opacity",
-              view === "ascii" ? "opacity-100" : "opacity-50 hover:opacity-80",
+              "font-mono text-[0.55rem] tracking-[0.18em] uppercase transition-colors",
+              view === "ascii"
+                ? "text-[#ff4000]"
+                : "text-[oklch(0.72_0.012_40)] hover:text-white",
             )}
             aria-pressed={view === "ascii"}
           >
             [ascii]
           </button>
         </span>
-      }
-    >
-      {view === "squares" ? (
-        <ContributionHeatmap calendar={calendar} />
-      ) : (
-        <ContributionHeatmapAscii calendar={calendar} />
-      )}
-    </AsciiFrame>
+      </header>
+      <div className="p-6 sm:p-8">
+        {view === "squares" ? (
+          <ContributionHeatmap calendar={calendar} />
+        ) : (
+          <ContributionHeatmapAscii calendar={calendar} />
+        )}
+      </div>
+    </div>
   );
 }
