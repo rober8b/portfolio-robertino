@@ -18,7 +18,7 @@ export function ModeToggle({ className }: { className?: string }) {
       role="radiogroup"
       aria-label="Modo de visualización"
       className={cn(
-        "glass relative inline-flex items-center rounded-full p-1 text-sm",
+        "relative inline-flex items-center rounded-full p-0.5 text-sm",
         className,
       )}
     >
@@ -33,8 +33,8 @@ export function ModeToggle({ className }: { className?: string }) {
             aria-label={`${label} — ${sub}`}
             onClick={() => setMode(value)}
             className={cn(
-              "relative z-10 inline-flex items-center gap-2 rounded-full px-4 py-2 transition-colors duration-300",
-              isActive ? "text-white" : "text-[var(--ink-soft)] hover:text-[var(--ink)]",
+              "relative z-10 inline-flex items-center gap-2 rounded-full px-4 py-1.5 transition-colors duration-300",
+              isActive ? "text-white" : "text-[oklch(0.72_0.012_40)] hover:text-white",
             )}
           >
             {isActive && (
