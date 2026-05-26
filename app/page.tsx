@@ -27,13 +27,13 @@ export default async function Home() {
       <WhoSection />
       <SectionTransition command="loading projects.featured" />
       <ProjectsSection />
+      <TestimonialsSection />
       <BuildProcessSection />
       <MarqueeDivider />
       <GithubSection activity={activity} />
       <SectionTransition command="entering experiments.runtime" />
       <ExperimentsSection />
       <NotesSection />
-      <TestimonialsSection />
       <ContactSection />
       <SiteFooter />
     </main>
