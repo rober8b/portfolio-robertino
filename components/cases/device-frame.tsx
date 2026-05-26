@@ -26,7 +26,7 @@ export function DeviceFrame({ kind, url, title, children, className }: DeviceFra
       } ${className ?? ""}`}
     >
       {(isBrowser || isTerminal) && (
-        <div className="flex items-center gap-1.5 border-b border-[var(--border-glass)] bg-[var(--surface-elevated)] px-3 py-2">
+        <div className="flex items-center gap-1.5 border-b border-[var(--border-glass)] bg-[var(--surface-elev)] px-3 py-2">
           <span className="inline-block h-2 w-2 rounded-full bg-[color:oklch(0.7_0.2_30)]" />
           <span className="inline-block h-2 w-2 rounded-full bg-[color:oklch(0.85_0.18_85)]" />
           <span className="inline-block h-2 w-2 rounded-full bg-[color:oklch(0.78_0.15_140)]" />

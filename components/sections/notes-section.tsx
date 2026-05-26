@@ -70,7 +70,7 @@ export function NotesSection() {
             >
               <Link
                 href={`/notes/${note.slug}`}
-                className="group grid gap-3 py-7 transition-colors hover:bg-[var(--surface-elevated)] sm:grid-cols-[auto_minmax(0,1fr)_auto] sm:items-baseline sm:gap-x-8 sm:px-2"
+                className="group grid gap-3 py-7 transition-colors hover:bg-[var(--surface-elev)] sm:grid-cols-[auto_minmax(0,1fr)_auto] sm:items-baseline sm:gap-x-8 sm:px-2"
               >
                 <div className="flex items-baseline gap-3 font-mono text-[0.65rem] tracking-[0.12em] text-[var(--ink-soft)] uppercase">
                   <time dateTime={note.date}>{formatDate(note.date)}</time>
@@ -128,7 +128,7 @@ export function NotesSection() {
                 >
                   <Link
                     href={`/notes/${note.slug}`}
-                    className="group block py-3 transition-colors hover:bg-[var(--surface-elevated)]"
+                    className="group block py-3 transition-colors hover:bg-[var(--surface-elev)]"
                   >
                     <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-baseline gap-x-3">
                       <span className="select-none text-[var(--ink-soft)] opacity-60">{branch}</span>

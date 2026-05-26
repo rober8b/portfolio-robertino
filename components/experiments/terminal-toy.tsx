@@ -90,7 +90,7 @@ function runCommand(raw: string): LogEntry[] {
       return [{ kind: "output", text: arg }];
 
     case "theme":
-      return [{ kind: "output", text: "tema actual: sunset persimmon (oklch 0.74 0.25 33)", tone: "accent" }];
+      return [{ kind: "output", text: "tema actual: yc orange #ff4000 (oklch 0.66 0.25 33)", tone: "accent" }];
 
     case "clear":
       return [{ kind: "output", text: "__CLEAR__" }];

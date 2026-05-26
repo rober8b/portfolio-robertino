@@ -35,7 +35,7 @@ export function TrustBar() {
   return (
     <section
       aria-label="Métricas verificables"
-      className="relative border-y border-[var(--border-glass)] bg-[var(--surface-elevated)] px-4 py-5 sm:px-6 lg:px-8"
+      className="relative border-y border-[var(--border-glass)] bg-[var(--surface-elev)] px-4 py-5 sm:px-6 lg:px-8"
     >
       <div className="mx-auto flex max-w-6xl items-center gap-6">
         <motion.span
