@@ -7,7 +7,7 @@ import { BuildProcessSection } from "@/components/sections/build-process-section
 import { GithubSection } from "@/components/sections/github-section";
 import { ExperimentsSection } from "@/components/sections/experiments-section";
 import { NotesSection } from "@/components/sections/notes-section";
-import { FeedbackLogSection } from "@/components/sections/feedback-log-section";
+import { TestimonialsSection } from "@/components/sections/testimonials-section";
 import { ContactSection } from "@/components/sections/contact-section";
 import { SiteFooter } from "@/components/sections/site-footer";
 import { MarqueeDivider } from "@/components/primitives/marquee-divider";
@@ -33,7 +33,7 @@ export default async function Home() {
       <SectionTransition command="entering experiments.runtime" />
       <ExperimentsSection />
       <NotesSection />
-      <FeedbackLogSection />
+      <TestimonialsSection />
       <ContactSection />
       <SiteFooter />
     </main>
