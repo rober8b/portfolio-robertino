@@ -74,11 +74,18 @@ export function TestimonialsSection() {
       className="relative px-4 py-24 sm:px-6 md:py-32 lg:px-8"
     >
       <div className="mx-auto max-w-6xl">
-        <AsciiHeading
-          eyebrow={copy.eyebrow}
-          title={copy.title}
-          description={copy.description}
-        />
+        <motion.div
+          key={mode}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.25, ease: easeOutExpo }}
+        >
+          <AsciiHeading
+            eyebrow={copy.eyebrow}
+            title={copy.title}
+            description={copy.description}
+          />
+        </motion.div>
 
         <div className="mt-16 grid gap-5 sm:gap-6 md:grid-cols-2">
           {TESTIMONIALS.map((t, i) => (

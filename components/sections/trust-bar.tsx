@@ -39,10 +39,10 @@ export function TrustBar() {
     >
       <div className="mx-auto flex max-w-6xl items-center gap-6">
         <motion.span
-          initial={{ opacity: 0, x: -8 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: easeOutExpo }}
+          key={mode}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.25, ease: easeOutExpo }}
           className="hidden shrink-0 font-mono text-[0.6rem] tracking-[0.18em] text-[var(--ink-soft)] uppercase opacity-70 md:inline-flex"
         >
           {label}

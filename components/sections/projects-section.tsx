@@ -47,11 +47,18 @@ export function ProjectsSection() {
   return (
     <section id="projects" className="relative px-4 py-4 sm:px-6 md:py-2 lg:px-8">
       <div className="mx-auto max-w-6xl">
-        <AsciiHeading
-          eyebrow={copy.eyebrow}
-          title={copy.title}
-          description={copy.description}
-        />
+        <motion.div
+          key={mode}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.25, ease: easeOutExpo }}
+        >
+          <AsciiHeading
+            eyebrow={copy.eyebrow}
+            title={copy.title}
+            description={copy.description}
+          />
+        </motion.div>
 
         <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
           {visible.map((project, i) => (

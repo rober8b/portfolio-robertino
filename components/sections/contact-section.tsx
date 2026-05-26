@@ -46,7 +46,13 @@ export function ContactSection() {
 
   return (
     <section id="contact" className="relative px-4 py-24 sm:px-6 md:py-32 lg:px-8">
-      <div className="mx-auto max-w-6xl">
+      <motion.div
+        key={mode}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.25, ease: easeOutExpo }}
+        className="mx-auto max-w-6xl"
+      >
         <AsciiHeading
           command={mode === "dev" ? "start_session · available" : "start_session · contestá en el día"}
           title={copy.title}
@@ -66,7 +72,7 @@ export function ContactSection() {
 
           <ChannelsList mode={mode} />
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

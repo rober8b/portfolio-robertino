@@ -45,11 +45,18 @@ export function NotesSection() {
   return (
     <section id="notes" className="relative px-4 py-24 sm:px-6 md:py-32 lg:px-8">
       <div className="mx-auto max-w-6xl">
-        <AsciiHeading
-          command="ls ./notes"
-          title={copy.title}
-          description={copy.description}
-        />
+        <motion.div
+          key={mode}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.25, ease: easeOutExpo }}
+        >
+          <AsciiHeading
+            command="ls ./notes"
+            title={copy.title}
+            description={copy.description}
+          />
+        </motion.div>
 
         {/* MOBILE list — divider rows, easy to tap */}
         <ol className="mt-16 divide-y divide-[var(--border-glass)] border-y border-[var(--border-glass)] lg:hidden">

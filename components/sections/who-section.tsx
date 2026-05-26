@@ -43,7 +43,13 @@ export function WhoSection() {
 
   return (
     <section id="who" className="relative px-4 py-4 sm:px-6 md:py-2 lg:px-8">
-      <div className="mx-auto max-w-6xl">
+      <motion.div
+        key={mode}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.25, ease: easeOutExpo }}
+        className="mx-auto max-w-6xl"
+      >
         <AsciiHeading
           eyebrow={copy.eyebrow}
           frame
@@ -107,7 +113,7 @@ export function WhoSection() {
             </AsciiFrame>
           </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
