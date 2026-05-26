@@ -1,7 +1,6 @@
 import type { GithubActivity } from "@/lib/github/types";
 import { buildRuntimeSnapshot } from "@/lib/runtime/data";
 import { PROFILE } from "@/lib/site-data";
-import { Scanlines } from "@/components/ambient/scanlines";
 import { RuntimeTerminal } from "@/components/hero/runtime-terminal";
 import { SystemMetrics } from "@/components/hero/system-metrics";
 import { IdentityAvatar } from "@/components/hero/identity-avatar";
@@ -10,28 +9,35 @@ type LiveRuntimePanelProps = {
   activity: GithubActivity | null;
 };
 
+const BIO =
+  "Desarrollador full-stack senior con más de 6 años de experiencia, " +
+  "especializado en arquitecturas web de gran escala y aplicaciones " +
+  "intensivas en datos. Actualmente enfocado en plataformas de e-commerce " +
+  "complejas y sistemas de agentes inteligentes, siendo pionero en el " +
+  'concepto de "marketplace agéntico". Mantengo un fuerte compromiso con ' +
+  "el código abierto, la arquitectura limpia, y en mi tiempo libre " +
+  "desarrollo herramientas especializadas explorando la intersección " +
+  "entre la IA y las interfaces de usuario.";
+
 export function LiveRuntimePanel({ activity }: LiveRuntimePanelProps) {
   const snapshot = buildRuntimeSnapshot(activity);
   const isOk = snapshot.status.tone === "ok";
 
   return (
-    <div className="glass-strong relative flex aspect-[5/6] flex-col overflow-hidden rounded-lg p-5 sm:p-6 lg:p-7">
-      <Scanlines opacity={0.05} blend="soft-light" />
-      <SpecularDrift />
-
-      <header className="relative flex items-center gap-4">
-        <IdentityAvatar />
+    <div className="relative flex h-full flex-col gap-5 overflow-hidden rounded-lg border border-[var(--border-glass)] bg-[#0a0a0a] p-5 sm:p-6">
+      <header className="flex items-center gap-4">
+        <IdentityAvatar size={88} />
         <div className="flex min-w-0 flex-col gap-1">
-          <span className="font-mono text-[0.6rem] tracking-[0.12em] text-[var(--drench-text-soft)] uppercase">
+          <span className="font-mono text-[0.6rem] tracking-[0.12em] uppercase text-[oklch(0.72_0.012_40)]">
             {PROFILE.handle}
           </span>
-          <span className="truncate font-display text-base font-semibold text-[var(--drench-text)] sm:text-lg">
+          <span className="truncate font-display text-base font-semibold text-white sm:text-lg">
             {PROFILE.name}
           </span>
-          <span className="inline-flex items-center gap-1.5 font-mono text-[0.6rem] tracking-[0.08em] text-[var(--drench-text-soft)] uppercase">
+          <span className="inline-flex items-center gap-1.5 font-mono text-[0.6rem] tracking-[0.08em] uppercase text-[oklch(0.72_0.012_40)]">
             <span
               aria-hidden
-              className={`inline-block h-1.5 w-1.5 ${isOk ? "animate-pulse bg-[var(--amber)]" : "bg-[var(--drench-text-soft)]"}`}
+              className={`inline-block h-1.5 w-1.5 ${isOk ? "animate-pulse bg-[var(--amber)]" : "bg-[oklch(0.72_0.012_40)]"}`}
               style={{ borderRadius: "1px" }}
             />
             {snapshot.status.label}
@@ -39,26 +45,15 @@ export function LiveRuntimePanel({ activity }: LiveRuntimePanelProps) {
         </div>
       </header>
 
-      <div className="relative mt-5 flex-1">
+      <p className="text-[0.78rem] leading-relaxed text-[oklch(0.86_0.01_40)]">
+        {BIO}
+      </p>
+
+      <div className="flex-1">
         <RuntimeTerminal lines={snapshot.terminal} />
       </div>
 
-      <div className="relative mt-4">
-        <SystemMetrics metrics={snapshot.metrics} />
-      </div>
+      <SystemMetrics metrics={snapshot.metrics} />
     </div>
-  );
-}
-
-function SpecularDrift() {
-  return (
-    <div
-      aria-hidden
-      className="pointer-events-none absolute inset-0 opacity-60"
-      style={{
-        background:
-          "radial-gradient(ellipse 60% 40% at 30% 10%, var(--specular), transparent 60%)",
-      }}
-    />
   );
 }
