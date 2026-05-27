@@ -9,6 +9,7 @@ import { Scanlines } from "@/components/ambient/scanlines";
 import { ScrambleText } from "@/components/primitives/scramble-text";
 import type { Project } from "@/lib/site-data";
 import { easeOutExpo } from "@/lib/motion/variants";
+import CaseImageIcon from '@/components/icons/CaseImageIcon';
 
 type CaseCardProps = {
   project: Project;
@@ -39,7 +40,7 @@ export function CaseCard({ project, priority = false }: CaseCardProps) {
             priority={priority}
           />
         ) : (
-          <HalftonePlaceholder path={project.expectedHalftone} />
+          <CaseImageIcon projectId={project.name} />
         )}
         <Scanlines opacity={0.04} blend="overlay" />
       </div>
@@ -95,18 +96,18 @@ export function CaseCard({ project, priority = false }: CaseCardProps) {
   );
 }
 
-function HalftonePlaceholder({ path }: { path: string }) {
-  return (
-    <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-[#0a0a0a]">
-      <span
-        aria-hidden
-        className="font-mono text-6xl font-semibold text-[#ff4000] sm:text-7xl"
-      >
-        ?
-      </span>
-      <span className="font-mono text-[0.65rem] tracking-[0.1em] text-[oklch(0.72_0.012_40)] opacity-70">
-        {path}
-      </span>
-    </div>
-  );
-}
+// function HalftonePlaceholder({ path }: { path: string }) {
+//   return (
+//     <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-[#0a0a0a]">
+//       <span
+//         aria-hidden
+//         className="font-mono text-6xl font-semibold text-[#ff4000] sm:text-7xl"
+//       >
+//         ?
+//       </span>
+//       <span className="font-mono text-[0.65rem] tracking-[0.1em] text-[oklch(0.72_0.012_40)] opacity-70">
+//         {path}
+//       </span>
+//     </div>
+//   );
+// }
