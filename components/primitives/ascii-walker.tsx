@@ -25,7 +25,6 @@ export function AsciiWalker({
   className,
   intervalMs = 120, // lowered from 180ms for a more fluid, faster frame rate (~8 fps)
 }: AsciiWalkerProps) {
-  const [currentFrame, setCurrentFrame] = useState(1);
   const [reducedMotion, setReducedMotion] = useState(false);
   const preloaded = useRef(false);
 
@@ -46,24 +45,20 @@ export function AsciiWalker({
     return () => mq.removeEventListener("change", onChange);
   }, []);
 
-  // Cycle through frames.
-  useEffect(() => {
-    if (reducedMotion) {
-      setCurrentFrame(1);
-      return;
-    }
-
-    const id = window.setInterval(() => {
-      setCurrentFrame((f) => (f === TOTAL_FRAMES ? 1 : f + 1));
-    }, intervalMs);
-
-    return () => window.clearInterval(id);
-  }, [reducedMotion, intervalMs]);
+  const durationMs = TOTAL_FRAMES * intervalMs;
 
   return (
     <div className={`relative h-48 w-48 sm:h-56 sm:w-56 ${className ?? ""}`}>
+      <style>{`
+        @keyframes walk-frame-blink {
+          0% { opacity: 1; }
+          12.5% { opacity: 0; }
+          100% { opacity: 0; }
+        }
+      `}</style>
       {Array.from({ length: TOTAL_FRAMES }).map((_, idx) => {
         const frameNum = idx + 1;
+        const delayMs = idx * intervalMs;
         return (
           <div
             key={frameNum}
@@ -80,7 +75,11 @@ export function AsciiWalker({
               maskPosition: "center",
               WebkitMaskPosition: "center",
               imageRendering: "pixelated",
-              visibility: frameNum === currentFrame ? "visible" : "hidden",
+              opacity: reducedMotion ? (frameNum === 1 ? 1 : 0) : 0,
+              animation: reducedMotion 
+                ? 'none' 
+                : `walk-frame-blink ${durationMs}ms step-end infinite`,
+              animationDelay: reducedMotion ? '0ms' : `${delayMs}ms`,
             }}
           />
         );

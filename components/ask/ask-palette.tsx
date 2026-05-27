@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AlertCircle, ArrowRight, Loader2, MessageCircle, Search, Sparkles } from "lucide-react";
 import faqIndex from "@/lib/ask/faq-index.json";
-import { embedQuery, subscribeModelStatus, type ModelLoadStatus } from "@/lib/ask/embedder";
+import { embedQuery, subscribeModelStatus, preloadEmbedder, type ModelLoadStatus } from "@/lib/ask/embedder";
 import { rankFaq } from "@/lib/ask/search";
 import {
   COMMANDS,
@@ -59,6 +59,7 @@ export function AskPalette() {
 
   useEffect(() => {
     if (open) {
+      preloadEmbedder();
       requestAnimationFrame(() => inputRef.current?.focus());
     } else {
       setQuery("");
@@ -211,6 +212,8 @@ export function AskPalette() {
                   mode={mode}
                   answer={selectedMatch?.entry.answers[mode] ?? ""}
                 />
+              ) : stage === "loading" ? (
+                <LoadingState />
               ) : (
                 <NoMatchState mode={mode} />
               )}
@@ -485,6 +488,14 @@ function NoMatchState({ mode }: { mode: "dev" | "client" }) {
         <MessageCircle size={14} strokeWidth={1.75} />
         {mode === "dev" ? "mandame mail" : "escribime por whatsapp"}
       </a>
+    </div>
+  );
+}
+
+function LoadingState() {
+  return (
+    <div className="px-5 py-7 font-mono text-sm text-[oklch(0.72_0.012_40)] sm:px-6 sm:py-8">
+      <span className="animate-pulse">buscando...</span>
     </div>
   );
 }

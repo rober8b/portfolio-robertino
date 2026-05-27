@@ -2,7 +2,7 @@
 
 import type { FeatureExtractionPipeline } from "@huggingface/transformers";
 
-const MODEL_ID = "Xenova/paraphrase-multilingual-MiniLM-L12-v2";
+const MODEL_ID = "Xenova/all-MiniLM-L6-v2";
 
 let pipelinePromise: Promise<FeatureExtractionPipeline> | null = null;
 
@@ -29,6 +29,12 @@ function setStatus(next: ModelLoadStatus) {
 
 export function getModelStatus(): ModelLoadStatus {
   return currentStatus;
+}
+
+export function preloadEmbedder() {
+  if (typeof window !== "undefined") {
+    getEmbedder().catch(() => {});
+  }
 }
 
 export async function getEmbedder(): Promise<FeatureExtractionPipeline> {

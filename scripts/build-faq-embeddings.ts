@@ -14,7 +14,7 @@ import type { FaqIndex, FaqIndexEntry } from "../lib/ask/types.ts";
 env.allowLocalModels = false;
 env.useBrowserCache = false;
 
-const MODEL_ID = "Xenova/paraphrase-multilingual-MiniLM-L12-v2";
+const MODEL_ID = "Xenova/all-MiniLM-L6-v2";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..");
