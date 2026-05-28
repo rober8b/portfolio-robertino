@@ -3,9 +3,13 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AlertCircle, ArrowRight, Loader2, MessageCircle, Search, Sparkles } from "lucide-react";
-import faqIndex from "@/lib/ask/faq-index.json";
-import { embedQuery, subscribeModelStatus, preloadEmbedder, type ModelLoadStatus } from "@/lib/ask/embedder";
-import { rankFaq } from "@/lib/ask/search";
+import {
+  search,
+  isSemanticReady,
+  subscribeModelStatus,
+  prefetchSemanticModel,
+  type SearchResult,
+} from "@/lib/ask/search";
 import {
   COMMANDS,
   isCommandQuery,
@@ -15,11 +19,8 @@ import {
 } from "@/lib/ask/commands";
 import { useAskPalette } from "@/components/ask/ask-palette-provider";
 import { useMode } from "@/components/mode/mode-provider";
-import type { AskMatch, FaqIndex } from "@/lib/ask/types";
+import { usePrefetchModel } from "@/lib/ask/use-prefetch-model";
 import { cn } from "@/lib/utils";
-
-const INDEX = faqIndex as unknown as FaqIndex;
-const MATCH_THRESHOLD = 0.45;
 
 const SUGGESTIONS = {
   dev: [
@@ -42,24 +43,30 @@ export function AskPalette() {
   const { open, setOpen } = useAskPalette();
   const { mode, setMode } = useMode();
   const [query, setQuery] = useState("");
-  const [matches, setMatches] = useState<AskMatch[]>([]);
+  const [matches, setMatches] = useState<SearchResult[]>([]);
   const [commands, setCommands] = useState<CommandEntry[]>(COMMANDS);
   const [stage, setStage] = useState<Stage>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [modelStatus, setModelStatus] = useState<ModelLoadStatus>({ phase: "idle" });
   const [selectedFaqId, setSelectedFaqId] = useState<string | null>(null);
+  const [semanticReady, setSemanticReady] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const seq = useRef(0);
 
-  const indexEmpty = INDEX.entries.length === 0;
+  const { triggerManualPrefetch } = usePrefetchModel();
+
   const isCommandMode = isCommandQuery(query);
-  const isModelDownloading = modelStatus.phase === "downloading";
 
-  useEffect(() => subscribeModelStatus(setModelStatus), []);
+  // Subscribe to semantic model loading status
+  useEffect(() => {
+    return subscribeModelStatus((status) => {
+      setSemanticReady(status.phase === "ready" || isSemanticReady());
+    });
+  }, []);
 
+  // Handle modal open/close triggers
   useEffect(() => {
     if (open) {
-      preloadEmbedder();
+      triggerManualPrefetch();
       requestAnimationFrame(() => inputRef.current?.focus());
     } else {
       setQuery("");
@@ -68,14 +75,16 @@ export function AskPalette() {
       setStage("idle");
       setCommands(COMMANDS);
     }
-  }, [open]);
+  }, [open, triggerManualPrefetch]);
 
+  // Command ranking based on query and mode
   useEffect(() => {
     setCommands(rankCommands(query, mode));
   }, [query, mode]);
 
+  // Hybrid search pipeline
   useEffect(() => {
-    if (!open || indexEmpty) return;
+    if (!open) return;
     if (isCommandMode) {
       setStage("idle");
       setMatches([]);
@@ -91,34 +100,36 @@ export function AskPalette() {
     const ticket = ++seq.current;
     setStage("loading");
     setErrorMessage(null);
+
     const handle = setTimeout(async () => {
       try {
-        const vector = await embedQuery(trimmed);
+        const results = await search(trimmed, mode);
         if (ticket !== seq.current) return;
-        const top = rankFaq(vector, INDEX, { topK: 4 });
-        const filtered = top.filter((m) => m.score >= MATCH_THRESHOLD);
-        setMatches(filtered);
-        setStage(filtered.length > 0 ? "ready" : "empty");
-        setSelectedFaqId(filtered[0]?.entry.id ?? null);
-      } catch (err) {
-        console.error("ask palette embed error", err);
+        setMatches(results);
+        setStage(results.length > 0 ? "ready" : "empty");
+        setSelectedFaqId(results[0]?.id ?? null);
+      } catch (err: any) {
+        if (err?.message === "SearchCancelled") {
+          return; // Suppress cancelled requests from rendering stale matches
+        }
+        console.error("ask palette search error", err);
         if (ticket !== seq.current) return;
         setStage("error");
         setMatches([]);
         setErrorMessage(
           err instanceof Error
             ? err.message
-            : "No pude cargar el modelo de búsqueda. Probá recargar.",
+            : "No pude realizar la búsqueda. Probá recargar.",
         );
       }
-    }, 240);
+    }, 150); // Debounce input handler at 150ms
 
     return () => clearTimeout(handle);
-  }, [query, open, indexEmpty, isCommandMode]);
+  }, [query, open, isCommandMode, mode]);
 
   const activeSuggestions = SUGGESTIONS[mode];
   const selectedMatch = useMemo(
-    () => matches.find((m) => m.entry.id === selectedFaqId) ?? matches[0] ?? null,
+    () => matches.find((m) => m.id === selectedFaqId) ?? matches[0] ?? null,
     [matches, selectedFaqId],
   );
 
@@ -168,7 +179,7 @@ export function AskPalette() {
                 autoComplete="off"
                 spellCheck={false}
               />
-              {(stage === "loading" || isModelDownloading) && (
+              {stage === "loading" && (
                 <div className="flex shrink-0 items-center gap-1.5 border border-[#ff4000] px-2 py-0.5">
                   <Loader2
                     size={12}
@@ -176,24 +187,23 @@ export function AskPalette() {
                     className="animate-spin text-[#ff4000]"
                   />
                   <span className="font-mono text-[0.6rem] tracking-[0.05em] uppercase text-[#ff4000]">
-                    {isModelDownloading
-                      ? `${modelStatus.phase === "downloading" ? modelStatus.progress : 0}%`
-                      : "buscando"}
+                    buscando
                   </span>
                 </div>
+              )}
+              {semanticReady && (
+                <span className="hidden items-center gap-1 text-[0.55rem] text-[#ff4000] border border-[#ff4000]/20 px-1.5 py-0.5 sm:flex font-mono uppercase tracking-[0.05em]">
+                  ✨ semántica
+                </span>
               )}
               <kbd className="hidden shrink-0 rounded-sm border border-[oklch(1_0_0/0.14)] px-1.5 py-0.5 font-mono text-[0.6rem] text-[oklch(0.72_0.012_40)] sm:inline">
                 Esc
               </kbd>
             </header>
 
-            {isModelDownloading && <ModelDownloadBanner status={modelStatus} />}
-
             <div className="max-h-[min(60vh,32rem)] overflow-y-auto overscroll-contain">
               {isCommandMode ? (
                 <CommandsList commands={commands} onPick={executeCommand} />
-              ) : indexEmpty ? (
-                <EmptyIndexState />
               ) : stage === "error" ? (
                 <ErrorState message={errorMessage} />
               ) : stage === "idle" ? (
@@ -207,10 +217,10 @@ export function AskPalette() {
               ) : stage === "ready" ? (
                 <ResultsList
                   matches={matches}
-                  selectedId={selectedMatch?.entry.id ?? null}
+                  selectedId={selectedMatch?.id ?? null}
                   onSelect={setSelectedFaqId}
                   mode={mode}
-                  answer={selectedMatch?.entry.answers[mode] ?? ""}
+                  answer={selectedMatch?.answer ?? ""}
                 />
               ) : stage === "loading" ? (
                 <LoadingState />
@@ -240,28 +250,6 @@ export function AskPalette() {
   );
 }
 
-function ModelDownloadBanner({ status }: { status: ModelLoadStatus }) {
-  const progress = status.phase === "downloading" ? status.progress : 0;
-  return (
-    <div className="border-b border-[oklch(1_0_0/0.08)] px-5 py-3 sm:px-6">
-      <div className="flex items-center justify-between gap-3">
-        <p className="font-mono text-xs text-[oklch(0.86_0.01_40)]">
-          cargando modelo de búsqueda · primera vez{" "}
-          <span className="text-white">({progress}%)</span>
-        </p>
-        <span className="font-mono text-[0.55rem] tracking-[0.1em] uppercase text-[oklch(0.72_0.012_40)]">
-          ~25MB · una sola vez
-        </span>
-      </div>
-      <div className="mt-2 h-0.5 w-full overflow-hidden bg-[oklch(1_0_0/0.08)]">
-        <div
-          className="h-full bg-[#ff4000] transition-[width] duration-300"
-          style={{ width: `${progress}%` }}
-        />
-      </div>
-    </div>
-  );
-}
 
 function ErrorState({ message }: { message: string | null }) {
   return (
@@ -287,21 +275,6 @@ function ErrorState({ message }: { message: string | null }) {
           </a>
         </div>
       </div>
-    </div>
-  );
-}
-
-function EmptyIndexState() {
-  return (
-    <div className="px-5 py-7 font-mono text-sm text-[oklch(0.86_0.01_40)] sm:px-6 sm:py-8">
-      <p className="font-mono text-xs tracking-[0.08em] uppercase text-[oklch(0.72_0.012_40)]">faq index vacío</p>
-      <p className="mt-3 leading-relaxed">
-        todavía no se generaron las embeddings. llená{" "}
-        <code className="rounded-sm border border-[oklch(1_0_0/0.14)] px-1 py-0.5 font-mono text-xs text-white">
-          content/portfolio-faq.md
-        </code>{" "}
-        y corré <code className="text-[#ff4000]">pnpm build:faq</code>.
-      </p>
     </div>
   );
 }
@@ -433,7 +406,7 @@ function ResultsList({
   mode,
   answer,
 }: {
-  matches: AskMatch[];
+  matches: SearchResult[];
   selectedId: string | null;
   onSelect: (id: string) => void;
   mode: "dev" | "client";
@@ -443,20 +416,20 @@ function ResultsList({
     <div className="grid grid-cols-1 font-mono md:grid-cols-[5fr_7fr]">
       <ul className="border-b border-[oklch(1_0_0/0.08)] py-2 md:border-r md:border-b-0">
         {matches.map((m) => (
-          <li key={m.entry.id}>
+          <li key={m.id}>
             <button
               type="button"
-              onClick={() => onSelect(m.entry.id)}
+              onClick={() => onSelect(m.id)}
               className={cn(
                 "flex w-full flex-col gap-1 px-4 py-3 text-left font-mono text-sm transition-colors",
-                m.entry.id === selectedId
+                m.id === selectedId
                   ? "bg-[oklch(1_0_0/0.04)] text-white"
                   : "text-[oklch(0.86_0.01_40)] hover:bg-[oklch(1_0_0/0.04)] hover:text-white",
               )}
             >
-              <span className="line-clamp-2 leading-snug">{m.matchedQuestion}</span>
+              <span className="line-clamp-2 leading-snug">{m.question}</span>
               <span className="font-mono text-[0.6rem] tracking-[0.08em] uppercase text-[oklch(0.72_0.012_40)] opacity-80">
-                {m.entry.category} · {(m.score * 100).toFixed(0)}% match
+                {m.category} · {(m.score * 100).toFixed(0)}% match
               </span>
             </button>
           </li>

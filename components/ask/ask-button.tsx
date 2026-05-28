@@ -3,10 +3,12 @@
 import { Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useAskPalette } from "@/components/ask/ask-palette-provider";
+import { usePrefetchModel } from "@/lib/ask/use-prefetch-model";
 
 export function AskButton() {
   const { toggle } = useAskPalette();
   const [isMac, setIsMac] = useState(false);
+  const { handleMouseEnter, handleMouseLeave } = usePrefetchModel();
 
   useEffect(() => {
     setIsMac(navigator.platform.toLowerCase().includes("mac"));
@@ -16,6 +18,8 @@ export function AskButton() {
     <button
       type="button"
       onClick={toggle}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       aria-label="Ask my portfolio"
       className="inline-flex items-center gap-2 rounded-full border border-[oklch(1_0_0/0.14)] px-3 py-1.5 text-sm text-white transition-colors duration-200 hover:border-[#ff4000] hover:text-[#ff4000]"
     >

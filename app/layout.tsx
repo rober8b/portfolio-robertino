@@ -5,6 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ModeProvider } from "@/components/mode/mode-provider";
 import { AskPaletteProvider } from "@/components/ask/ask-palette-provider";
 import { AskPalette } from "@/components/ask/ask-palette";
+import { ServiceWorkerRegister } from "@/components/ask/service-worker-register";
 import { LiquidRefractFilter } from "@/components/glass/liquid-refract-filter";
 import { CustomCursor } from "@/components/primitives/custom-cursor";
 import { ConsoleGreeting } from "@/components/primitives/console-greeting";
@@ -68,6 +69,7 @@ export default function RootLayout({
         <AsciiParticles />
         <ModeProvider>
           <AskPaletteProvider>
+            <ServiceWorkerRegister />
             <LiquidRefractFilter />
             <CustomCursor />
             <ConsoleGreeting />

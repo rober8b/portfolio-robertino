@@ -1,6 +1,8 @@
 /**
  * Reads content/portfolio-faq.md, generates embeddings for every question
- * and every variant, writes lib/ask/faq-index.json.
+ * and every variant, and writes:
+ * 1. public/faq-text-index.json (lightweight metadata index)
+ * 2. public/faq-embeddings-index.json (vector index only)
  *
  * Run with: pnpm build:faq
  */
@@ -9,17 +11,21 @@ import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { pipeline, env } from "@huggingface/transformers";
 import { parseFaq } from "../lib/ask/parse-faq.ts";
-import type { FaqIndex, FaqIndexEntry } from "../lib/ask/types.ts";
 
 env.allowLocalModels = false;
 env.useBrowserCache = false;
 
-const MODEL_ID = "Xenova/all-MiniLM-L6-v2";
+// Model selected: Xenova/paraphrase-multilingual-MiniLM-L12-v2
+// Justification: The portfolio FAQ is in Spanish. The original Xenova/all-MiniLM-L6-v2 is English-only.
+// Xenova/paraphrase-multilingual-MiniLM-L12-v2 provides highly accurate multilingual embeddings suitable for Spanish question-matching,
+// with a 384-dimensional vector output, ensuring zero compatibility issues with our existing cosine similarity rank logic.
+const MODEL_ID = "Xenova/paraphrase-multilingual-MiniLM-L12-v2";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..");
 const SOURCE = resolve(ROOT, "content/portfolio-faq.md");
-const OUTPUT = resolve(ROOT, "lib/ask/faq-index.json");
+const TEXT_OUTPUT = resolve(ROOT, "public/faq-text-index.json");
+const EMBEDDINGS_OUTPUT = resolve(ROOT, "public/faq-embeddings-index.json");
 
 async function main() {
   console.log(`> Reading ${SOURCE}`);
@@ -28,21 +34,9 @@ async function main() {
 
   if (entries.length === 0) {
     console.warn("! No FAQ entries found. Did you replace the placeholders?");
-    mkdirSync(dirname(OUTPUT), { recursive: true });
-    writeFileSync(
-      OUTPUT,
-      JSON.stringify(
-        {
-          version: 1,
-          model: MODEL_ID,
-          dim: 384,
-          generatedAt: new Date().toISOString(),
-          entries: [],
-        } satisfies FaqIndex,
-        null,
-        2,
-      ),
-    );
+    mkdirSync(dirname(TEXT_OUTPUT), { recursive: true });
+    writeFileSync(TEXT_OUTPUT, JSON.stringify([]));
+    writeFileSync(EMBEDDINGS_OUTPUT, JSON.stringify([]));
     return;
   }
 
@@ -50,30 +44,38 @@ async function main() {
   const embedder = await pipeline("feature-extraction", MODEL_ID, { dtype: "q8" });
 
   console.log(`> Embedding ${entries.length} entries`);
-  const indexEntries: FaqIndexEntry[] = [];
+  
+  const textIndex: any[] = [];
+  const embeddingsIndex: any[] = [];
+
   for (const entry of entries) {
-    const embeddings: number[][] = [];
+    console.log(`  · [${entry.category}] Processing: ${entry.questions[0]} (${entry.questions.length} variants)`);
     for (const question of entry.questions) {
       const tensor = await embedder(question, { pooling: "mean", normalize: true });
-      embeddings.push(Array.from(tensor.data as Float32Array));
+      const embedding = Array.from(tensor.data as Float32Array);
+      
+      textIndex.push({
+        id: entry.id,
+        category: entry.category,
+        question,
+        answer: entry.answers,
+        tags: entry.tags,
+      });
+
+      embeddingsIndex.push({
+        id: entry.id,
+        embedding,
+      });
     }
-    indexEntries.push({ ...entry, embeddings });
-    console.log(`  · [${entry.category}] ${entry.questions[0]} (${embeddings.length} variants)`);
   }
 
-  const dim = indexEntries[0]?.embeddings[0]?.length ?? 384;
+  mkdirSync(dirname(TEXT_OUTPUT), { recursive: true });
+  writeFileSync(TEXT_OUTPUT, JSON.stringify(textIndex, null, 2));
+  console.log(`> Wrote ${TEXT_OUTPUT} (${textIndex.length} entries)`);
 
-  const index: FaqIndex = {
-    version: 1,
-    model: MODEL_ID,
-    dim,
-    generatedAt: new Date().toISOString(),
-    entries: indexEntries,
-  };
-
-  mkdirSync(dirname(OUTPUT), { recursive: true });
-  writeFileSync(OUTPUT, JSON.stringify(index));
-  console.log(`> Wrote ${OUTPUT} (${entries.length} entries, dim=${dim})`);
+  mkdirSync(dirname(EMBEDDINGS_OUTPUT), { recursive: true });
+  writeFileSync(EMBEDDINGS_OUTPUT, JSON.stringify(embeddingsIndex));
+  console.log(`> Wrote ${EMBEDDINGS_OUTPUT} (${embeddingsIndex.length} entries)`);
 }
 
 main().catch((err) => {

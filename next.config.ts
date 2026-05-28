@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
     // disponible automáticamente; este timestamp lo complementa.
     NEXT_PUBLIC_BUILD_TIMESTAMP: new Date().toISOString(),
   },
+  serverExternalPackages: ["@huggingface/transformers"],
 };
 
 export default nextConfig;
