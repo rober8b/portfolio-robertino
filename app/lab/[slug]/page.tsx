@@ -7,6 +7,8 @@ import { SiteFooter } from "@/components/sections/site-footer";
 import { AsciiRain } from "@/components/experiments/ascii-rain";
 import { RefractSandbox } from "@/components/experiments/refract-sandbox";
 import { TerminalToy } from "@/components/experiments/terminal-toy";
+import { HermesAgent } from "@/components/experiments/hermes-agent";
+import { SecondBrainGraph } from "@/components/experiments/second-brain-graph";
 import { EXPERIMENTS } from "@/lib/experiments/data";
 
 type Params = { slug: string };
@@ -65,6 +67,8 @@ export default async function Page({ params }: { params: Promise<Params> }) {
             {exp.slug === "ascii-rain" ? <AsciiRain height={520} /> : null}
             {exp.slug === "refract-sandbox" ? <RefractSandbox height={520} /> : null}
             {exp.slug === "terminal-toy" ? <TerminalToy height={520} /> : null}
+            {exp.slug === "hermes-agent" ? <HermesAgent height={520} /> : null}
+            {exp.slug === "second-brain-graph" ? <SecondBrainGraph height={520} /> : null}
           </div>
 
           <NextExperimentTail currentSlug={slug} />
