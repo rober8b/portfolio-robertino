@@ -8,6 +8,7 @@ import { AsciiFrame } from "@/components/primitives/ascii-frame";
 import { RuntimeBadge } from "@/components/primitives/runtime-badge";
 import { MANIFESTO, PRINCIPLES, WORKSHOP_ARTIFACTS } from "@/lib/site-data";
 import { easeOutExpo } from "@/lib/motion/variants";
+import { AsciiWalker } from "@/components/primitives/ascii-walker";
 
 const HEADER = {
   dev: {
@@ -43,7 +44,13 @@ export function WhoSection() {
 
   return (
     <section id="who" className="relative px-4 py-4 sm:px-6 md:py-2 lg:px-8">
-      <div className="mx-auto max-w-6xl">
+      <motion.div
+        key={mode}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.25, ease: easeOutExpo }}
+        className="mx-auto max-w-6xl"
+      >
         <AsciiHeading
           eyebrow={copy.eyebrow}
           frame
@@ -62,8 +69,15 @@ export function WhoSection() {
           >
             <RuntimeBadge label="./manifesto.md" tone="muted" />
             <div className="mt-3 space-y-2 text-lg leading-snug text-[var(--ink)]">
-              {manifesto.map((line) => (
-                <p key={line}>{line}</p>
+              {manifesto.map((line, index) => (
+                <div key={line} className="space-y-2">
+                  <p>{line}</p>
+                  {index === 5 && (
+                    <div className="flex justify-center pb-2 pt-12 sm:justify-start sm:pl-2">
+                      <AsciiWalker />
+                    </div>
+                  )}
+                </div>
               ))}
             </div>
           </motion.div>
@@ -107,7 +121,7 @@ export function WhoSection() {
             </AsciiFrame>
           </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

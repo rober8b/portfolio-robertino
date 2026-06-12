@@ -6,13 +6,13 @@ type SystemMetricsProps = {
 
 export function SystemMetrics({ metrics }: SystemMetricsProps) {
   return (
-    <dl className="relative grid grid-cols-4 gap-x-3 gap-y-1 border-t border-[var(--drench-border)] pt-3 font-mono text-[0.6rem]">
+    <dl className="grid grid-cols-2 gap-x-4 gap-y-3 border-t border-[var(--border-glass)] pt-4 font-mono text-[0.6rem] sm:grid-cols-4">
       {metrics.map((m) => (
-        <div key={m.label} className="flex flex-col gap-0.5">
-          <dt className="tracking-[0.08em] text-[var(--drench-text-soft)] uppercase opacity-70">
+        <div key={m.label} className="flex min-w-0 flex-col gap-1">
+          <dt className="truncate tracking-[0.08em] uppercase text-[oklch(0.72_0.012_40)] opacity-80">
             {m.label}
           </dt>
-          <dd className="nums-tabular text-base font-medium text-[var(--drench-text)] sm:text-lg">
+          <dd className="nums-tabular truncate text-sm font-medium text-white sm:text-base">
             {m.value}
           </dd>
         </div>

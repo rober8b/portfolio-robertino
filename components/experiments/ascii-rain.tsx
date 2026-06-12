@@ -43,7 +43,7 @@ export function AsciiRain({ className, height = 200 }: AsciiRainProps) {
       ctx.fillStyle = "oklch(0.11 0.014 35 / 0.12)";
       ctx.fillRect(0, 0, rect.width, rect.height);
 
-      ctx.fillStyle = "oklch(0.74 0.25 33)"; // accent persimmon
+      ctx.fillStyle = "#ff4000"; // yc orange canonical
       for (let i = 0; i < cols; i++) {
         const ch = GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
         ctx.fillText(ch, i * COL_WIDTH, drops[i] * FONT_SIZE);

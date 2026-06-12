@@ -18,7 +18,7 @@ export function ModeToggle({ className }: { className?: string }) {
       role="radiogroup"
       aria-label="Modo de visualización"
       className={cn(
-        "glass relative inline-flex items-center rounded-full p-1 text-sm",
+        "relative inline-flex items-center rounded-full p-0.5 text-sm",
         className,
       )}
     >
@@ -33,15 +33,15 @@ export function ModeToggle({ className }: { className?: string }) {
             aria-label={`${label} — ${sub}`}
             onClick={() => setMode(value)}
             className={cn(
-              "relative z-10 inline-flex items-center gap-2 rounded-full px-4 py-2 transition-colors duration-300",
-              isActive ? "text-[var(--surface)]" : "text-[var(--ink-soft)] hover:text-[var(--ink)]",
+              "relative z-10 inline-flex items-center gap-2 rounded-full px-4 py-1.5 transition-colors duration-300",
+              isActive ? "text-white" : "text-[oklch(0.72_0.012_40)] hover:text-white",
             )}
           >
             {isActive && (
               <motion.span
                 layoutId="mode-toggle-pill"
-                className="absolute inset-0 -z-10 rounded-full bg-[var(--ink)]"
-                transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                className="absolute inset-0 -z-10 rounded-full bg-[#ff4000]"
+                transition={{ type: "spring", stiffness: 320, damping: 34 }}
               />
             )}
             <Icon size={14} strokeWidth={1.75} />

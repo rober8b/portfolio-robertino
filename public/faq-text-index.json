@@ -1,0 +1,1452 @@
+[
+  {
+    "id": "bio-freelance-quien-es-robertino",
+    "category": "bio · freelance",
+    "question": "¿Quién es Robertino?",
+    "answer": {
+      "dev": "Soy desarrollador freelance en Buenos Aires. Vengo del frontend, ahora hago full-stack con Next.js + TypeScript + agentic. Estudio Digital Business en UCEMA mientras laburo con clientes en LATAM y construyo un SaaS propio de agentes.",
+      "client": "Soy Robertino, desarrollador independiente de Buenos Aires. Hace tres años que armo sitios web, tiendas online y aplicaciones para emprendedores y empresas. Trabajo directo con cada cliente, sin intermediarios."
+    },
+    "tags": [
+      "bio",
+      "robertino",
+      "rober"
+    ]
+  },
+  {
+    "id": "bio-freelance-quien-es-robertino",
+    "category": "bio · freelance",
+    "question": "¿Quién sos?",
+    "answer": {
+      "dev": "Soy desarrollador freelance en Buenos Aires. Vengo del frontend, ahora hago full-stack con Next.js + TypeScript + agentic. Estudio Digital Business en UCEMA mientras laburo con clientes en LATAM y construyo un SaaS propio de agentes.",
+      "client": "Soy Robertino, desarrollador independiente de Buenos Aires. Hace tres años que armo sitios web, tiendas online y aplicaciones para emprendedores y empresas. Trabajo directo con cada cliente, sin intermediarios."
+    },
+    "tags": [
+      "bio",
+      "robertino",
+      "rober"
+    ]
+  },
+  {
+    "id": "bio-freelance-quien-es-robertino",
+    "category": "bio · freelance",
+    "question": "¿De qué te dedicás?",
+    "answer": {
+      "dev": "Soy desarrollador freelance en Buenos Aires. Vengo del frontend, ahora hago full-stack con Next.js + TypeScript + agentic. Estudio Digital Business en UCEMA mientras laburo con clientes en LATAM y construyo un SaaS propio de agentes.",
+      "client": "Soy Robertino, desarrollador independiente de Buenos Aires. Hace tres años que armo sitios web, tiendas online y aplicaciones para emprendedores y empresas. Trabajo directo con cada cliente, sin intermediarios."
+    },
+    "tags": [
+      "bio",
+      "robertino",
+      "rober"
+    ]
+  },
+  {
+    "id": "bio-freelance-quien-es-robertino",
+    "category": "bio · freelance",
+    "question": "Contame de vos",
+    "answer": {
+      "dev": "Soy desarrollador freelance en Buenos Aires. Vengo del frontend, ahora hago full-stack con Next.js + TypeScript + agentic. Estudio Digital Business en UCEMA mientras laburo con clientes en LATAM y construyo un SaaS propio de agentes.",
+      "client": "Soy Robertino, desarrollador independiente de Buenos Aires. Hace tres años que armo sitios web, tiendas online y aplicaciones para emprendedores y empresas. Trabajo directo con cada cliente, sin intermediarios."
+    },
+    "tags": [
+      "bio",
+      "robertino",
+      "rober"
+    ]
+  },
+  {
+    "id": "bio-freelance-sos-agencia-o-freelancer",
+    "category": "bio · freelance",
+    "question": "¿Sos agencia o freelancer?",
+    "answer": {
+      "dev": "Freelance con estructura de agencia cuando el proyecto lo requiere. Tengo colaboradores fijos para diseño y QA, pero yo soy el punto de contacto y el que escribe el código.",
+      "client": "Trabajo de forma independiente, así que hablás directo conmigo en todo momento. Para proyectos grandes sumo colaboradores de confianza, pero siempre soy yo quien lidera y entrega."
+    },
+    "tags": [
+      "agencia",
+      "freelance"
+    ]
+  },
+  {
+    "id": "bio-freelance-sos-agencia-o-freelancer",
+    "category": "bio · freelance",
+    "question": "¿Trabajás solo?",
+    "answer": {
+      "dev": "Freelance con estructura de agencia cuando el proyecto lo requiere. Tengo colaboradores fijos para diseño y QA, pero yo soy el punto de contacto y el que escribe el código.",
+      "client": "Trabajo de forma independiente, así que hablás directo conmigo en todo momento. Para proyectos grandes sumo colaboradores de confianza, pero siempre soy yo quien lidera y entrega."
+    },
+    "tags": [
+      "agencia",
+      "freelance"
+    ]
+  },
+  {
+    "id": "bio-freelance-sos-agencia-o-freelancer",
+    "category": "bio · freelance",
+    "question": "¿Tenés equipo?",
+    "answer": {
+      "dev": "Freelance con estructura de agencia cuando el proyecto lo requiere. Tengo colaboradores fijos para diseño y QA, pero yo soy el punto de contacto y el que escribe el código.",
+      "client": "Trabajo de forma independiente, así que hablás directo conmigo en todo momento. Para proyectos grandes sumo colaboradores de confianza, pero siempre soy yo quien lidera y entrega."
+    },
+    "tags": [
+      "agencia",
+      "freelance"
+    ]
+  },
+  {
+    "id": "bio-freelance-sos-agencia-o-freelancer",
+    "category": "bio · freelance",
+    "question": "¿Sos una empresa?",
+    "answer": {
+      "dev": "Freelance con estructura de agencia cuando el proyecto lo requiere. Tengo colaboradores fijos para diseño y QA, pero yo soy el punto de contacto y el que escribe el código.",
+      "client": "Trabajo de forma independiente, así que hablás directo conmigo en todo momento. Para proyectos grandes sumo colaboradores de confianza, pero siempre soy yo quien lidera y entrega."
+    },
+    "tags": [
+      "agencia",
+      "freelance"
+    ]
+  },
+  {
+    "id": "bio-freelance-donde-estas-basado",
+    "category": "bio · freelance",
+    "question": "¿Dónde estás basado?",
+    "answer": {
+      "dev": "Basado en Buenos Aires, trabajo 100% remoto. Tengo clientes en Argentina y LATAM. Meetings por Google Meet o Zoom, sin problema de zona horaria dentro de la región.",
+      "client": "Estoy en Buenos Aires pero trabajo con clientes de toda Argentina y otros países de la región. Todo se maneja de forma remota, con videollamadas y comunicación fluida por WhatsApp o email.\n\n---"
+    },
+    "tags": [
+      "ubicacion",
+      "remoto",
+      "buenos aires"
+    ]
+  },
+  {
+    "id": "bio-freelance-donde-estas-basado",
+    "category": "bio · freelance",
+    "question": "¿Trabajás de forma remota?",
+    "answer": {
+      "dev": "Basado en Buenos Aires, trabajo 100% remoto. Tengo clientes en Argentina y LATAM. Meetings por Google Meet o Zoom, sin problema de zona horaria dentro de la región.",
+      "client": "Estoy en Buenos Aires pero trabajo con clientes de toda Argentina y otros países de la región. Todo se maneja de forma remota, con videollamadas y comunicación fluida por WhatsApp o email.\n\n---"
+    },
+    "tags": [
+      "ubicacion",
+      "remoto",
+      "buenos aires"
+    ]
+  },
+  {
+    "id": "bio-freelance-donde-estas-basado",
+    "category": "bio · freelance",
+    "question": "¿Podemos reunirnos en persona?",
+    "answer": {
+      "dev": "Basado en Buenos Aires, trabajo 100% remoto. Tengo clientes en Argentina y LATAM. Meetings por Google Meet o Zoom, sin problema de zona horaria dentro de la región.",
+      "client": "Estoy en Buenos Aires pero trabajo con clientes de toda Argentina y otros países de la región. Todo se maneja de forma remota, con videollamadas y comunicación fluida por WhatsApp o email.\n\n---"
+    },
+    "tags": [
+      "ubicacion",
+      "remoto",
+      "buenos aires"
+    ]
+  },
+  {
+    "id": "bio-freelance-donde-estas-basado",
+    "category": "bio · freelance",
+    "question": "¿Atendés clientes del exterior?",
+    "answer": {
+      "dev": "Basado en Buenos Aires, trabajo 100% remoto. Tengo clientes en Argentina y LATAM. Meetings por Google Meet o Zoom, sin problema de zona horaria dentro de la región.",
+      "client": "Estoy en Buenos Aires pero trabajo con clientes de toda Argentina y otros países de la región. Todo se maneja de forma remota, con videollamadas y comunicación fluida por WhatsApp o email.\n\n---"
+    },
+    "tags": [
+      "ubicacion",
+      "remoto",
+      "buenos aires"
+    ]
+  },
+  {
+    "id": "servicios-que-tipo-de-proyectos-haces",
+    "category": "servicios",
+    "question": "¿Qué tipo de proyectos hacés?",
+    "answer": {
+      "dev": "Sitios institucionales, e-commerce (MercadoPago, carrito, admin), sistemas de gestión internos y productos SaaS. Últimamente mucho trabajo con agentes de IA integrados a flujos de negocio reales.",
+      "client": "Armo sitios web para empresas, tiendas online completas con carrito y pagos, y aplicaciones a medida para gestionar turnos, pedidos o clientes. Si tu negocio necesita algo digital, probablemente puedo construirlo."
+    },
+    "tags": [
+      "servicios",
+      "proyectos",
+      "que haces"
+    ]
+  },
+  {
+    "id": "servicios-que-tipo-de-proyectos-haces",
+    "category": "servicios",
+    "question": "¿En qué te especializás?",
+    "answer": {
+      "dev": "Sitios institucionales, e-commerce (MercadoPago, carrito, admin), sistemas de gestión internos y productos SaaS. Últimamente mucho trabajo con agentes de IA integrados a flujos de negocio reales.",
+      "client": "Armo sitios web para empresas, tiendas online completas con carrito y pagos, y aplicaciones a medida para gestionar turnos, pedidos o clientes. Si tu negocio necesita algo digital, probablemente puedo construirlo."
+    },
+    "tags": [
+      "servicios",
+      "proyectos",
+      "que haces"
+    ]
+  },
+  {
+    "id": "servicios-que-tipo-de-proyectos-haces",
+    "category": "servicios",
+    "question": "¿Qué podés hacer para mi negocio?",
+    "answer": {
+      "dev": "Sitios institucionales, e-commerce (MercadoPago, carrito, admin), sistemas de gestión internos y productos SaaS. Últimamente mucho trabajo con agentes de IA integrados a flujos de negocio reales.",
+      "client": "Armo sitios web para empresas, tiendas online completas con carrito y pagos, y aplicaciones a medida para gestionar turnos, pedidos o clientes. Si tu negocio necesita algo digital, probablemente puedo construirlo."
+    },
+    "tags": [
+      "servicios",
+      "proyectos",
+      "que haces"
+    ]
+  },
+  {
+    "id": "servicios-que-tipo-de-proyectos-haces",
+    "category": "servicios",
+    "question": "¿Qué servicios ofrecés?",
+    "answer": {
+      "dev": "Sitios institucionales, e-commerce (MercadoPago, carrito, admin), sistemas de gestión internos y productos SaaS. Últimamente mucho trabajo con agentes de IA integrados a flujos de negocio reales.",
+      "client": "Armo sitios web para empresas, tiendas online completas con carrito y pagos, y aplicaciones a medida para gestionar turnos, pedidos o clientes. Si tu negocio necesita algo digital, probablemente puedo construirlo."
+    },
+    "tags": [
+      "servicios",
+      "proyectos",
+      "que haces"
+    ]
+  },
+  {
+    "id": "servicios-haces-ecommerce-con-mercadopago",
+    "category": "servicios",
+    "question": "¿Hacés ecommerce con MercadoPago?",
+    "answer": {
+      "dev": "Si, integro Mercado Pago (Checkout Pro y transferencia bancaria) con Next.js. Tengo Ruedalista (neumáticos) en producción con esa stack: Supabase, shadcn, catálogo por marca y panel de admin custom sin CMS externo.",
+      "client": "Si, armo tiendas online completas con Mercado Pago incluido. El cliente puede pagar con tarjeta, transferencia o cuotas. Vos gestionás todo desde un panel propio, sin depender de plataformas de terceros."
+    },
+    "tags": [
+      "ecommerce",
+      "mercadopago",
+      "tienda",
+      "pagos"
+    ]
+  },
+  {
+    "id": "servicios-haces-ecommerce-con-mercadopago",
+    "category": "servicios",
+    "question": "¿Integrás medios de pago?",
+    "answer": {
+      "dev": "Si, integro Mercado Pago (Checkout Pro y transferencia bancaria) con Next.js. Tengo Ruedalista (neumáticos) en producción con esa stack: Supabase, shadcn, catálogo por marca y panel de admin custom sin CMS externo.",
+      "client": "Si, armo tiendas online completas con Mercado Pago incluido. El cliente puede pagar con tarjeta, transferencia o cuotas. Vos gestionás todo desde un panel propio, sin depender de plataformas de terceros."
+    },
+    "tags": [
+      "ecommerce",
+      "mercadopago",
+      "tienda",
+      "pagos"
+    ]
+  },
+  {
+    "id": "servicios-haces-ecommerce-con-mercadopago",
+    "category": "servicios",
+    "question": "¿Podés armar una tienda online?",
+    "answer": {
+      "dev": "Si, integro Mercado Pago (Checkout Pro y transferencia bancaria) con Next.js. Tengo Ruedalista (neumáticos) en producción con esa stack: Supabase, shadcn, catálogo por marca y panel de admin custom sin CMS externo.",
+      "client": "Si, armo tiendas online completas con Mercado Pago incluido. El cliente puede pagar con tarjeta, transferencia o cuotas. Vos gestionás todo desde un panel propio, sin depender de plataformas de terceros."
+    },
+    "tags": [
+      "ecommerce",
+      "mercadopago",
+      "tienda",
+      "pagos"
+    ]
+  },
+  {
+    "id": "servicios-haces-ecommerce-con-mercadopago",
+    "category": "servicios",
+    "question": "¿Trabajás con Mercado Pago?",
+    "answer": {
+      "dev": "Si, integro Mercado Pago (Checkout Pro y transferencia bancaria) con Next.js. Tengo Ruedalista (neumáticos) en producción con esa stack: Supabase, shadcn, catálogo por marca y panel de admin custom sin CMS externo.",
+      "client": "Si, armo tiendas online completas con Mercado Pago incluido. El cliente puede pagar con tarjeta, transferencia o cuotas. Vos gestionás todo desde un panel propio, sin depender de plataformas de terceros."
+    },
+    "tags": [
+      "ecommerce",
+      "mercadopago",
+      "tienda",
+      "pagos"
+    ]
+  },
+  {
+    "id": "servicios-haces-solo-el-diseno-o-tambien-lo-programas",
+    "category": "servicios",
+    "question": "¿Hacés solo el diseño o también lo programás?",
+    "answer": {
+      "dev": "Hago diseño de producto orientado a implementación y desarrollo full-stack. No soy diseñador gráfico puro, pero manejo Figma, sistemas de diseño con Tailwind/shadcn y entrego UI de calidad producción.",
+      "client": "Me encargo de todo: el diseño visual y la programación. No necesitás contratar un diseñador por separado. Entrego el sitio terminado, funcionando y listo para usar."
+    },
+    "tags": [
+      "diseño",
+      "desarrollo",
+      "fullstack"
+    ]
+  },
+  {
+    "id": "servicios-haces-solo-el-diseno-o-tambien-lo-programas",
+    "category": "servicios",
+    "question": "¿Sos diseñador o programador?",
+    "answer": {
+      "dev": "Hago diseño de producto orientado a implementación y desarrollo full-stack. No soy diseñador gráfico puro, pero manejo Figma, sistemas de diseño con Tailwind/shadcn y entrego UI de calidad producción.",
+      "client": "Me encargo de todo: el diseño visual y la programación. No necesitás contratar un diseñador por separado. Entrego el sitio terminado, funcionando y listo para usar."
+    },
+    "tags": [
+      "diseño",
+      "desarrollo",
+      "fullstack"
+    ]
+  },
+  {
+    "id": "servicios-haces-solo-el-diseno-o-tambien-lo-programas",
+    "category": "servicios",
+    "question": "¿También hacés el frontend?",
+    "answer": {
+      "dev": "Hago diseño de producto orientado a implementación y desarrollo full-stack. No soy diseñador gráfico puro, pero manejo Figma, sistemas de diseño con Tailwind/shadcn y entrego UI de calidad producción.",
+      "client": "Me encargo de todo: el diseño visual y la programación. No necesitás contratar un diseñador por separado. Entrego el sitio terminado, funcionando y listo para usar."
+    },
+    "tags": [
+      "diseño",
+      "desarrollo",
+      "fullstack"
+    ]
+  },
+  {
+    "id": "servicios-haces-solo-el-diseno-o-tambien-lo-programas",
+    "category": "servicios",
+    "question": "¿Me entregás el diseño y el código?",
+    "answer": {
+      "dev": "Hago diseño de producto orientado a implementación y desarrollo full-stack. No soy diseñador gráfico puro, pero manejo Figma, sistemas de diseño con Tailwind/shadcn y entrego UI de calidad producción.",
+      "client": "Me encargo de todo: el diseño visual y la programación. No necesitás contratar un diseñador por separado. Entrego el sitio terminado, funcionando y listo para usar."
+    },
+    "tags": [
+      "diseño",
+      "desarrollo",
+      "fullstack"
+    ]
+  },
+  {
+    "id": "servicios-haces-mantenimiento-de-sitios-existentes",
+    "category": "servicios",
+    "question": "¿Hacés mantenimiento de sitios existentes?",
+    "answer": {
+      "dev": "Si, tomo proyectos ajenos. Tengo experiencia migrando sitios WordPress a Next.js/Vercel, debugging de codebases desconocidas y refactors progresivos sin bajar producción.",
+      "client": "Si, puedo hacerme cargo de tu sitio aunque lo haya armado otra persona. Hago migraciones, correcciones y mejoras sobre lo que ya tenés, sin que tengas que empezar de cero.\n\n---"
+    },
+    "tags": [
+      "mantenimiento",
+      "soporte",
+      "migracion"
+    ]
+  },
+  {
+    "id": "servicios-haces-mantenimiento-de-sitios-existentes",
+    "category": "servicios",
+    "question": "¿Podés tomar un proyecto que empezó otro?",
+    "answer": {
+      "dev": "Si, tomo proyectos ajenos. Tengo experiencia migrando sitios WordPress a Next.js/Vercel, debugging de codebases desconocidas y refactors progresivos sin bajar producción.",
+      "client": "Si, puedo hacerme cargo de tu sitio aunque lo haya armado otra persona. Hago migraciones, correcciones y mejoras sobre lo que ya tenés, sin que tengas que empezar de cero.\n\n---"
+    },
+    "tags": [
+      "mantenimiento",
+      "soporte",
+      "migracion"
+    ]
+  },
+  {
+    "id": "servicios-haces-mantenimiento-de-sitios-existentes",
+    "category": "servicios",
+    "question": "¿Hacés migraciones?",
+    "answer": {
+      "dev": "Si, tomo proyectos ajenos. Tengo experiencia migrando sitios WordPress a Next.js/Vercel, debugging de codebases desconocidas y refactors progresivos sin bajar producción.",
+      "client": "Si, puedo hacerme cargo de tu sitio aunque lo haya armado otra persona. Hago migraciones, correcciones y mejoras sobre lo que ya tenés, sin que tengas que empezar de cero.\n\n---"
+    },
+    "tags": [
+      "mantenimiento",
+      "soporte",
+      "migracion"
+    ]
+  },
+  {
+    "id": "servicios-haces-mantenimiento-de-sitios-existentes",
+    "category": "servicios",
+    "question": "¿Arreglás sitios que están rotos?",
+    "answer": {
+      "dev": "Si, tomo proyectos ajenos. Tengo experiencia migrando sitios WordPress a Next.js/Vercel, debugging de codebases desconocidas y refactors progresivos sin bajar producción.",
+      "client": "Si, puedo hacerme cargo de tu sitio aunque lo haya armado otra persona. Hago migraciones, correcciones y mejoras sobre lo que ya tenés, sin que tengas que empezar de cero.\n\n---"
+    },
+    "tags": [
+      "mantenimiento",
+      "soporte",
+      "migracion"
+    ]
+  },
+  {
+    "id": "proyectos-que-es-el-marketplace-agentico",
+    "category": "proyectos",
+    "question": "¿Qué es el marketplace agéntico?",
+    "answer": {
+      "dev": "Es un marketplace donde equipos de agentes de IA especializados ejecutan tareas complejas. El clasificador routea cada subtarea al modelo más barato capaz de resolverla (Haiku/Sonnet/Opus), con panel de ahorro en tiempo real. Stack: Next.js 15, Mastra, Inngest, Gemini 2.5 Flash, Groq Llama 3.3, Supabase.",
+      "client": "Es un producto propio que estoy construyendo: una plataforma donde contratás equipos de inteligencia artificial para hacer tareas de negocio, como redactar catálogos, gestionar consultas o recuperar clientes perdidos. Todavía en desarrollo."
+    },
+    "tags": [
+      "nomos",
+      "agentes",
+      "saas",
+      "marketplace"
+    ]
+  },
+  {
+    "id": "proyectos-que-es-el-marketplace-agentico",
+    "category": "proyectos",
+    "question": "¿Qué es Nomos?",
+    "answer": {
+      "dev": "Es un marketplace donde equipos de agentes de IA especializados ejecutan tareas complejas. El clasificador routea cada subtarea al modelo más barato capaz de resolverla (Haiku/Sonnet/Opus), con panel de ahorro en tiempo real. Stack: Next.js 15, Mastra, Inngest, Gemini 2.5 Flash, Groq Llama 3.3, Supabase.",
+      "client": "Es un producto propio que estoy construyendo: una plataforma donde contratás equipos de inteligencia artificial para hacer tareas de negocio, como redactar catálogos, gestionar consultas o recuperar clientes perdidos. Todavía en desarrollo."
+    },
+    "tags": [
+      "nomos",
+      "agentes",
+      "saas",
+      "marketplace"
+    ]
+  },
+  {
+    "id": "proyectos-que-es-el-marketplace-agentico",
+    "category": "proyectos",
+    "question": "¿Estás construyendo un SaaS?",
+    "answer": {
+      "dev": "Es un marketplace donde equipos de agentes de IA especializados ejecutan tareas complejas. El clasificador routea cada subtarea al modelo más barato capaz de resolverla (Haiku/Sonnet/Opus), con panel de ahorro en tiempo real. Stack: Next.js 15, Mastra, Inngest, Gemini 2.5 Flash, Groq Llama 3.3, Supabase.",
+      "client": "Es un producto propio que estoy construyendo: una plataforma donde contratás equipos de inteligencia artificial para hacer tareas de negocio, como redactar catálogos, gestionar consultas o recuperar clientes perdidos. Todavía en desarrollo."
+    },
+    "tags": [
+      "nomos",
+      "agentes",
+      "saas",
+      "marketplace"
+    ]
+  },
+  {
+    "id": "proyectos-que-es-el-marketplace-agentico",
+    "category": "proyectos",
+    "question": "Contame del proyecto de agentes",
+    "answer": {
+      "dev": "Es un marketplace donde equipos de agentes de IA especializados ejecutan tareas complejas. El clasificador routea cada subtarea al modelo más barato capaz de resolverla (Haiku/Sonnet/Opus), con panel de ahorro en tiempo real. Stack: Next.js 15, Mastra, Inngest, Gemini 2.5 Flash, Groq Llama 3.3, Supabase.",
+      "client": "Es un producto propio que estoy construyendo: una plataforma donde contratás equipos de inteligencia artificial para hacer tareas de negocio, como redactar catálogos, gestionar consultas o recuperar clientes perdidos. Todavía en desarrollo."
+    },
+    "tags": [
+      "nomos",
+      "agentes",
+      "saas",
+      "marketplace"
+    ]
+  },
+  {
+    "id": "proyectos-que-proyectos-de-e-commerce-tenes-en-produccion",
+    "category": "proyectos",
+    "question": "¿Qué proyectos de e-commerce tenés en producción?",
+    "answer": {
+      "dev": "**Ruedalista** (neumáticos) en producción con Supabase + shadcn + catálogo por marca y panel de admin custom sin CMS externo, MercadoPago integrado con webhook HMAC y stock decrement transaccional. Otro ecommerce más en pausa y vuelve pronto. En construcción: el marketplace agéntico con Catalog Crew para automatizar generación de catálogos.",
+      "client": "Tengo una tienda de neumáticos funcionando en vivo, con carrito, pagos por Mercado Pago y un panel para gestionar productos, pedidos y stock sin tocar código. Tengo otros casos en pausa y proyectos nuevos en desarrollo, te los puedo mostrar en una llamada."
+    },
+    "tags": [
+      "ecommerce",
+      "portfolio",
+      "ruedalista"
+    ]
+  },
+  {
+    "id": "proyectos-que-proyectos-de-e-commerce-tenes-en-produccion",
+    "category": "proyectos",
+    "question": "¿Tenés casos de tiendas online?",
+    "answer": {
+      "dev": "**Ruedalista** (neumáticos) en producción con Supabase + shadcn + catálogo por marca y panel de admin custom sin CMS externo, MercadoPago integrado con webhook HMAC y stock decrement transaccional. Otro ecommerce más en pausa y vuelve pronto. En construcción: el marketplace agéntico con Catalog Crew para automatizar generación de catálogos.",
+      "client": "Tengo una tienda de neumáticos funcionando en vivo, con carrito, pagos por Mercado Pago y un panel para gestionar productos, pedidos y stock sin tocar código. Tengo otros casos en pausa y proyectos nuevos en desarrollo, te los puedo mostrar en una llamada."
+    },
+    "tags": [
+      "ecommerce",
+      "portfolio",
+      "ruedalista"
+    ]
+  },
+  {
+    "id": "proyectos-que-proyectos-de-e-commerce-tenes-en-produccion",
+    "category": "proyectos",
+    "question": "¿Puedo ver alguna tienda que hayas hecho?",
+    "answer": {
+      "dev": "**Ruedalista** (neumáticos) en producción con Supabase + shadcn + catálogo por marca y panel de admin custom sin CMS externo, MercadoPago integrado con webhook HMAC y stock decrement transaccional. Otro ecommerce más en pausa y vuelve pronto. En construcción: el marketplace agéntico con Catalog Crew para automatizar generación de catálogos.",
+      "client": "Tengo una tienda de neumáticos funcionando en vivo, con carrito, pagos por Mercado Pago y un panel para gestionar productos, pedidos y stock sin tocar código. Tengo otros casos en pausa y proyectos nuevos en desarrollo, te los puedo mostrar en una llamada."
+    },
+    "tags": [
+      "ecommerce",
+      "portfolio",
+      "ruedalista"
+    ]
+  },
+  {
+    "id": "proyectos-haces-sistemas-de-turnos-o-reservas",
+    "category": "proyectos",
+    "question": "¿Hacés sistemas de turnos o reservas?",
+    "answer": {
+      "dev": "Si, tengo un sistema de turnos en producción para un consultorio odontológico: Next.js + Node/Express en Railway + PostgreSQL, con vistas semanal/mensual, bloqueos de disponibilidad, notificaciones por email (Resend) y mensajes de confirmación por WhatsApp.",
+      "client": "Si, armo sistemas de agenda online para profesionales. El paciente o cliente elige el horario disponible, recibe confirmación por email y WhatsApp, y vos desde el panel podés bloquear días, ver el calendario y gestionar todo."
+    },
+    "tags": [
+      "turnos",
+      "reservas",
+      "sistema",
+      "consultorio"
+    ]
+  },
+  {
+    "id": "proyectos-haces-sistemas-de-turnos-o-reservas",
+    "category": "proyectos",
+    "question": "¿Podés armar un sistema de agenda?",
+    "answer": {
+      "dev": "Si, tengo un sistema de turnos en producción para un consultorio odontológico: Next.js + Node/Express en Railway + PostgreSQL, con vistas semanal/mensual, bloqueos de disponibilidad, notificaciones por email (Resend) y mensajes de confirmación por WhatsApp.",
+      "client": "Si, armo sistemas de agenda online para profesionales. El paciente o cliente elige el horario disponible, recibe confirmación por email y WhatsApp, y vos desde el panel podés bloquear días, ver el calendario y gestionar todo."
+    },
+    "tags": [
+      "turnos",
+      "reservas",
+      "sistema",
+      "consultorio"
+    ]
+  },
+  {
+    "id": "proyectos-haces-sistemas-de-turnos-o-reservas",
+    "category": "proyectos",
+    "question": "¿Trabajaste con consultorios o salud?",
+    "answer": {
+      "dev": "Si, tengo un sistema de turnos en producción para un consultorio odontológico: Next.js + Node/Express en Railway + PostgreSQL, con vistas semanal/mensual, bloqueos de disponibilidad, notificaciones por email (Resend) y mensajes de confirmación por WhatsApp.",
+      "client": "Si, armo sistemas de agenda online para profesionales. El paciente o cliente elige el horario disponible, recibe confirmación por email y WhatsApp, y vos desde el panel podés bloquear días, ver el calendario y gestionar todo."
+    },
+    "tags": [
+      "turnos",
+      "reservas",
+      "sistema",
+      "consultorio"
+    ]
+  },
+  {
+    "id": "proyectos-haces-sistemas-de-turnos-o-reservas",
+    "category": "proyectos",
+    "question": "¿Hacés apps para profesionales?",
+    "answer": {
+      "dev": "Si, tengo un sistema de turnos en producción para un consultorio odontológico: Next.js + Node/Express en Railway + PostgreSQL, con vistas semanal/mensual, bloqueos de disponibilidad, notificaciones por email (Resend) y mensajes de confirmación por WhatsApp.",
+      "client": "Si, armo sistemas de agenda online para profesionales. El paciente o cliente elige el horario disponible, recibe confirmación por email y WhatsApp, y vos desde el panel podés bloquear días, ver el calendario y gestionar todo."
+    },
+    "tags": [
+      "turnos",
+      "reservas",
+      "sistema",
+      "consultorio"
+    ]
+  },
+  {
+    "id": "proyectos-migraste-sitios-de-wordpress",
+    "category": "proyectos",
+    "question": "¿Migraste sitios de WordPress?",
+    "answer": {
+      "dev": "Si, tengo una migración reciente de WordPress/cPanel a Next.js en Vercel (aredesasociados.com.ar). El desafío fue DNS controlado por Cloudflare sin acceso: solución via cambio de nameservers en NIC.ar con pre-carga de registros MX, SPF y DKIM.",
+      "client": "Si, puedo migrar tu sitio de WordPress a una plataforma más moderna, más rápida y más barata de mantener. El resultado es un sitio que carga mejor, no se rompe solo y no depende de plugins desactualizados."
+    },
+    "tags": [
+      "wordpress",
+      "migracion",
+      "vercel",
+      "next"
+    ]
+  },
+  {
+    "id": "proyectos-migraste-sitios-de-wordpress",
+    "category": "proyectos",
+    "question": "¿Podés migrar mi sitio de WordPress?",
+    "answer": {
+      "dev": "Si, tengo una migración reciente de WordPress/cPanel a Next.js en Vercel (aredesasociados.com.ar). El desafío fue DNS controlado por Cloudflare sin acceso: solución via cambio de nameservers en NIC.ar con pre-carga de registros MX, SPF y DKIM.",
+      "client": "Si, puedo migrar tu sitio de WordPress a una plataforma más moderna, más rápida y más barata de mantener. El resultado es un sitio que carga mejor, no se rompe solo y no depende de plugins desactualizados."
+    },
+    "tags": [
+      "wordpress",
+      "migracion",
+      "vercel",
+      "next"
+    ]
+  },
+  {
+    "id": "proyectos-migraste-sitios-de-wordpress",
+    "category": "proyectos",
+    "question": "¿Reemplazás WordPress con algo moderno?",
+    "answer": {
+      "dev": "Si, tengo una migración reciente de WordPress/cPanel a Next.js en Vercel (aredesasociados.com.ar). El desafío fue DNS controlado por Cloudflare sin acceso: solución via cambio de nameservers en NIC.ar con pre-carga de registros MX, SPF y DKIM.",
+      "client": "Si, puedo migrar tu sitio de WordPress a una plataforma más moderna, más rápida y más barata de mantener. El resultado es un sitio que carga mejor, no se rompe solo y no depende de plugins desactualizados."
+    },
+    "tags": [
+      "wordpress",
+      "migracion",
+      "vercel",
+      "next"
+    ]
+  },
+  {
+    "id": "proyectos-tenes-experiencia-en-el-sector-salud-o-retail",
+    "category": "proyectos",
+    "question": "¿Tenés experiencia en el sector salud o retail?",
+    "answer": {
+      "dev": "Salud: sistema de turnos para consultorio dental (Next.js + Express + PostgreSQL). Retail: ecommerce de neumáticos en producción y una landing de cannabis culture para LATAM. Hospitality: en exploración con el marketplace agéntico para ecommerce LATAM.",
+      "client": "Trabajé con un consultorio odontológico, con un comercio de neumáticos, y con clientes del sector cannabis en Latinoamérica. Cada proyecto fue distinto, pero en todos el foco fue hacer algo que el cliente pueda usar sin depender de mi.\n\n---"
+    },
+    "tags": [
+      "salud",
+      "retail",
+      "rubros",
+      "experiencia"
+    ]
+  },
+  {
+    "id": "proyectos-tenes-experiencia-en-el-sector-salud-o-retail",
+    "category": "proyectos",
+    "question": "¿Trabajaste con clientes de salud?",
+    "answer": {
+      "dev": "Salud: sistema de turnos para consultorio dental (Next.js + Express + PostgreSQL). Retail: ecommerce de neumáticos en producción y una landing de cannabis culture para LATAM. Hospitality: en exploración con el marketplace agéntico para ecommerce LATAM.",
+      "client": "Trabajé con un consultorio odontológico, con un comercio de neumáticos, y con clientes del sector cannabis en Latinoamérica. Cada proyecto fue distinto, pero en todos el foco fue hacer algo que el cliente pueda usar sin depender de mi.\n\n---"
+    },
+    "tags": [
+      "salud",
+      "retail",
+      "rubros",
+      "experiencia"
+    ]
+  },
+  {
+    "id": "proyectos-tenes-experiencia-en-el-sector-salud-o-retail",
+    "category": "proyectos",
+    "question": "¿Hacés proyectos para comercios?",
+    "answer": {
+      "dev": "Salud: sistema de turnos para consultorio dental (Next.js + Express + PostgreSQL). Retail: ecommerce de neumáticos en producción y una landing de cannabis culture para LATAM. Hospitality: en exploración con el marketplace agéntico para ecommerce LATAM.",
+      "client": "Trabajé con un consultorio odontológico, con un comercio de neumáticos, y con clientes del sector cannabis en Latinoamérica. Cada proyecto fue distinto, pero en todos el foco fue hacer algo que el cliente pueda usar sin depender de mi.\n\n---"
+    },
+    "tags": [
+      "salud",
+      "retail",
+      "rubros",
+      "experiencia"
+    ]
+  },
+  {
+    "id": "proceso-pricing-cuanto-cobras-por-un-sitio-web",
+    "category": "proceso · pricing",
+    "question": "¿Cuánto cobrás por un sitio web?",
+    "answer": {
+      "dev": "Sitio institucional desde USD 400-600. E-commerce con admin desde USD 900-1500. Sistemas a medida (turnos, dashboard, SaaS) desde USD 1200, depende del scope. Cobro en USD o el equivalente en ARS al cambio del momento.",
+      "client": "Depende de lo que necesitás: un sitio para mostrar tu negocio arranca en el orden de los USD 400-600, una tienda online completa desde USD 900. Lo mejor es que me contás tu proyecto y te mando un presupuesto concreto sin compromiso."
+    },
+    "tags": [
+      "precio",
+      "costo",
+      "presupuesto",
+      "tarifas"
+    ]
+  },
+  {
+    "id": "proceso-pricing-cuanto-cobras-por-un-sitio-web",
+    "category": "proceso · pricing",
+    "question": "¿Cuánto sale un sitio?",
+    "answer": {
+      "dev": "Sitio institucional desde USD 400-600. E-commerce con admin desde USD 900-1500. Sistemas a medida (turnos, dashboard, SaaS) desde USD 1200, depende del scope. Cobro en USD o el equivalente en ARS al cambio del momento.",
+      "client": "Depende de lo que necesitás: un sitio para mostrar tu negocio arranca en el orden de los USD 400-600, una tienda online completa desde USD 900. Lo mejor es que me contás tu proyecto y te mando un presupuesto concreto sin compromiso."
+    },
+    "tags": [
+      "precio",
+      "costo",
+      "presupuesto",
+      "tarifas"
+    ]
+  },
+  {
+    "id": "proceso-pricing-cuanto-cobras-por-un-sitio-web",
+    "category": "proceso · pricing",
+    "question": "¿Tenés precios?",
+    "answer": {
+      "dev": "Sitio institucional desde USD 400-600. E-commerce con admin desde USD 900-1500. Sistemas a medida (turnos, dashboard, SaaS) desde USD 1200, depende del scope. Cobro en USD o el equivalente en ARS al cambio del momento.",
+      "client": "Depende de lo que necesitás: un sitio para mostrar tu negocio arranca en el orden de los USD 400-600, una tienda online completa desde USD 900. Lo mejor es que me contás tu proyecto y te mando un presupuesto concreto sin compromiso."
+    },
+    "tags": [
+      "precio",
+      "costo",
+      "presupuesto",
+      "tarifas"
+    ]
+  },
+  {
+    "id": "proceso-pricing-cuanto-cobras-por-un-sitio-web",
+    "category": "proceso · pricing",
+    "question": "¿Me podés dar un presupuesto?",
+    "answer": {
+      "dev": "Sitio institucional desde USD 400-600. E-commerce con admin desde USD 900-1500. Sistemas a medida (turnos, dashboard, SaaS) desde USD 1200, depende del scope. Cobro en USD o el equivalente en ARS al cambio del momento.",
+      "client": "Depende de lo que necesitás: un sitio para mostrar tu negocio arranca en el orden de los USD 400-600, una tienda online completa desde USD 900. Lo mejor es que me contás tu proyecto y te mando un presupuesto concreto sin compromiso."
+    },
+    "tags": [
+      "precio",
+      "costo",
+      "presupuesto",
+      "tarifas"
+    ]
+  },
+  {
+    "id": "proceso-pricing-cuanto-tarda-un-proyecto",
+    "category": "proceso · pricing",
+    "question": "¿Cuánto tarda un proyecto?",
+    "answer": {
+      "dev": "Sitio institucional: 2-3 semanas. E-commerce estándar: 4-6 semanas. Sistemas complejos o SaaS: 8-12 semanas con sprints semanales. Los tiempos asumen feedback ágil del cliente.",
+      "client": "Un sitio web básico lo entrego en 2 o 3 semanas. Una tienda online completa lleva entre 4 y 6 semanas. Para proyectos más grandes acordamos plazos al inicio y trabajo con entregas parciales para que siempre veas el avance."
+    },
+    "tags": [
+      "tiempo",
+      "plazo",
+      "entrega",
+      "timeline"
+    ]
+  },
+  {
+    "id": "proceso-pricing-cuanto-tarda-un-proyecto",
+    "category": "proceso · pricing",
+    "question": "¿En cuánto tiempo entregás?",
+    "answer": {
+      "dev": "Sitio institucional: 2-3 semanas. E-commerce estándar: 4-6 semanas. Sistemas complejos o SaaS: 8-12 semanas con sprints semanales. Los tiempos asumen feedback ágil del cliente.",
+      "client": "Un sitio web básico lo entrego en 2 o 3 semanas. Una tienda online completa lleva entre 4 y 6 semanas. Para proyectos más grandes acordamos plazos al inicio y trabajo con entregas parciales para que siempre veas el avance."
+    },
+    "tags": [
+      "tiempo",
+      "plazo",
+      "entrega",
+      "timeline"
+    ]
+  },
+  {
+    "id": "proceso-pricing-cuanto-tarda-un-proyecto",
+    "category": "proceso · pricing",
+    "question": "¿Cuántas semanas lleva?",
+    "answer": {
+      "dev": "Sitio institucional: 2-3 semanas. E-commerce estándar: 4-6 semanas. Sistemas complejos o SaaS: 8-12 semanas con sprints semanales. Los tiempos asumen feedback ágil del cliente.",
+      "client": "Un sitio web básico lo entrego en 2 o 3 semanas. Una tienda online completa lleva entre 4 y 6 semanas. Para proyectos más grandes acordamos plazos al inicio y trabajo con entregas parciales para que siempre veas el avance."
+    },
+    "tags": [
+      "tiempo",
+      "plazo",
+      "entrega",
+      "timeline"
+    ]
+  },
+  {
+    "id": "proceso-pricing-cuanto-tarda-un-proyecto",
+    "category": "proceso · pricing",
+    "question": "¿Tenés disponibilidad ahora?",
+    "answer": {
+      "dev": "Sitio institucional: 2-3 semanas. E-commerce estándar: 4-6 semanas. Sistemas complejos o SaaS: 8-12 semanas con sprints semanales. Los tiempos asumen feedback ágil del cliente.",
+      "client": "Un sitio web básico lo entrego en 2 o 3 semanas. Una tienda online completa lleva entre 4 y 6 semanas. Para proyectos más grandes acordamos plazos al inicio y trabajo con entregas parciales para que siempre veas el avance."
+    },
+    "tags": [
+      "tiempo",
+      "plazo",
+      "entrega",
+      "timeline"
+    ]
+  },
+  {
+    "id": "proceso-pricing-como-es-la-forma-de-pago",
+    "category": "proceso · pricing",
+    "question": "¿Cómo es la forma de pago?",
+    "answer": {
+      "dev": "50% al inicio, 50% contra entrega. Para proyectos largos divido en 3 hitos. Cobro en USD por transferencia o crypto, o en ARS con factura electrónica Monotributo.",
+      "client": "Trabajo con 50% al arrancar y 50% cuando entrego el proyecto terminado. Para proyectos grandes podemos dividirlo en tres pagos atados a avances concretos. Emito factura."
+    },
+    "tags": [
+      "pago",
+      "factura",
+      "adelanto",
+      "cuotas"
+    ]
+  },
+  {
+    "id": "proceso-pricing-como-es-la-forma-de-pago",
+    "category": "proceso · pricing",
+    "question": "¿Pedís anticipo?",
+    "answer": {
+      "dev": "50% al inicio, 50% contra entrega. Para proyectos largos divido en 3 hitos. Cobro en USD por transferencia o crypto, o en ARS con factura electrónica Monotributo.",
+      "client": "Trabajo con 50% al arrancar y 50% cuando entrego el proyecto terminado. Para proyectos grandes podemos dividirlo en tres pagos atados a avances concretos. Emito factura."
+    },
+    "tags": [
+      "pago",
+      "factura",
+      "adelanto",
+      "cuotas"
+    ]
+  },
+  {
+    "id": "proceso-pricing-como-es-la-forma-de-pago",
+    "category": "proceso · pricing",
+    "question": "¿Cómo dividís los pagos?",
+    "answer": {
+      "dev": "50% al inicio, 50% contra entrega. Para proyectos largos divido en 3 hitos. Cobro en USD por transferencia o crypto, o en ARS con factura electrónica Monotributo.",
+      "client": "Trabajo con 50% al arrancar y 50% cuando entrego el proyecto terminado. Para proyectos grandes podemos dividirlo en tres pagos atados a avances concretos. Emito factura."
+    },
+    "tags": [
+      "pago",
+      "factura",
+      "adelanto",
+      "cuotas"
+    ]
+  },
+  {
+    "id": "proceso-pricing-como-es-la-forma-de-pago",
+    "category": "proceso · pricing",
+    "question": "¿Facturás?",
+    "answer": {
+      "dev": "50% al inicio, 50% contra entrega. Para proyectos largos divido en 3 hitos. Cobro en USD por transferencia o crypto, o en ARS con factura electrónica Monotributo.",
+      "client": "Trabajo con 50% al arrancar y 50% cuando entrego el proyecto terminado. Para proyectos grandes podemos dividirlo en tres pagos atados a avances concretos. Emito factura."
+    },
+    "tags": [
+      "pago",
+      "factura",
+      "adelanto",
+      "cuotas"
+    ]
+  },
+  {
+    "id": "proceso-pricing-como-es-el-proceso-de-trabajo",
+    "category": "proceso · pricing",
+    "question": "¿Cómo es el proceso de trabajo?",
+    "answer": {
+      "dev": "1. Call de discovery (30 min) para entender el proyecto. 2. Propuesta con scope, stack y precio. 3. Kickoff con wireframes o arquitectura según el tipo. 4. Desarrollo iterativo con demos semanales. 5. Entrega + handoff con documentación básica.",
+      "client": "Primero nos juntamos en una videollamada corta para entender bien lo que necesitás. Después te mando una propuesta concreta con precio y plazo. Una vez que arrancamos, te muestro avances todas las semanas para que siempre sepas en qué estamos."
+    },
+    "tags": [
+      "proceso",
+      "metodologia",
+      "etapas"
+    ]
+  },
+  {
+    "id": "proceso-pricing-como-es-el-proceso-de-trabajo",
+    "category": "proceso · pricing",
+    "question": "¿Cómo trabajás con los clientes?",
+    "answer": {
+      "dev": "1. Call de discovery (30 min) para entender el proyecto. 2. Propuesta con scope, stack y precio. 3. Kickoff con wireframes o arquitectura según el tipo. 4. Desarrollo iterativo con demos semanales. 5. Entrega + handoff con documentación básica.",
+      "client": "Primero nos juntamos en una videollamada corta para entender bien lo que necesitás. Después te mando una propuesta concreta con precio y plazo. Una vez que arrancamos, te muestro avances todas las semanas para que siempre sepas en qué estamos."
+    },
+    "tags": [
+      "proceso",
+      "metodologia",
+      "etapas"
+    ]
+  },
+  {
+    "id": "proceso-pricing-como-es-el-proceso-de-trabajo",
+    "category": "proceso · pricing",
+    "question": "¿Qué pasa después de que te escribo?",
+    "answer": {
+      "dev": "1. Call de discovery (30 min) para entender el proyecto. 2. Propuesta con scope, stack y precio. 3. Kickoff con wireframes o arquitectura según el tipo. 4. Desarrollo iterativo con demos semanales. 5. Entrega + handoff con documentación básica.",
+      "client": "Primero nos juntamos en una videollamada corta para entender bien lo que necesitás. Después te mando una propuesta concreta con precio y plazo. Una vez que arrancamos, te muestro avances todas las semanas para que siempre sepas en qué estamos."
+    },
+    "tags": [
+      "proceso",
+      "metodologia",
+      "etapas"
+    ]
+  },
+  {
+    "id": "proceso-pricing-como-es-el-proceso-de-trabajo",
+    "category": "proceso · pricing",
+    "question": "¿Cuáles son las etapas?",
+    "answer": {
+      "dev": "1. Call de discovery (30 min) para entender el proyecto. 2. Propuesta con scope, stack y precio. 3. Kickoff con wireframes o arquitectura según el tipo. 4. Desarrollo iterativo con demos semanales. 5. Entrega + handoff con documentación básica.",
+      "client": "Primero nos juntamos en una videollamada corta para entender bien lo que necesitás. Después te mando una propuesta concreta con precio y plazo. Una vez que arrancamos, te muestro avances todas las semanas para que siempre sepas en qué estamos."
+    },
+    "tags": [
+      "proceso",
+      "metodologia",
+      "etapas"
+    ]
+  },
+  {
+    "id": "proceso-pricing-que-pasa-despues-de-que-entregas-el-proyecto",
+    "category": "proceso · pricing",
+    "question": "¿Qué pasa después de que entregás el proyecto?",
+    "answer": {
+      "dev": "30 días de garantía de bugs post-entrega sin costo. Soporte y mantenimiento mensual disponible como servicio adicional. Para clientes recurrentes tengo disponibilidad prioritaria.",
+      "client": "Incluyo 30 días de soporte para corregir cualquier problema que aparezca luego de la entrega, sin costo extra. Después de eso puedo ofrecerte un plan de mantenimiento mensual si lo necesitás, o te dejo todo documentado para que lo maneje otro.\n\n---"
+    },
+    "tags": [
+      "soporte",
+      "post-entrega",
+      "mantenimiento",
+      "garantia"
+    ]
+  },
+  {
+    "id": "proceso-pricing-que-pasa-despues-de-que-entregas-el-proyecto",
+    "category": "proceso · pricing",
+    "question": "¿Ofrecés soporte?",
+    "answer": {
+      "dev": "30 días de garantía de bugs post-entrega sin costo. Soporte y mantenimiento mensual disponible como servicio adicional. Para clientes recurrentes tengo disponibilidad prioritaria.",
+      "client": "Incluyo 30 días de soporte para corregir cualquier problema que aparezca luego de la entrega, sin costo extra. Después de eso puedo ofrecerte un plan de mantenimiento mensual si lo necesitás, o te dejo todo documentado para que lo maneje otro.\n\n---"
+    },
+    "tags": [
+      "soporte",
+      "post-entrega",
+      "mantenimiento",
+      "garantia"
+    ]
+  },
+  {
+    "id": "proceso-pricing-que-pasa-despues-de-que-entregas-el-proyecto",
+    "category": "proceso · pricing",
+    "question": "¿Qué hago si algo se rompe?",
+    "answer": {
+      "dev": "30 días de garantía de bugs post-entrega sin costo. Soporte y mantenimiento mensual disponible como servicio adicional. Para clientes recurrentes tengo disponibilidad prioritaria.",
+      "client": "Incluyo 30 días de soporte para corregir cualquier problema que aparezca luego de la entrega, sin costo extra. Después de eso puedo ofrecerte un plan de mantenimiento mensual si lo necesitás, o te dejo todo documentado para que lo maneje otro.\n\n---"
+    },
+    "tags": [
+      "soporte",
+      "post-entrega",
+      "mantenimiento",
+      "garantia"
+    ]
+  },
+  {
+    "id": "proceso-pricing-que-pasa-despues-de-que-entregas-el-proyecto",
+    "category": "proceso · pricing",
+    "question": "¿Incluye garantía?",
+    "answer": {
+      "dev": "30 días de garantía de bugs post-entrega sin costo. Soporte y mantenimiento mensual disponible como servicio adicional. Para clientes recurrentes tengo disponibilidad prioritaria.",
+      "client": "Incluyo 30 días de soporte para corregir cualquier problema que aparezca luego de la entrega, sin costo extra. Después de eso puedo ofrecerte un plan de mantenimiento mensual si lo necesitás, o te dejo todo documentado para que lo maneje otro.\n\n---"
+    },
+    "tags": [
+      "soporte",
+      "post-entrega",
+      "mantenimiento",
+      "garantia"
+    ]
+  },
+  {
+    "id": "stack-tecnico-que-stack-usas",
+    "category": "stack · técnico",
+    "question": "¿Qué stack usás?",
+    "answer": {
+      "dev": "Stack principal: Next.js 14/15, TypeScript, Tailwind, shadcn/ui, Supabase (Postgres + Auth + Storage), Prisma, Vercel. Para backends standalone: Node/Express en Railway. Pagos: Mercado Pago. Email: Resend. Agentes: Mastra + Inngest.",
+      "client": "Trabajo con las tecnologías más modernas del mercado: sitios rápidos, seguros y fáciles de escalar. No uso WordPress ni constructores visuales: todo el código es limpio y mantenible a largo plazo."
+    },
+    "tags": [
+      "stack",
+      "tecnologias",
+      "herramientas"
+    ]
+  },
+  {
+    "id": "stack-tecnico-que-stack-usas",
+    "category": "stack · técnico",
+    "question": "¿Con qué tecnologías trabajás?",
+    "answer": {
+      "dev": "Stack principal: Next.js 14/15, TypeScript, Tailwind, shadcn/ui, Supabase (Postgres + Auth + Storage), Prisma, Vercel. Para backends standalone: Node/Express en Railway. Pagos: Mercado Pago. Email: Resend. Agentes: Mastra + Inngest.",
+      "client": "Trabajo con las tecnologías más modernas del mercado: sitios rápidos, seguros y fáciles de escalar. No uso WordPress ni constructores visuales: todo el código es limpio y mantenible a largo plazo."
+    },
+    "tags": [
+      "stack",
+      "tecnologias",
+      "herramientas"
+    ]
+  },
+  {
+    "id": "stack-tecnico-que-stack-usas",
+    "category": "stack · técnico",
+    "question": "¿Usás React?",
+    "answer": {
+      "dev": "Stack principal: Next.js 14/15, TypeScript, Tailwind, shadcn/ui, Supabase (Postgres + Auth + Storage), Prisma, Vercel. Para backends standalone: Node/Express en Railway. Pagos: Mercado Pago. Email: Resend. Agentes: Mastra + Inngest.",
+      "client": "Trabajo con las tecnologías más modernas del mercado: sitios rápidos, seguros y fáciles de escalar. No uso WordPress ni constructores visuales: todo el código es limpio y mantenible a largo plazo."
+    },
+    "tags": [
+      "stack",
+      "tecnologias",
+      "herramientas"
+    ]
+  },
+  {
+    "id": "stack-tecnico-que-stack-usas",
+    "category": "stack · técnico",
+    "question": "¿Qué base de datos usás?",
+    "answer": {
+      "dev": "Stack principal: Next.js 14/15, TypeScript, Tailwind, shadcn/ui, Supabase (Postgres + Auth + Storage), Prisma, Vercel. Para backends standalone: Node/Express en Railway. Pagos: Mercado Pago. Email: Resend. Agentes: Mastra + Inngest.",
+      "client": "Trabajo con las tecnologías más modernas del mercado: sitios rápidos, seguros y fáciles de escalar. No uso WordPress ni constructores visuales: todo el código es limpio y mantenible a largo plazo."
+    },
+    "tags": [
+      "stack",
+      "tecnologias",
+      "herramientas"
+    ]
+  },
+  {
+    "id": "stack-tecnico-por-que-next-js",
+    "category": "stack · técnico",
+    "question": "¿Por qué Next.js?",
+    "answer": {
+      "dev": "Server components + RSC reducen JS en el cliente, el App Router permite layouts anidados y loading states nativos, y el deploy en Vercel es trivial con preview branches por PR. Para mis clientes SME es el mejor balance entre DX y performance producción.",
+      "client": "Es el framework que mejor combina velocidad, seguridad y facilidad de mantenimiento. Los sitios cargan rapido, aparecen bien en Google y son fáciles de actualizar sin tocar código cada vez."
+    },
+    "tags": [
+      "nextjs",
+      "react",
+      "framework"
+    ]
+  },
+  {
+    "id": "stack-tecnico-por-que-next-js",
+    "category": "stack · técnico",
+    "question": "¿Por qué no usás otra cosa?",
+    "answer": {
+      "dev": "Server components + RSC reducen JS en el cliente, el App Router permite layouts anidados y loading states nativos, y el deploy en Vercel es trivial con preview branches por PR. Para mis clientes SME es el mejor balance entre DX y performance producción.",
+      "client": "Es el framework que mejor combina velocidad, seguridad y facilidad de mantenimiento. Los sitios cargan rapido, aparecen bien en Google y son fáciles de actualizar sin tocar código cada vez."
+    },
+    "tags": [
+      "nextjs",
+      "react",
+      "framework"
+    ]
+  },
+  {
+    "id": "stack-tecnico-por-que-next-js",
+    "category": "stack · técnico",
+    "question": "¿Qué ventaja tiene Next.js?",
+    "answer": {
+      "dev": "Server components + RSC reducen JS en el cliente, el App Router permite layouts anidados y loading states nativos, y el deploy en Vercel es trivial con preview branches por PR. Para mis clientes SME es el mejor balance entre DX y performance producción.",
+      "client": "Es el framework que mejor combina velocidad, seguridad y facilidad de mantenimiento. Los sitios cargan rapido, aparecen bien en Google y son fáciles de actualizar sin tocar código cada vez."
+    },
+    "tags": [
+      "nextjs",
+      "react",
+      "framework"
+    ]
+  },
+  {
+    "id": "stack-tecnico-usas-inteligencia-artificial-en-los-proyectos",
+    "category": "stack · técnico",
+    "question": "¿Usás inteligencia artificial en los proyectos?",
+    "answer": {
+      "dev": "Si, es mi foco actual. Integro LLMs (Gemini, Groq, Claude) via API, armo agentes con Mastra y orquesto flujos con Inngest. También hago automatizaciones con n8n para clientes que no necesitan código custom.",
+      "client": "Si, puedo agregar inteligencia artificial a tu negocio: desde un chatbot que responde consultas hasta sistemas que automatizan tareas repetitivas. Lo adapto a lo que realmente necesitás, sin sobrecomplicar."
+    },
+    "tags": [
+      "ia",
+      "agentes",
+      "ai",
+      "inteligencia artificial"
+    ]
+  },
+  {
+    "id": "stack-tecnico-usas-inteligencia-artificial-en-los-proyectos",
+    "category": "stack · técnico",
+    "question": "¿Integrás IA en los desarrollos?",
+    "answer": {
+      "dev": "Si, es mi foco actual. Integro LLMs (Gemini, Groq, Claude) via API, armo agentes con Mastra y orquesto flujos con Inngest. También hago automatizaciones con n8n para clientes que no necesitan código custom.",
+      "client": "Si, puedo agregar inteligencia artificial a tu negocio: desde un chatbot que responde consultas hasta sistemas que automatizan tareas repetitivas. Lo adapto a lo que realmente necesitás, sin sobrecomplicar."
+    },
+    "tags": [
+      "ia",
+      "agentes",
+      "ai",
+      "inteligencia artificial"
+    ]
+  },
+  {
+    "id": "stack-tecnico-usas-inteligencia-artificial-en-los-proyectos",
+    "category": "stack · técnico",
+    "question": "¿Podés agregarle IA a mi producto?",
+    "answer": {
+      "dev": "Si, es mi foco actual. Integro LLMs (Gemini, Groq, Claude) via API, armo agentes con Mastra y orquesto flujos con Inngest. También hago automatizaciones con n8n para clientes que no necesitan código custom.",
+      "client": "Si, puedo agregar inteligencia artificial a tu negocio: desde un chatbot que responde consultas hasta sistemas que automatizan tareas repetitivas. Lo adapto a lo que realmente necesitás, sin sobrecomplicar."
+    },
+    "tags": [
+      "ia",
+      "agentes",
+      "ai",
+      "inteligencia artificial"
+    ]
+  },
+  {
+    "id": "stack-tecnico-usas-inteligencia-artificial-en-los-proyectos",
+    "category": "stack · técnico",
+    "question": "¿Hacés automatizaciones con IA?",
+    "answer": {
+      "dev": "Si, es mi foco actual. Integro LLMs (Gemini, Groq, Claude) via API, armo agentes con Mastra y orquesto flujos con Inngest. También hago automatizaciones con n8n para clientes que no necesitan código custom.",
+      "client": "Si, puedo agregar inteligencia artificial a tu negocio: desde un chatbot que responde consultas hasta sistemas que automatizan tareas repetitivas. Lo adapto a lo que realmente necesitás, sin sobrecomplicar."
+    },
+    "tags": [
+      "ia",
+      "agentes",
+      "ai",
+      "inteligencia artificial"
+    ]
+  },
+  {
+    "id": "stack-tecnico-usas-wordpress-o-webflow",
+    "category": "stack · técnico",
+    "question": "¿Usás WordPress o Webflow?",
+    "answer": {
+      "dev": "No trabajo con WordPress ni Webflow para proyectos nuevos. Para clientes que necesitan un CMS visual, puedo integrar Sanity o similar con Next.js. Para landing pages simples puedo recomendar alternativas no-code si el proyecto no justifica desarrollo custom.",
+      "client": "No uso WordPress ni constructores visuales para los proyectos que desarrollo. Esas plataformas tienen limitaciones y costos de mantenimiento que con el tiempo se vuelven un problema. Si tu caso lo justifica, te lo digo con honestidad.\n\n---"
+    },
+    "tags": [
+      "wordpress",
+      "webflow",
+      "cms",
+      "no-code"
+    ]
+  },
+  {
+    "id": "stack-tecnico-usas-wordpress-o-webflow",
+    "category": "stack · técnico",
+    "question": "¿Hacés sitios en Wix?",
+    "answer": {
+      "dev": "No trabajo con WordPress ni Webflow para proyectos nuevos. Para clientes que necesitan un CMS visual, puedo integrar Sanity o similar con Next.js. Para landing pages simples puedo recomendar alternativas no-code si el proyecto no justifica desarrollo custom.",
+      "client": "No uso WordPress ni constructores visuales para los proyectos que desarrollo. Esas plataformas tienen limitaciones y costos de mantenimiento que con el tiempo se vuelven un problema. Si tu caso lo justifica, te lo digo con honestidad.\n\n---"
+    },
+    "tags": [
+      "wordpress",
+      "webflow",
+      "cms",
+      "no-code"
+    ]
+  },
+  {
+    "id": "stack-tecnico-usas-wordpress-o-webflow",
+    "category": "stack · técnico",
+    "question": "¿Trabajás con constructores visuales?",
+    "answer": {
+      "dev": "No trabajo con WordPress ni Webflow para proyectos nuevos. Para clientes que necesitan un CMS visual, puedo integrar Sanity o similar con Next.js. Para landing pages simples puedo recomendar alternativas no-code si el proyecto no justifica desarrollo custom.",
+      "client": "No uso WordPress ni constructores visuales para los proyectos que desarrollo. Esas plataformas tienen limitaciones y costos de mantenimiento que con el tiempo se vuelven un problema. Si tu caso lo justifica, te lo digo con honestidad.\n\n---"
+    },
+    "tags": [
+      "wordpress",
+      "webflow",
+      "cms",
+      "no-code"
+    ]
+  },
+  {
+    "id": "contacto-como-te-contacto",
+    "category": "contacto",
+    "question": "¿Cómo te contacto?",
+    "answer": {
+      "dev": "Email: robertinobarbuto@gmail.com · GitHub: rober8b · WhatsApp y Cal.com en la sección Contacto del menú.",
+      "client": "Mandame un WhatsApp directo desde el botón verde en la página, o un email a robertinobarbuto@gmail.com. Respondo en el día."
+    },
+    "tags": [
+      "contacto",
+      "whatsapp",
+      "email"
+    ]
+  },
+  {
+    "id": "contacto-como-te-contacto",
+    "category": "contacto",
+    "question": "¿Tenés WhatsApp?",
+    "answer": {
+      "dev": "Email: robertinobarbuto@gmail.com · GitHub: rober8b · WhatsApp y Cal.com en la sección Contacto del menú.",
+      "client": "Mandame un WhatsApp directo desde el botón verde en la página, o un email a robertinobarbuto@gmail.com. Respondo en el día."
+    },
+    "tags": [
+      "contacto",
+      "whatsapp",
+      "email"
+    ]
+  },
+  {
+    "id": "contacto-como-te-contacto",
+    "category": "contacto",
+    "question": "¿Cómo te escribo?",
+    "answer": {
+      "dev": "Email: robertinobarbuto@gmail.com · GitHub: rober8b · WhatsApp y Cal.com en la sección Contacto del menú.",
+      "client": "Mandame un WhatsApp directo desde el botón verde en la página, o un email a robertinobarbuto@gmail.com. Respondo en el día."
+    },
+    "tags": [
+      "contacto",
+      "whatsapp",
+      "email"
+    ]
+  },
+  {
+    "id": "contacto-como-te-contacto",
+    "category": "contacto",
+    "question": "¿Cuál es tu email?",
+    "answer": {
+      "dev": "Email: robertinobarbuto@gmail.com · GitHub: rober8b · WhatsApp y Cal.com en la sección Contacto del menú.",
+      "client": "Mandame un WhatsApp directo desde el botón verde en la página, o un email a robertinobarbuto@gmail.com. Respondo en el día."
+    },
+    "tags": [
+      "contacto",
+      "whatsapp",
+      "email"
+    ]
+  },
+  {
+    "id": "contacto-tenes-disponibilidad-ahora",
+    "category": "contacto",
+    "question": "¿Tenés disponibilidad ahora?",
+    "answer": {
+      "dev": "Disponibilidad variable según el mes. Lo mejor es escribirme directamente para chequear. Tengo agenda de calls en Cal.com (link en la sección Contacto).",
+      "client": "Depende del momento, tengo lugar para proyectos nuevos de forma intermitente. Escribime y te cuento cómo está mi agenda. Si no puedo arrancar de inmediato, te digo cuándo puedo y lo reservamos.\n\n---"
+    },
+    "tags": [
+      "disponibilidad",
+      "agenda",
+      "empezar"
+    ]
+  },
+  {
+    "id": "contacto-tenes-disponibilidad-ahora",
+    "category": "contacto",
+    "question": "¿Podés arrancar pronto?",
+    "answer": {
+      "dev": "Disponibilidad variable según el mes. Lo mejor es escribirme directamente para chequear. Tengo agenda de calls en Cal.com (link en la sección Contacto).",
+      "client": "Depende del momento, tengo lugar para proyectos nuevos de forma intermitente. Escribime y te cuento cómo está mi agenda. Si no puedo arrancar de inmediato, te digo cuándo puedo y lo reservamos.\n\n---"
+    },
+    "tags": [
+      "disponibilidad",
+      "agenda",
+      "empezar"
+    ]
+  },
+  {
+    "id": "contacto-tenes-disponibilidad-ahora",
+    "category": "contacto",
+    "question": "¿Tenés lugar para un proyecto nuevo?",
+    "answer": {
+      "dev": "Disponibilidad variable según el mes. Lo mejor es escribirme directamente para chequear. Tengo agenda de calls en Cal.com (link en la sección Contacto).",
+      "client": "Depende del momento, tengo lugar para proyectos nuevos de forma intermitente. Escribime y te cuento cómo está mi agenda. Si no puedo arrancar de inmediato, te digo cuándo puedo y lo reservamos.\n\n---"
+    },
+    "tags": [
+      "disponibilidad",
+      "agenda",
+      "empezar"
+    ]
+  },
+  {
+    "id": "contacto-tenes-disponibilidad-ahora",
+    "category": "contacto",
+    "question": "¿Cuándo podés empezar?",
+    "answer": {
+      "dev": "Disponibilidad variable según el mes. Lo mejor es escribirme directamente para chequear. Tengo agenda de calls en Cal.com (link en la sección Contacto).",
+      "client": "Depende del momento, tengo lugar para proyectos nuevos de forma intermitente. Escribime y te cuento cómo está mi agenda. Si no puedo arrancar de inmediato, te digo cuándo puedo y lo reservamos.\n\n---"
+    },
+    "tags": [
+      "disponibilidad",
+      "agenda",
+      "empezar"
+    ]
+  },
+  {
+    "id": "easter-eggs-que-es-el-ai-policy-design-sprint",
+    "category": "easter eggs",
+    "question": "¿Qué es el AI Policy Design Sprint?",
+    "answer": {
+      "dev": "Fui mentor en el Policython UCEMA, un evento de diseño de políticas de IA con 50 participantes y 4 tracks temáticos. Ayudé a equipos a estructurar propuestas regulatorias alrededor de casos de uso concretos.",
+      "client": "Participé como mentor en un evento universitario donde estudiantes diseñaban políticas públicas sobre inteligencia artificial. Me interesa que la IA se desarrolle bien, no solo que funcione."
+    },
+    "tags": [
+      "policython",
+      "ucema",
+      "politica",
+      "ia"
+    ]
+  },
+  {
+    "id": "easter-eggs-que-es-el-ai-policy-design-sprint",
+    "category": "easter eggs",
+    "question": "¿Qué es el Policython?",
+    "answer": {
+      "dev": "Fui mentor en el Policython UCEMA, un evento de diseño de políticas de IA con 50 participantes y 4 tracks temáticos. Ayudé a equipos a estructurar propuestas regulatorias alrededor de casos de uso concretos.",
+      "client": "Participé como mentor en un evento universitario donde estudiantes diseñaban políticas públicas sobre inteligencia artificial. Me interesa que la IA se desarrolle bien, no solo que funcione."
+    },
+    "tags": [
+      "policython",
+      "ucema",
+      "politica",
+      "ia"
+    ]
+  },
+  {
+    "id": "easter-eggs-que-es-el-ai-policy-design-sprint",
+    "category": "easter eggs",
+    "question": "¿Participaste en algo de política de IA?",
+    "answer": {
+      "dev": "Fui mentor en el Policython UCEMA, un evento de diseño de políticas de IA con 50 participantes y 4 tracks temáticos. Ayudé a equipos a estructurar propuestas regulatorias alrededor de casos de uso concretos.",
+      "client": "Participé como mentor en un evento universitario donde estudiantes diseñaban políticas públicas sobre inteligencia artificial. Me interesa que la IA se desarrolle bien, no solo que funcione."
+    },
+    "tags": [
+      "policython",
+      "ucema",
+      "politica",
+      "ia"
+    ]
+  },
+  {
+    "id": "easter-eggs-que-hiciste-en-el-hackathon-de-anthropic",
+    "category": "easter eggs",
+    "question": "¿Qué hiciste en el hackathon de Anthropic?",
+    "answer": {
+      "dev": "Construí Nomos en el hackathon Anthropic x Kaszek en Buenos Aires: un marketplace de agentes con routing inteligente por costo/capacidad, SSE streaming y panel de ahorro en tiempo real. Stack: Next.js 16, React 19, TypeScript, Tailwind v4. No quedamos en los puestos, pero el proyecto siguió vivo.",
+      "client": "Participé en un hackathon organizado por Anthropic (la empresa detrás de Claude) y el fondo de inversión Kaszek en Buenos Aires. En 48 horas armé un prototipo funcional de mi idea de plataforma de agentes de IA. Fue una experiencia que me confirmó que voy por el camino correcto."
+    },
+    "tags": [
+      "hackathon",
+      "anthropic",
+      "kaszek",
+      "nomos"
+    ]
+  },
+  {
+    "id": "easter-eggs-que-hiciste-en-el-hackathon-de-anthropic",
+    "category": "easter eggs",
+    "question": "¿Participaste en algún hackathon?",
+    "answer": {
+      "dev": "Construí Nomos en el hackathon Anthropic x Kaszek en Buenos Aires: un marketplace de agentes con routing inteligente por costo/capacidad, SSE streaming y panel de ahorro en tiempo real. Stack: Next.js 16, React 19, TypeScript, Tailwind v4. No quedamos en los puestos, pero el proyecto siguió vivo.",
+      "client": "Participé en un hackathon organizado por Anthropic (la empresa detrás de Claude) y el fondo de inversión Kaszek en Buenos Aires. En 48 horas armé un prototipo funcional de mi idea de plataforma de agentes de IA. Fue una experiencia que me confirmó que voy por el camino correcto."
+    },
+    "tags": [
+      "hackathon",
+      "anthropic",
+      "kaszek",
+      "nomos"
+    ]
+  },
+  {
+    "id": "easter-eggs-que-hiciste-en-el-hackathon-de-anthropic",
+    "category": "easter eggs",
+    "question": "¿Ganaste algún hackathon?",
+    "answer": {
+      "dev": "Construí Nomos en el hackathon Anthropic x Kaszek en Buenos Aires: un marketplace de agentes con routing inteligente por costo/capacidad, SSE streaming y panel de ahorro en tiempo real. Stack: Next.js 16, React 19, TypeScript, Tailwind v4. No quedamos en los puestos, pero el proyecto siguió vivo.",
+      "client": "Participé en un hackathon organizado por Anthropic (la empresa detrás de Claude) y el fondo de inversión Kaszek en Buenos Aires. En 48 horas armé un prototipo funcional de mi idea de plataforma de agentes de IA. Fue una experiencia que me confirmó que voy por el camino correcto."
+    },
+    "tags": [
+      "hackathon",
+      "anthropic",
+      "kaszek",
+      "nomos"
+    ]
+  },
+  {
+    "id": "easter-eggs-que-estas-estudiando",
+    "category": "easter eggs",
+    "question": "¿Qué estás estudiando?",
+    "answer": {
+      "dev": "Negocios Digitales en UCEMA (cursando) y un programa ejecutivo de IA Generativa para Programadores. Foco en la intersección entre producto digital, estrategia y desarrollo técnico.",
+      "client": "Estoy cursando Negocios Digitales en UCEMA y un programa de especialización en inteligencia artificial. Me interesa entender el negocio detrás de la tecnología, no solo escribir código."
+    },
+    "tags": [
+      "ucema",
+      "estudio",
+      "carrera",
+      "formacion"
+    ]
+  },
+  {
+    "id": "easter-eggs-que-estas-estudiando",
+    "category": "easter eggs",
+    "question": "¿Tenés formación universitaria?",
+    "answer": {
+      "dev": "Negocios Digitales en UCEMA (cursando) y un programa ejecutivo de IA Generativa para Programadores. Foco en la intersección entre producto digital, estrategia y desarrollo técnico.",
+      "client": "Estoy cursando Negocios Digitales en UCEMA y un programa de especialización en inteligencia artificial. Me interesa entender el negocio detrás de la tecnología, no solo escribir código."
+    },
+    "tags": [
+      "ucema",
+      "estudio",
+      "carrera",
+      "formacion"
+    ]
+  },
+  {
+    "id": "easter-eggs-que-estas-estudiando",
+    "category": "easter eggs",
+    "question": "¿Estás cursando algo?",
+    "answer": {
+      "dev": "Negocios Digitales en UCEMA (cursando) y un programa ejecutivo de IA Generativa para Programadores. Foco en la intersección entre producto digital, estrategia y desarrollo técnico.",
+      "client": "Estoy cursando Negocios Digitales en UCEMA y un programa de especialización en inteligencia artificial. Me interesa entender el negocio detrás de la tecnología, no solo escribir código."
+    },
+    "tags": [
+      "ucema",
+      "estudio",
+      "carrera",
+      "formacion"
+    ]
+  },
+  {
+    "id": "easter-eggs-usas-ia-para-programar",
+    "category": "easter eggs",
+    "question": "¿Usás IA para programar?",
+    "answer": {
+      "dev": "Si, uso Claude Code como agente principal para implementación y Claude.ai para arquitectura y generación de prompts. El workflow es: yo diseño la arquitectura y el scope, Claude Code implementa bajo instrucciones explícitas con commits por cambio lógico.",
+      "client": "Si, uso las mejores herramientas disponibles para trabajar más rápido y con menos errores. Eso no significa que el código sea genérico: siempre reviso, dirijo y adapto todo a tu proyecto específico."
+    },
+    "tags": [
+      "ia",
+      "claude",
+      "cursor",
+      "herramientas dev"
+    ]
+  },
+  {
+    "id": "easter-eggs-usas-ia-para-programar",
+    "category": "easter eggs",
+    "question": "¿Usás Cursor o Copilot?",
+    "answer": {
+      "dev": "Si, uso Claude Code como agente principal para implementación y Claude.ai para arquitectura y generación de prompts. El workflow es: yo diseño la arquitectura y el scope, Claude Code implementa bajo instrucciones explícitas con commits por cambio lógico.",
+      "client": "Si, uso las mejores herramientas disponibles para trabajar más rápido y con menos errores. Eso no significa que el código sea genérico: siempre reviso, dirijo y adapto todo a tu proyecto específico."
+    },
+    "tags": [
+      "ia",
+      "claude",
+      "cursor",
+      "herramientas dev"
+    ]
+  },
+  {
+    "id": "easter-eggs-usas-ia-para-programar",
+    "category": "easter eggs",
+    "question": "¿Programás con IA?",
+    "answer": {
+      "dev": "Si, uso Claude Code como agente principal para implementación y Claude.ai para arquitectura y generación de prompts. El workflow es: yo diseño la arquitectura y el scope, Claude Code implementa bajo instrucciones explícitas con commits por cambio lógico.",
+      "client": "Si, uso las mejores herramientas disponibles para trabajar más rápido y con menos errores. Eso no significa que el código sea genérico: siempre reviso, dirijo y adapto todo a tu proyecto específico."
+    },
+    "tags": [
+      "ia",
+      "claude",
+      "cursor",
+      "herramientas dev"
+    ]
+  },
+  {
+    "id": "easter-eggs-usas-ia-para-programar",
+    "category": "easter eggs",
+    "question": "¿Claude Code?",
+    "answer": {
+      "dev": "Si, uso Claude Code como agente principal para implementación y Claude.ai para arquitectura y generación de prompts. El workflow es: yo diseño la arquitectura y el scope, Claude Code implementa bajo instrucciones explícitas con commits por cambio lógico.",
+      "client": "Si, uso las mejores herramientas disponibles para trabajar más rápido y con menos errores. Eso no significa que el código sea genérico: siempre reviso, dirijo y adapto todo a tu proyecto específico."
+    },
+    "tags": [
+      "ia",
+      "claude",
+      "cursor",
+      "herramientas dev"
+    ]
+  }
+]

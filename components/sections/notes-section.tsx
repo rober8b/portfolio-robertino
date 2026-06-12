@@ -45,11 +45,18 @@ export function NotesSection() {
   return (
     <section id="notes" className="relative px-4 py-24 sm:px-6 md:py-32 lg:px-8">
       <div className="mx-auto max-w-6xl">
-        <AsciiHeading
-          command="ls ./notes"
-          title={copy.title}
-          description={copy.description}
-        />
+        <motion.div
+          key={mode}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.25, ease: easeOutExpo }}
+        >
+          <AsciiHeading
+            command="ls ./notes"
+            title={copy.title}
+            description={copy.description}
+          />
+        </motion.div>
 
         {/* MOBILE list — divider rows, easy to tap */}
         <ol className="mt-16 divide-y divide-[var(--border-glass)] border-y border-[var(--border-glass)] lg:hidden">
@@ -63,7 +70,7 @@ export function NotesSection() {
             >
               <Link
                 href={`/notes/${note.slug}`}
-                className="group grid gap-3 py-7 transition-colors hover:bg-[var(--surface-elevated)] sm:grid-cols-[auto_minmax(0,1fr)_auto] sm:items-baseline sm:gap-x-8 sm:px-2"
+                className="group grid gap-3 py-7 transition-colors hover:bg-[var(--surface-elev)] sm:grid-cols-[auto_minmax(0,1fr)_auto] sm:items-baseline sm:gap-x-8 sm:px-2"
               >
                 <div className="flex items-baseline gap-3 font-mono text-[0.65rem] tracking-[0.12em] text-[var(--ink-soft)] uppercase">
                   <time dateTime={note.date}>{formatDate(note.date)}</time>
@@ -121,7 +128,7 @@ export function NotesSection() {
                 >
                   <Link
                     href={`/notes/${note.slug}`}
-                    className="group block py-3 transition-colors hover:bg-[var(--surface-elevated)]"
+                    className="group block py-3 transition-colors hover:bg-[var(--surface-elev)]"
                   >
                     <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-baseline gap-x-3">
                       <span className="select-none text-[var(--ink-soft)] opacity-60">{branch}</span>

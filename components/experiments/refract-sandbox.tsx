@@ -52,7 +52,7 @@ export function RefractSandbox({
           draggable={false}
         />
       </div>
-      <div className="flex items-center gap-3 border-t border-[var(--border-glass)] bg-[var(--surface-elevated)] px-4 py-3 font-mono text-[0.65rem] tracking-tight">
+      <div className="flex items-center gap-3 border-t border-[var(--border-glass)] bg-[var(--surface-elev)] px-4 py-3 font-mono text-[0.65rem] tracking-tight">
         <label htmlFor={`${filterId}-slider`} className="text-[var(--ink-soft)] opacity-70">
           displacement
         </label>

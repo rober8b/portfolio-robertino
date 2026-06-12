@@ -44,10 +44,10 @@
   --surface-elev: oklch(0.94 0.018 60);
   --surface-glass: oklch(0.99 0.008 55 / 0.55);
   /* Orange accent — vivid, saturated, unmissable */
-  --accent: oklch(0.66 0.25 33);
-  --accent-soft: oklch(0.86 0.12 35);
-  --accent-deep: oklch(0.55 0.26 30);
-  --accent-glow: oklch(0.66 0.25 33 / 0.35);
+  --accent: #ff4000;
+  --accent-soft: color-mix(in srgb, #ff4000 40%, var(--surface));
+  --accent-deep: color-mix(in srgb, #ff4000 80%, black);
+  --accent-glow: rgb(255 64 0 / 0.35);
   /* Amber secondary — warm highlights */
   --amber: oklch(0.80 0.18 68);
   --amber-soft: oklch(0.93 0.09 72);
@@ -59,7 +59,7 @@
 
   --border-glass: oklch(1 0 0 / 0.18);
   --border-glass-dark: oklch(0.3 0.025 30 / 0.3);
-  --border-accent: oklch(0.66 0.25 33 / 0.4);
+  --border-accent: rgb(255 64 0 / 0.4);
 
   --background: var(--surface);
   --foreground: var(--ink);
@@ -67,14 +67,14 @@
   --radius: 0.75rem;
 
   /* DRENCH PALETTE — vivid orange, used in hero, footer, accent sections */
-  --drench-bg: oklch(0.64 0.25 33);
-  --drench-bg-deeper: oklch(0.54 0.26 30);
-  --drench-bg-light: oklch(0.74 0.22 38);
+  --drench-bg: #ff4000;
+  --drench-bg-deeper: color-mix(in srgb, #ff4000 80%, black);
+  --drench-bg-light: color-mix(in srgb, #ff4000 80%, white);
   --drench-text: oklch(0.99 0.008 55);
   --drench-text-soft: oklch(0.93 0.05 55 / 0.85);
   --drench-glass-bg: oklch(1 0.005 60 / 0.2);
   --drench-border: oklch(1 0.008 55 / 0.45);
-  --drench-glow: oklch(0.66 0.25 33 / 0.7);
+  --drench-glow: rgb(255 64 0 / 0.7);
 
   /* GITHUB HEATMAP — canonical colors */
   --gh-0: #ebedf0;
@@ -93,10 +93,10 @@
   --surface-elev: oklch(0.15 0.016 35);
   --surface-glass: oklch(0.18 0.016 35 / 0.55);
   /* Vivid orange in dark mode — pops harder against dark surfaces */
-  --accent: oklch(0.74 0.25 33);
-  --accent-soft: oklch(0.42 0.16 32);
-  --accent-deep: oklch(0.62 0.26 30);
-  --accent-glow: oklch(0.74 0.25 33 / 0.4);
+  --accent: #ff4000;
+  --accent-soft: color-mix(in srgb, #ff4000 30%, var(--surface));
+  --accent-deep: color-mix(in srgb, #ff4000 70%, black);
+  --accent-glow: rgb(255 64 0 / 0.4);
   --amber: oklch(0.84 0.18 68);
   --amber-soft: oklch(0.36 0.12 68);
   --amber-glow: oklch(0.84 0.18 68 / 0.35);
@@ -107,7 +107,7 @@
 
   --border-glass: oklch(1 0 0 / 0.1);
   --border-glass-dark: oklch(0.08 0.018 35 / 0.6);
-  --border-accent: oklch(0.74 0.25 33 / 0.45);
+  --border-accent: rgb(255 64 0 / 0.45);
 
   /* drench stays vivid orange in dark mode — brand color is non-negotiable */
 
@@ -127,9 +127,9 @@
     --surface: oklch(0.11 0.014 35);
     --surface-elev: oklch(0.15 0.016 35);
     --surface-glass: oklch(0.18 0.016 35 / 0.55);
-    --accent: oklch(0.72 0.22 33);
-    --accent-soft: oklch(0.4 0.14 32);
-    --accent-deep: oklch(0.62 0.23 32);
+    --accent: #ff4000;
+    --accent-soft: color-mix(in srgb, #ff4000 30%, var(--surface));
+    --accent-deep: color-mix(in srgb, #ff4000 70%, black);
     --amber: oklch(0.82 0.16 70);
     --amber-soft: oklch(0.35 0.1 70);
     --specular: oklch(1 0 0 / 0.18);
@@ -166,6 +166,51 @@
 /* ORANGE ACCENT ZONE — lighter sections with orange tint */
 .zone-orange-tint {
   background: linear-gradient(180deg, var(--surface) 0%, oklch(0.95 0.02 45) 100%);
+}
+
+/* CASE CARD — asymmetric hover/exit transitions per spec (enter 200ms,
+   exit 350ms). Border color + halftone filter shift on hover. */
+.case-card {
+  transition-property: border-color, transform;
+  transition-duration: 350ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+.case-card:hover {
+  transition-duration: 200ms;
+}
+.case-card-halftone {
+  transition-property: filter;
+  transition-duration: 350ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+.case-card:hover .case-card-halftone {
+  transition-duration: 200ms;
+  filter: saturate(1.15) brightness(1.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-card-halftone {
+    transition: none !important;
+  }
+  .case-card:hover .case-card-halftone {
+    filter: none !important;
+  }
+}
+
+/* NIGHT ZONE — black background, cream foreground. Used by the hero so the
+   ASCII centerpiece sits on solid dark regardless of theme. Mirrors the
+   dark-mode tokens but locks them on the section. */
+.zone-night {
+  background: #0a0a0a;
+  color: oklch(0.96 0.008 50);
+
+  --ink: oklch(0.96 0.008 50);
+  --ink-soft: oklch(0.72 0.012 40);
+  --drench-text: oklch(0.96 0.008 50);
+  --drench-text-soft: oklch(0.72 0.012 40);
+  --surface-glass: oklch(0.18 0.016 35 / 0.55);
+  --border-glass: oklch(1 0 0 / 0.12);
+  --border-glass-dark: oklch(1 0 0 / 0.18);
 }
 
 @layer base {
@@ -400,12 +445,12 @@
 @keyframes ask-pulse {
   0%, 100% {
     box-shadow:
-      0 0 0 0 oklch(0.66 0.22 33 / 0.4),
+      0 0 0 0 rgb(255 64 0 / 0.4),
       0 0 0 1px var(--border-glass) inset;
   }
   50% {
     box-shadow:
-      0 0 0 10px oklch(0.66 0.22 33 / 0),
+      0 0 0 10px rgb(255 64 0 / 0),
       0 0 24px -4px oklch(0.78 0.16 70 / 0.45),
       0 0 0 1px var(--border-glass) inset;
   }
@@ -420,43 +465,26 @@
   }
 }
 
-/* Ambient ASCII grain — slow breath so the back layer feels alive */
-@keyframes grain-breathe {
-  0%, 100% {
-    opacity: 0.7;
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    opacity: 1;
-    transform: translate3d(2px, -1px, 0);
-  }
-}
-
-.grain-breathe {
-  animation: grain-breathe 7s ease-in-out infinite;
-  will-change: opacity, transform;
-}
-
 /* Chromatic glitch — section h2s pop in with a brief RGB split.
    Quick, single-pass, settles to clean text. */
 @keyframes chromatic-glitch {
   0% {
     text-shadow:
-      -2px 0 0 oklch(0.66 0.25 33 / 0.9),
+      -2px 0 0 rgb(255 64 0 / 0.9),
       2px 0 0 oklch(0.72 0.2 220 / 0.7);
     transform: translate3d(-1px, 0, 0);
     opacity: 0.92;
   }
   35% {
     text-shadow:
-      1px 0 0 oklch(0.66 0.25 33 / 0.7),
+      1px 0 0 rgb(255 64 0 / 0.7),
       -1px 0 0 oklch(0.72 0.2 220 / 0.5);
     transform: translate3d(1px, 0, 0);
     opacity: 1;
   }
   70% {
     text-shadow:
-      -0.5px 0 0 oklch(0.66 0.25 33 / 0.4),
+      -0.5px 0 0 rgb(255 64 0 / 0.4),
       0.5px 0 0 oklch(0.72 0.2 220 / 0.3);
     transform: translate3d(0, 0, 0);
     opacity: 1;
@@ -473,80 +501,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .grain-breathe,
   .glitch-in {
-    animation: none !important;
-  }
-}
-
-/* ───────────────────────────────────────────────────────────────
-   CRT MODE — opt-in via [data-crt="on"] on <html>. Toggles a
-   full-bleed phosphor-tube aesthetic across the whole site:
-   tight scanlines, slight chromatic aberration on body text,
-   amber-tinted phosphor glow, accelerated grain flicker.
-   ─────────────────────────────────────────────────────────────── */
-
-html[data-crt="on"] {
-  /* Global chromatic split on body text. */
-  text-shadow:
-    0.5px 0 0 oklch(0.66 0.25 33 / 0.45),
-    -0.5px 0 0 oklch(0.72 0.2 220 / 0.35);
-}
-
-/* Tight horizontal scanlines across the entire viewport. */
-html[data-crt="on"] body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 40;
-  background-image: repeating-linear-gradient(
-    0deg,
-    oklch(0 0 0 / 0.18) 0 1px,
-    transparent 1px 3px
-  );
-  mix-blend-mode: multiply;
-}
-
-/* Phosphor vignette + flicker tint. */
-html[data-crt="on"] body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 41;
-  background:
-    radial-gradient(
-      ellipse at center,
-      transparent 55%,
-      oklch(0 0 0 / 0.25) 100%
-    ),
-    linear-gradient(
-      90deg,
-      oklch(0.66 0.25 33 / 0.05),
-      oklch(0.72 0.2 220 / 0.05)
-    );
-  mix-blend-mode: overlay;
-  animation: crt-flicker 7s steps(2, end) infinite;
-}
-
-@keyframes crt-flicker {
-  0%, 60%, 100% { opacity: 1; }
-  62% { opacity: 0.82; }
-  64% { opacity: 1; }
-  92% { opacity: 0.88; }
-  94% { opacity: 1; }
-}
-
-/* Boost the ambient grain when CRT is on so it reads like dust on
-   the tube. */
-html[data-crt="on"] .grain-breathe {
-  animation-duration: 2.6s;
-  filter: contrast(140%);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html[data-crt="on"] body::after {
     animation: none !important;
   }
 }

@@ -25,7 +25,7 @@ export function NoteBody({ blocks }: { blocks: NoteBlock[] }) {
           return (
             <pre
               key={i}
-              className="overflow-x-auto rounded-md border border-[var(--border-glass)] bg-[var(--surface-elevated)] px-4 py-3 font-mono text-[0.78rem] leading-relaxed text-[var(--ink)]"
+              className="overflow-x-auto rounded-md border border-[var(--border-glass)] bg-[var(--surface-elev)] px-4 py-3 font-mono text-[0.78rem] leading-relaxed text-[var(--ink)]"
             >
               {block.body}
             </pre>

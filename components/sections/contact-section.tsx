@@ -7,7 +7,6 @@ import { useAskPalette } from "@/components/ask/ask-palette-provider";
 import { GithubIcon } from "@/components/icons/brand-icons";
 import { StartSessionPrompt } from "@/components/contact/start-session-prompt";
 import { AsciiHeading } from "@/components/primitives/ascii-heading";
-import { AsciiFrame } from "@/components/primitives/ascii-frame";
 import { ScrambleText } from "@/components/primitives/scramble-text";
 import { CONTACTS, PROFILE } from "@/lib/site-data";
 import { easeOutExpo } from "@/lib/motion/variants";
@@ -47,7 +46,13 @@ export function ContactSection() {
 
   return (
     <section id="contact" className="relative px-4 py-24 sm:px-6 md:py-32 lg:px-8">
-      <div className="mx-auto max-w-6xl">
+      <motion.div
+        key={mode}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.25, ease: easeOutExpo }}
+        className="mx-auto max-w-6xl"
+      >
         <AsciiHeading
           command={mode === "dev" ? "start_session · available" : "start_session · contestá en el día"}
           title={copy.title}
@@ -67,7 +72,7 @@ export function ContactSection() {
 
           <ChannelsList mode={mode} />
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
@@ -132,69 +137,61 @@ function ChannelsList({ mode }: { mode: "dev" | "client" }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.7, delay: 0.05, ease: easeOutExpo }}
-      className="h-fit"
+      className="h-fit overflow-hidden rounded-lg border border-[var(--border-glass)] bg-[#0a0a0a]"
     >
-      <AsciiFrame
-        style="double"
-        corners="double"
-        label="direct.channels"
-        tone="accent"
-        innerClassName="p-0"
-      >
-        {/* Business card header — handle + role */}
-        <div className="border-b border-[var(--border-glass-dark)] px-6 py-4 sm:px-7">
-          <p className="font-mono text-[0.6rem] tracking-[0.18em] text-[var(--accent)] uppercase opacity-90">
-            ./{PROFILE.handle}
-          </p>
-          <p className="mt-1 font-mono text-[0.7rem] text-[var(--ink-soft)]">
-            {mode === "dev" ? "freelance · ai builder · web developer" : "freelance · desarrollador independiente"}
-          </p>
-          <p className="mt-2 flex items-center gap-2 font-mono text-[0.6rem] tracking-[0.1em] text-[var(--ink-soft)] uppercase opacity-60">
-            <MapPin size={11} strokeWidth={1.75} />
-            {PROFILE.location}
-          </p>
-        </div>
+      {/* Business card header — handle + role */}
+      <div className="border-b border-[oklch(1_0_0/0.08)] bg-[oklch(1_0_0/0.03)] px-6 py-4 sm:px-7">
+        <p className="font-mono text-[0.6rem] tracking-[0.18em] uppercase text-[#ff4000] opacity-90">
+          ./{PROFILE.handle}
+        </p>
+        <p className="mt-1 font-mono text-[0.7rem] text-[oklch(0.86_0.01_40)]">
+          {mode === "dev" ? "freelance · ai builder · web developer" : "freelance · desarrollador independiente"}
+        </p>
+        <p className="mt-2 flex items-center gap-2 font-mono text-[0.6rem] tracking-[0.1em] uppercase text-[oklch(0.72_0.012_40)] opacity-80">
+          <MapPin size={11} strokeWidth={1.75} />
+          {PROFILE.location}
+        </p>
+      </div>
 
-        <ul className="divide-y divide-[var(--border-glass-dark)]">
-          {channels.map(({ Icon, label, value, href }) => (
-            <li key={label}>
-              {href ? (
-                <a
-                  href={href}
-                  target={href.startsWith("http") ? "_blank" : undefined}
-                  rel="noreferrer"
-                  className="group flex items-center justify-between gap-4 px-6 py-4 transition-colors hover:bg-[oklch(0.99_0.005_55/0.5)] sm:px-7"
-                >
-                  <span className="flex min-w-0 items-center gap-3 text-sm text-[var(--ink)]">
-                    <Icon size={15} strokeWidth={1.75} className="shrink-0 text-[var(--ink-soft)]" />
-                    <span className="truncate font-medium">{label}</span>
+      <ul className="divide-y divide-[oklch(1_0_0/0.06)]">
+        {channels.map(({ Icon, label, value, href }) => (
+          <li key={label}>
+            {href ? (
+              <a
+                href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel="noreferrer"
+                className="group flex items-center justify-between gap-4 px-6 py-4 transition-colors hover:bg-[oklch(1_0_0/0.04)] sm:px-7"
+              >
+                <span className="flex min-w-0 items-center gap-3 text-sm text-white">
+                  <Icon size={15} strokeWidth={1.75} className="shrink-0 text-[oklch(0.72_0.012_40)]" />
+                  <span className="truncate font-medium">{label}</span>
+                </span>
+                <span className="flex shrink-0 items-center gap-2 font-mono text-[0.7rem] text-[oklch(0.86_0.01_40)]">
+                  <span className="truncate">
+                    <ScrambleText text={value} trigger="hover" />
                   </span>
-                  <span className="flex shrink-0 items-center gap-2 font-mono text-[0.7rem] text-[var(--ink-soft)]">
-                    <span className="truncate">
-                      <ScrambleText text={value} trigger="hover" />
-                    </span>
-                    <ArrowUpRight
-                      size={12}
-                      strokeWidth={1.75}
-                      className="shrink-0 opacity-0 transition-opacity group-hover:opacity-100"
-                    />
-                  </span>
-                </a>
-              ) : (
-                <div className="flex items-center justify-between gap-4 px-6 py-4 sm:px-7">
-                  <span className="flex min-w-0 items-center gap-3 text-sm text-[var(--ink-soft)]">
-                    <Icon size={15} strokeWidth={1.75} className="shrink-0 opacity-40" />
-                    <span className="truncate font-medium opacity-70">{label}</span>
-                  </span>
-                  <span className="shrink-0 font-mono text-[0.65rem] tracking-[0.08em] text-[var(--ink-soft)] uppercase opacity-40">
-                    {value}
-                  </span>
-                </div>
-              )}
-            </li>
-          ))}
-        </ul>
-      </AsciiFrame>
+                  <ArrowUpRight
+                    size={12}
+                    strokeWidth={1.75}
+                    className="shrink-0 opacity-0 transition-opacity group-hover:opacity-100"
+                  />
+                </span>
+              </a>
+            ) : (
+              <div className="flex items-center justify-between gap-4 px-6 py-4 sm:px-7">
+                <span className="flex min-w-0 items-center gap-3 text-sm text-[oklch(0.72_0.012_40)]">
+                  <Icon size={15} strokeWidth={1.75} className="shrink-0 opacity-50" />
+                  <span className="truncate font-medium opacity-80">{label}</span>
+                </span>
+                <span className="shrink-0 font-mono text-[0.65rem] tracking-[0.08em] uppercase text-[oklch(0.72_0.012_40)] opacity-50">
+                  {value}
+                </span>
+              </div>
+            )}
+          </li>
+        ))}
+      </ul>
     </motion.div>
   );
 }

@@ -4,8 +4,8 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { useMode } from "@/components/mode/mode-provider";
-import { AsciiRain } from "@/components/experiments/ascii-rain";
-import { RefractSandbox } from "@/components/experiments/refract-sandbox";
+import { HermesAgent } from "@/components/experiments/hermes-agent";
+import { SecondBrainGraph } from "@/components/experiments/second-brain-graph";
 import { TerminalToy } from "@/components/experiments/terminal-toy";
 import { Scanlines } from "@/components/ambient/scanlines";
 import { AsciiHeading } from "@/components/primitives/ascii-heading";
@@ -44,11 +44,18 @@ export function ExperimentsSection() {
   return (
     <section id="lab" className="relative px-4 py-4 sm:px-6 md:py-2 lg:px-8">
       <div className="mx-auto max-w-6xl">
-        <AsciiHeading
-          eyebrow={copy.eyebrow}
-          title={copy.title}
-          description={copy.description}
-        />
+        <motion.div
+          key={mode}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.25, ease: easeOutExpo }}
+        >
+          <AsciiHeading
+            eyebrow={copy.eyebrow}
+            title={copy.title}
+            description={copy.description}
+          />
+        </motion.div>
 
         <div className="mt-16 grid gap-6 lg:grid-cols-3">
           {EXPERIMENTS.map((exp, i) => (
@@ -58,30 +65,33 @@ export function ExperimentsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6, delay: 0.08 * i, ease: easeOutExpo }}
-              className="glass-strong relative flex flex-col overflow-hidden rounded-lg border border-[var(--border-glass)]"
+              className="relative flex flex-col overflow-hidden rounded-lg border border-[var(--border-glass)] bg-[#0a0a0a]"
             >
-              <header className="flex items-center justify-between gap-2 border-b border-[var(--border-glass)] bg-[var(--surface-elevated)] px-4 py-2.5">
-                <p className="font-mono text-[0.7rem] text-[var(--ink)]">
-                  <span className="text-[var(--accent)]">$ </span>
+              <header className="flex items-center gap-2 border-b border-[oklch(1_0_0/0.08)] bg-[oklch(1_0_0/0.03)] px-3 py-2">
+                <span aria-hidden className="inline-block h-2 w-2 rounded-full bg-[color:oklch(0.7_0.2_30)]" />
+                <span aria-hidden className="inline-block h-2 w-2 rounded-full bg-[color:oklch(0.85_0.18_85)]" />
+                <span aria-hidden className="inline-block h-2 w-2 rounded-full bg-[color:oklch(0.78_0.15_140)]" />
+                <p className="ml-2 flex-1 truncate font-mono text-[0.65rem] text-white">
+                  <span className="text-[#ff4000] opacity-90">$ </span>
                   {exp.title}
                 </p>
-                <p className="font-mono text-[0.55rem] tracking-[0.12em] text-[var(--ink-soft)] uppercase opacity-70">
+                <p className="font-mono text-[0.55rem] tracking-[0.12em] uppercase text-[oklch(0.72_0.012_40)] opacity-80">
                   {exp.version} · {exp.date}
                 </p>
               </header>
 
               <div className="relative">
-                {exp.slug === "ascii-rain" ? <AsciiRain height={200} /> : null}
-                {exp.slug === "refract-sandbox" ? <RefractSandbox height={200} /> : null}
                 {exp.slug === "terminal-toy" ? <TerminalToy height={240} /> : null}
+                {exp.slug === "hermes-agent" ? <HermesAgent height={240} /> : null}
+                {exp.slug === "second-brain-graph" ? <SecondBrainGraph height={240} /> : null}
                 <Scanlines opacity={0.05} blend="overlay" />
               </div>
 
-              <footer className="flex items-center justify-between gap-2 border-t border-[var(--border-glass)] px-4 py-3">
-                <p className="line-clamp-2 text-[0.75rem] text-[var(--ink-soft)]">{exp.blurb}</p>
+              <footer className="flex items-center justify-between gap-2 border-t border-[oklch(1_0_0/0.08)] px-4 py-3">
+                <p className="line-clamp-2 text-[0.75rem] text-[oklch(0.72_0.012_40)]">{exp.blurb}</p>
                 <Link
                   href={`/lab/${exp.slug}`}
-                  className="inline-flex shrink-0 items-center gap-1 font-mono text-[0.65rem] text-[var(--ink)] underline-offset-2 hover:text-[var(--accent)] hover:underline"
+                  className="inline-flex shrink-0 items-center gap-1 font-mono text-[0.65rem] text-white underline-offset-2 hover:text-[#ff4000] hover:underline"
                   aria-label={`Abrir ${exp.title} a pantalla completa`}
                 >
                   open full

@@ -60,32 +60,32 @@ export function StartSessionPrompt({ mode }: { mode: Mode }) {
   }, [state, accept, abort]);
 
   return (
-    <div className="glass relative overflow-hidden rounded-lg border border-[var(--border-glass)] backdrop-blur">
-      {/* terminal title bar */}
-      <header className="flex items-center gap-1.5 border-b border-[var(--border-glass)] bg-[var(--surface-elevated)] px-3 py-2">
+    <div className="relative overflow-hidden rounded-lg border border-[var(--border-glass)] bg-[#0a0a0a]">
+      {/* terminal title bar — Mac dots conservados, fondo dark */}
+      <header className="flex items-center gap-1.5 border-b border-[oklch(1_0_0/0.08)] bg-[oklch(1_0_0/0.03)] px-3 py-2">
         <span className="inline-block h-2 w-2 rounded-full bg-[color:oklch(0.7_0.2_30)]" />
         <span className="inline-block h-2 w-2 rounded-full bg-[color:oklch(0.85_0.18_85)]" />
         <span className="inline-block h-2 w-2 rounded-full bg-[color:oklch(0.78_0.15_140)]" />
-        <span className="ml-2 font-mono text-[0.6rem] tracking-tight text-[var(--ink-soft)] opacity-70">
+        <span className="ml-2 font-mono text-[0.6rem] tracking-tight text-[oklch(0.72_0.012_40)] opacity-80">
           rober8b@portfolio · /contact
         </span>
       </header>
 
       <div className="space-y-1.5 px-5 py-6 font-mono text-[0.8rem] leading-relaxed sm:px-7 sm:py-8">
-        <p className="text-[var(--accent)]">{copy.command}</p>
+        <p className="text-[#ff4000]">{copy.command}</p>
         {copy.systemLines.map((line) => (
-          <p key={line} className="text-[var(--ink-soft)] opacity-80">{line}</p>
+          <p key={line} className="text-[oklch(0.72_0.012_40)] opacity-80">{line}</p>
         ))}
 
         {state === "idle" ? (
           <div className="flex flex-wrap items-center gap-x-3 gap-y-2 pt-2">
-            <span className="text-[var(--ink)]">{copy.prompt}</span>
+            <span className="text-white">{copy.prompt}</span>
             <span aria-hidden className="inline-block h-3.5 w-1.5 animate-pulse bg-[var(--amber)] align-middle" />
             <div className="ml-auto flex items-center gap-2">
               <button
                 type="button"
                 onClick={accept}
-                className="inline-flex items-center gap-1 rounded-sm bg-[var(--accent)] px-2.5 py-1 text-[0.7rem] font-medium text-[var(--surface)] transition-transform hover:-translate-y-0.5"
+                className="inline-flex items-center gap-1 rounded-sm bg-[#ff4000] px-2.5 py-1 text-[0.7rem] font-medium text-white transition-transform hover:-translate-y-0.5"
                 aria-label="Aceptar"
               >
                 <span className="font-mono">Y</span>
@@ -93,7 +93,7 @@ export function StartSessionPrompt({ mode }: { mode: Mode }) {
               <button
                 type="button"
                 onClick={abort}
-                className="inline-flex items-center gap-1 rounded-sm border border-[var(--border-glass)] px-2.5 py-1 text-[0.7rem] text-[var(--ink-soft)] transition-colors hover:text-[var(--ink)]"
+                className="inline-flex items-center gap-1 rounded-sm border border-[oklch(1_0_0/0.14)] px-2.5 py-1 text-[0.7rem] text-[oklch(0.72_0.012_40)] transition-colors hover:text-white"
                 aria-label="Cancelar"
               >
                 <span className="font-mono">n</span>
@@ -103,16 +103,16 @@ export function StartSessionPrompt({ mode }: { mode: Mode }) {
         ) : null}
 
         {state === "accepted" ? (
-          <p className="pt-2 text-[var(--accent)]">{copy.acceptedLine}</p>
+          <p className="pt-2 text-[#ff4000]">{copy.acceptedLine}</p>
         ) : null}
 
         {state === "aborted" ? (
           <div className="flex items-center justify-between pt-2">
-            <p className="text-[var(--ink-soft)] opacity-80">{copy.abortedLine}</p>
+            <p className="text-[oklch(0.72_0.012_40)] opacity-80">{copy.abortedLine}</p>
             <button
               type="button"
               onClick={reset}
-              className="font-mono text-[0.65rem] text-[var(--ink-soft)] underline-offset-2 hover:text-[var(--accent)] hover:underline"
+              className="font-mono text-[0.65rem] text-[oklch(0.72_0.012_40)] underline-offset-2 hover:text-[#ff4000] hover:underline"
             >
               reintentar
             </button>
@@ -128,7 +128,7 @@ export function StartSessionPrompt({ mode }: { mode: Mode }) {
             animate={reduced ? { opacity: 1 } : { opacity: 1, height: "auto" }}
             exit={reduced ? { opacity: 0 } : { opacity: 0, height: 0 }}
             transition={{ duration: 0.45, ease: easeOutExpo }}
-            className="overflow-hidden border-t border-[var(--border-glass)]"
+            className="overflow-hidden border-t border-[oklch(1_0_0/0.08)]"
           >
             <ExpandedChannels mode={mode} />
           </motion.div>
@@ -157,7 +157,7 @@ function ExpandedChannels({ mode }: { mode: Mode }) {
           className={`group inline-flex items-center justify-between gap-2 rounded-md px-4 py-3 text-sm font-medium transition-transform hover:-translate-y-0.5 ${
             primary.tone === "green"
               ? "bg-[oklch(0.62_0.18_145)] text-white"
-              : "bg-[var(--ink)] text-[var(--surface)]"
+              : "bg-[#ff4000] text-white"
           }`}
         >
           <span className="inline-flex items-center gap-2">
@@ -173,7 +173,7 @@ function ExpandedChannels({ mode }: { mode: Mode }) {
           href={CONTACTS.cal}
           target="_blank"
           rel="noreferrer"
-          className="glass inline-flex items-center justify-between gap-2 rounded-md px-4 py-3 text-sm font-medium text-[var(--ink)] transition-transform hover:-translate-y-0.5"
+          className="inline-flex items-center justify-between gap-2 rounded-md border border-[oklch(1_0_0/0.14)] px-4 py-3 text-sm font-medium text-white transition-colors hover:border-[#ff4000] hover:text-[#ff4000]"
         >
           <span className="inline-flex items-center gap-2">
             <Calendar className="h-4 w-4" strokeWidth={1.75} />
@@ -188,7 +188,7 @@ function ExpandedChannels({ mode }: { mode: Mode }) {
           href={wa}
           target="_blank"
           rel="noreferrer"
-          className="glass inline-flex items-center justify-between gap-2 rounded-md px-4 py-3 text-sm font-medium text-[var(--ink)] transition-transform hover:-translate-y-0.5 sm:col-span-2"
+          className="inline-flex items-center justify-between gap-2 rounded-md border border-[oklch(1_0_0/0.14)] px-4 py-3 text-sm font-medium text-white transition-colors hover:border-[#ff4000] hover:text-[#ff4000] sm:col-span-2"
         >
           <span className="inline-flex items-center gap-2">
             <WhatsappIcon className="h-4 w-4" />
@@ -201,7 +201,7 @@ function ExpandedChannels({ mode }: { mode: Mode }) {
       {mode === "client" ? (
         <a
           href={`mailto:${CONTACTS.email}`}
-          className="glass inline-flex items-center justify-between gap-2 rounded-md px-4 py-3 text-sm font-medium text-[var(--ink)] transition-transform hover:-translate-y-0.5 sm:col-span-2"
+          className="inline-flex items-center justify-between gap-2 rounded-md border border-[oklch(1_0_0/0.14)] px-4 py-3 text-sm font-medium text-white transition-colors hover:border-[#ff4000] hover:text-[#ff4000] sm:col-span-2"
         >
           <span className="inline-flex items-center gap-2">
             <Mail className="h-4 w-4" strokeWidth={1.75} />

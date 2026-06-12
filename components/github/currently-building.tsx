@@ -32,12 +32,12 @@ export function CurrentlyBuildingCard({ data }: { data: CurrentlyBuilding }) {
       href={data.url}
       target="_blank"
       rel="noreferrer"
-      className="glass group relative flex flex-col gap-4 rounded-lg p-6 transition-transform duration-500 hover:-translate-y-1"
+      className="group relative flex flex-col gap-4 overflow-hidden rounded-lg border border-[var(--border-glass)] bg-[#0a0a0a] p-6 transition-colors duration-300 hover:border-[#ff4000]"
     >
       <div className="flex items-center justify-between">
-        <span className="inline-flex items-center gap-1.5 font-mono text-[0.65rem] tracking-[0.1em] text-[var(--ink-soft)] uppercase">
+        <span className="inline-flex items-center gap-1.5 font-mono text-[0.65rem] tracking-[0.1em] uppercase text-[oklch(0.72_0.012_40)]">
           {recent ? (
-            <Flame size={12} strokeWidth={1.75} className="text-[var(--accent)]" />
+            <Flame size={12} strokeWidth={1.75} className="text-[#ff4000]" />
           ) : (
             <GitCommit size={12} strokeWidth={1.75} />
           )}
@@ -46,24 +46,24 @@ export function CurrentlyBuildingCard({ data }: { data: CurrentlyBuilding }) {
         <ArrowUpRight
           size={14}
           strokeWidth={1.75}
-          className="text-[var(--ink-soft)] opacity-60 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100"
+          className="text-[oklch(0.72_0.012_40)] opacity-60 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[#ff4000] group-hover:opacity-100"
         />
       </div>
 
       <div>
-        <h4 className="font-display text-xl font-semibold text-[var(--ink)]">{data.repo}</h4>
+        <h4 className="font-display text-xl font-semibold text-white">{data.repo}</h4>
         {data.description && (
-          <p className="mt-1.5 line-clamp-2 text-sm text-[var(--ink-soft)]">{data.description}</p>
+          <p className="mt-1.5 line-clamp-2 text-sm text-[oklch(0.86_0.01_40)]">{data.description}</p>
         )}
       </div>
 
       {data.commitMessage && (
-        <p className="text-balance font-mono text-xs leading-relaxed text-[var(--ink-soft)]">
+        <p className="text-balance font-mono text-xs leading-relaxed text-[oklch(0.72_0.012_40)]">
           <span className="opacity-50">›</span> {data.commitMessage}
         </p>
       )}
 
-      <div className="mt-auto flex items-center justify-between gap-3 pt-2 font-mono text-[0.65rem] tracking-[0.08em] text-[var(--ink-soft)] uppercase">
+      <div className="mt-auto flex items-center justify-between gap-3 pt-2 font-mono text-[0.65rem] tracking-[0.08em] uppercase text-[oklch(0.72_0.012_40)]">
         <span className="inline-flex items-center gap-1.5">
           {data.language && (
             <>

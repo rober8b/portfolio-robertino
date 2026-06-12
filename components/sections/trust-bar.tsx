@@ -35,14 +35,14 @@ export function TrustBar() {
   return (
     <section
       aria-label="Métricas verificables"
-      className="relative border-y border-[var(--border-glass)] bg-[var(--surface-elevated)] px-4 py-5 sm:px-6 lg:px-8"
+      className="relative border-y border-[var(--border-glass)] bg-[var(--surface-elev)] px-4 py-5 sm:px-6 lg:px-8"
     >
       <div className="mx-auto flex max-w-6xl items-center gap-6">
         <motion.span
-          initial={{ opacity: 0, x: -8 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: easeOutExpo }}
+          key={mode}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.25, ease: easeOutExpo }}
           className="hidden shrink-0 font-mono text-[0.6rem] tracking-[0.18em] text-[var(--ink-soft)] uppercase opacity-70 md:inline-flex"
         >
           {label}

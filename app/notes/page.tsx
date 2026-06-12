@@ -42,7 +42,7 @@ export default function Page() {
               <li key={note.slug}>
                 <Link
                   href={`/notes/${note.slug}`}
-                  className="group grid gap-3 py-6 transition-colors hover:bg-[var(--surface-elevated)] sm:grid-cols-[auto_1fr_auto] sm:items-baseline sm:gap-x-6 sm:px-2"
+                  className="group grid gap-3 py-6 transition-colors hover:bg-[var(--surface-elev)] sm:grid-cols-[auto_1fr_auto] sm:items-baseline sm:gap-x-6 sm:px-2"
                 >
                   <time
                     dateTime={note.date}

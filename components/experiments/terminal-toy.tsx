@@ -90,7 +90,7 @@ function runCommand(raw: string): LogEntry[] {
       return [{ kind: "output", text: arg }];
 
     case "theme":
-      return [{ kind: "output", text: "tema actual: sunset persimmon (oklch 0.74 0.25 33)", tone: "accent" }];
+      return [{ kind: "output", text: "tema actual: yc orange #ff4000 (oklch 0.66 0.25 33)", tone: "accent" }];
 
     case "clear":
       return [{ kind: "output", text: "__CLEAR__" }];
@@ -107,9 +107,9 @@ function runCommand(raw: string): LogEntry[] {
 }
 
 const TONE_CLASS: Record<NonNullable<Extract<LogEntry, { kind: "output" }>["tone"]>, string> = {
-  default: "text-[var(--ink)]",
-  accent: "text-[var(--accent)]",
-  muted: "text-[var(--ink-soft)] opacity-70",
+  default: "text-white",
+  accent: "text-[#ff4000]",
+  muted: "text-[oklch(0.72_0.012_40)] opacity-80",
   error: "text-[color:oklch(0.62_0.22_25)]",
 };
 
@@ -144,15 +144,15 @@ export function TerminalToy({ height = 240, className }: TerminalToyProps) {
 
   return (
     <div
-      className={`flex flex-col overflow-hidden font-mono text-[0.72rem] ${className ?? ""}`}
+      className={`flex flex-col overflow-hidden bg-[#0a0a0a] font-mono text-[0.72rem] ${className ?? ""}`}
       style={{ height }}
     >
-      <div ref={scrollRef} className="flex-1 overflow-y-auto bg-[var(--surface)] px-4 py-3 leading-relaxed [scrollbar-width:thin]">
+      <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-3 leading-relaxed [scrollbar-width:thin]">
         {log.map((entry, i) =>
           entry.kind === "prompt" ? (
             <p key={i}>
-              <span className="text-[var(--accent)] opacity-80">$ </span>
-              <span className="text-[var(--ink)]">{entry.text}</span>
+              <span className="text-[#ff4000] opacity-90">$ </span>
+              <span className="text-white">{entry.text}</span>
             </p>
           ) : (
             <pre
@@ -164,14 +164,14 @@ export function TerminalToy({ height = 240, className }: TerminalToyProps) {
           )
         )}
       </div>
-      <form onSubmit={submit} className="flex items-center gap-2 border-t border-[var(--border-glass)] bg-[var(--surface-elevated)] px-4 py-2">
-        <span aria-hidden className="text-[var(--accent)] opacity-80">$</span>
+      <form onSubmit={submit} className="flex items-center gap-2 border-t border-[oklch(1_0_0/0.08)] bg-[oklch(1_0_0/0.03)] px-4 py-2">
+        <span aria-hidden className="text-[#ff4000] opacity-90">$</span>
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.currentTarget.value)}
           placeholder='escribí "help"'
-          className="flex-1 bg-transparent text-[var(--ink)] outline-none placeholder:text-[var(--ink-soft)] placeholder:opacity-50"
+          className="flex-1 bg-transparent text-white outline-none placeholder:text-[oklch(0.72_0.012_40)] placeholder:opacity-60"
           autoComplete="off"
           spellCheck={false}
           aria-label="terminal input"

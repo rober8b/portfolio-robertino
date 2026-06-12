@@ -23,7 +23,7 @@ const TONE_CLASS: Record<NonNullable<TerminalLine["tone"]>, string> = {
 export function TerminalOverlay({ title = "rober8b@localhost", lines, className }: TerminalOverlayProps) {
   return (
     <div className={`glass overflow-hidden rounded-md border border-[var(--border-glass)] backdrop-blur ${className ?? ""}`}>
-      <div className="flex items-center gap-1.5 border-b border-[var(--border-glass)] bg-[var(--surface-elevated)] px-2.5 py-1.5">
+      <div className="flex items-center gap-1.5 border-b border-[var(--border-glass)] bg-[var(--surface-elev)] px-2.5 py-1.5">
         <span className="inline-block h-1.5 w-1.5 rounded-full bg-[color:oklch(0.7_0.2_30)]" />
         <span className="inline-block h-1.5 w-1.5 rounded-full bg-[color:oklch(0.85_0.18_85)]" />
         <span className="inline-block h-1.5 w-1.5 rounded-full bg-[color:oklch(0.78_0.15_140)]" />

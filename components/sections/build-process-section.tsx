@@ -114,7 +114,13 @@ export function BuildProcessSection() {
 
   return (
     <section id="process" className="relative px-4 py-24 sm:px-6 md:py-32 lg:px-8">
-      <div className="mx-auto max-w-6xl">
+      <motion.div
+        key={mode}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.25, ease: easeOutExpo }}
+        className="mx-auto max-w-6xl"
+      >
         <AsciiHeading
           command="build.process"
           title={copy.title}
@@ -158,7 +164,7 @@ export function BuildProcessSection() {
             ))}
           </ol>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
